@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration {
 			$table->boolean('supplier');
 			$table->string('email')->unique();
 			$table->string('password', 60);
+			$table->string('billing_id');
 			$table->rememberToken();
 			$table->timestamps();
 		});

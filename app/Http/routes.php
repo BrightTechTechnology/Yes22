@@ -2,11 +2,35 @@
 
 // Frontend Pages
 
-Route::get('/', function (){return view('frontend.signup');});
-Route::get('/billing', function (){return view('frontend.billing');});
-Route::post('/billing', function (){dd(Input::all());});
+Route::get('/', function (){
+	return view('frontend.signup');
+});
 
 
+	// Billing
+	Route::get('billing', function (){
+		return view('frontend.billing');
+	});
+
+	Route::post('billing', function (){
+		$billing = App::make('App\Acme\Billing\BillingInterface');
+
+		try {
+			$customerId = $billing->charge([
+				'email' => Input::get('email'),
+				'token' => Input::get('stripe-token')
+			]);
+
+			$user = Auth::user();
+			$user->billing_id =$customerId;
+			$user->save();
+		}
+		catch (Exception $e) {
+			return Redirect::refresh()->withFlashMessage($e->getMessage());
+		}
+
+		return 'Charge was successfull';
+	});
 
 
 // Profile Pages

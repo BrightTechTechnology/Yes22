@@ -23,21 +23,29 @@
 </head>
 <body>
 
-	<?php 
-		if (isset($confirmation)) {
-			echo'
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								'.$confirmation.'
-							</div>
-						</div>
+	@if (isset($confirmation))
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						{{ $confirmation }}
 					</div>
 				</div>
-			';
-		}
-	?>
+			</div>
+		</div>
+	@endif
+
+	@if (Session::has('flash_message'))
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-error">
+					<div class="panel-heading">
+						{{ Session::get('flash_message') }}
+					</div>
+				</div>
+			</div>
+		</div>
+	@endif
 
 	@yield('content')
 

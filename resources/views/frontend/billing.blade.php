@@ -19,7 +19,10 @@
 			<h1>Buy for $10</h1>
 			<form action="{{ \URL::current() }}" method="POST" accept-charset="UTF-8" id="billing-form">
 				<input name="_token" type="hidden" value="{{ csrf_token() }}">
-
+				<div class="row">
+					<span>Email</span>
+					<input type="email" id="email" name="email">
+				</div>
 				<div class="row">
 					<span>Card Number</span>
 					<input type="text" data-stripe="number">
