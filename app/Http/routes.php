@@ -4,6 +4,7 @@
 
 Route::get('/', function (){return view('frontend.signup');});
 Route::get('/billing', function (){return view('frontend.billing');});
+Route::post('/billing', function (){dd(Input::all());});
 
 
 

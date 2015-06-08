@@ -53,6 +53,8 @@
 				<div class="row">
 					<input type="submit" value="Bill me!">
 				</div>
+				<div class="payment-errors">
+				</div>
 			</form>
 		</div>
 	</div>
