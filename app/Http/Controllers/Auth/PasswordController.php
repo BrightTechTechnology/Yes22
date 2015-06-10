@@ -29,6 +29,8 @@ class PasswordController extends Controller {
 	 */
 	public function __construct(Guard $auth, PasswordBroker $passwords)
 	{
+		$this->auth = $auth;
+		$this->passwords = $passwords;
 		$this->middleware('guest');
 	}
 
