@@ -20,7 +20,6 @@ class BillingController extends Controller {
 
 	public function chargeClient()
 	{
-
 		if (!\Auth::user()->billing_id)
 		{
 			$this->storePaymentDetails();

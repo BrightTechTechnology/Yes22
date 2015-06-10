@@ -11,7 +11,13 @@ use Exception;
 class StripeBilling implements BillingInterface {
 
 	public function __construct(){
-		Stripe::setApiKey(Config::get('stripe.secret_key'));
+		if (env('APP_ENV') == 'local')
+		{
+			$secretKey = env('STRIPE_TEST_SECRET');
+		} else {
+			$secretKey = env('STRIPE_LIVE_SECRET');
+		}
+		Stripe::setApiKey($secretKey);
 	}
 
 	public function store($token, $user){

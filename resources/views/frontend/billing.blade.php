@@ -5,7 +5,17 @@
 @extends('frontend/default')
 
 @section('head-additions')
-	<meta name="publishable-key" content="{{ Config::get('stripe.publishable_key') }}">
+
+	<?php
+		if (env('APP_ENV') == 'local')
+		{
+			$publishableKey = env('STRIPE_TEST_PUBLISHABLE');
+		} else {
+			$publishableKey = env('STRIPE_LIVE_PUBLISHABLE');
+		}
+	?>
+
+	<meta name="publishable-key" content="{{ $publishableKey }}">
 @stop
 
 @section('content')
@@ -73,7 +83,7 @@
 @stop
 
 @section('js-additions')
-	@if (!\Auth::user()->billing_id) {
+	@if (!\Auth::user()->billing_id)
 		<!-- Stripe billing JS -->
 		<script src="https://js.stripe.com/v2/"></script>
 		<script src="/js/billing.js"></script>
