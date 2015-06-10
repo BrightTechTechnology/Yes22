@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
+			$table->text('profile');
 			$table->boolean('staff');
 			$table->boolean('supplier');
 			$table->string('email')->unique();

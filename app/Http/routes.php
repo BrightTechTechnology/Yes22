@@ -1,17 +1,18 @@
 <?php
 
 // Frontend Pages
-
 Route::get('/', function (){return view('frontend.signup');});
-	// Billing
-	Route::get('billing', 'BillingController@showForm');
-	Route::post('billing', 'BillingController@ChargeClient');
 
 
 // Profile Pages
 Route::group(['middleware' => 'auth'], function(){
 	Route::get('profile', 'Profile\DashboardController@index');
 	Route::get('profile/dashboard', 'Profile\DashboardController@index');
+
+	// Billing
+	Route::get('profile/billing', 'BillingController@showForm');
+	Route::post('profile/billing', 'BillingController@ChargeClient');
+
 });
 
 
@@ -19,6 +20,8 @@ Route::group(['middleware' => 'auth'], function(){
 Route::group(['middleware' => 'supplier'], function(){
 	Route::get('supplier', 'Supplier\DashboardController@index');
 	Route::get('supplier/dashboard', 'Supplier\DashboardController@index');
+	Route::get('supplier/profile', 'Supplier\ProfileController@edit');
+	Route::post('supplier/profile', 'Supplier\ProfileController@update');
 });
 
 // Backend Pages
@@ -50,15 +53,10 @@ Route::group(['middleware' => ['staff']], function() {
 
 });
 
-// IVR features
-
-Route::get('ivr/call/create/{destination}', 'IVR\CallController@create');
-Route::get('ivr/call/intro/{destination}', 'IVR\CallController@intro');
-Route::get('ivr/call/destroy/{destination}', 'IVR\CallController@destroy');
 
 
-
-
+// tests
+Route::get('test/email', 'EmailController@send');
 
 
 
@@ -71,47 +69,4 @@ Route::controllers([
 		'auth' => 'Auth\AuthController',
 		'password' => 'Auth\PasswordController',
 	]);
-
-
-
-
-/*
-
-TODO
-
-=> Learn Laracast / Deploy on Staging / Git version control
-=> Develop IVR, also with Twilio
-
-
-	SUPPLIER LOGIN
-		Overview like before
-
-	IVR DEVELOPMENT
-		Learn howto use Git
-		Learn how to deploy to staging in order to test the IVR
-		Develop IVR flows
-
-
-		Include basic auth in IVR routes
-
-
-
-	FRONT-END DEVELOPMENT
-		Choose design, create views
-		Landing Page development
-
-	DEPLOYMENT
-		Learn how to use SSL
-		Learn how to deploy to production with DB backup
-		Learn how to convert old DB to new production
-			Suppliers
-			Clients
-			Invoices
-			Log (Interactions)
-
-	BACKEND DEVELOPMENT
-		Invoice overview etc
-
-*/
-
 

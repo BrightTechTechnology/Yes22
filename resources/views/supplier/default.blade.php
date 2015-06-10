@@ -35,10 +35,10 @@
 			@if (Auth::user()->isSupplier())
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a href="{{ url('supplier/dashboard') }}">Get Clients</a></li>
-						<li><a href="{{ url('supplier/earnings') }}">Earnings</a></li>
-						<li class="disabled"><a href="#">Available Time</a></li>
-						<li class="disabled"><a href="#">Help</a></li>
+						<li><a href="{{ url('supplier/profile') }}">Profile</a></li>
+						<!-- <li><a href="{{ url('supplier/earnings') }}">Earnings</a></li> -->
+						<!-- <li><a href="#">Available Time</a></li>  -->
+						<li class="disabled"><a href="{{ url('supplier/help') }}"><abbr title="Please Whatsapp your relationship manager">Help</abbr></a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
@@ -80,5 +80,7 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	@yield('js-additions')
+
 </body>
 </html>
