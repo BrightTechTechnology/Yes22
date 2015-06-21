@@ -1,11 +1,26 @@
+/* overwrites */
+.container-fluid {padding: 0px; margin: 0px;}
+.row {padding: 0px; margin: 0px;}
+textarea {resize: none;}
+abbr {border-bottom: none!important;}
+
+/* backgrounds */
+.bg-dark-grey {background-color: #2b343d;}
+
 /* colors */
 .text-red {color: red;}
 .text-green {color: green;}
+.text-white {color: white;}
+.text-turquoise {color: #00bebe;}
 
 /* floats */
 .text-center {text-align: center;}
 .text-left {text-align: left;}
 .text-right {text-align: right;}
+
+.float-center {float: none;}
+.float-left {float: left;}
+.float-right {float: right;}
 
 /* paddings, margins */
 .pad-no {padding: 0px;}
@@ -14,16 +29,83 @@
 .pad-lg {padding: 20px;}
 .pad-xl {padding: 50px;}
 
-
 .mar-no {margin: 0px;}
 .mar-sm {margin: 5px;}
 .mar-md {margin: 10px;}
 .mar-lg {margin: 20px;}
 .mar-xl {margin: 50px;}
 
+/* headings */
+.h1 { font-weight: 100;}
+.h2 { font-weight: 300;}
+.h3 { font-weight: 500;}
+.h4 { font-weight: 500;}
+.h5 { font-weight: 700;}
+.h6 { font-weight: 700;}
 
-/* overwrites */
-.container-fluid {padding: 0px; margin: 0px;}
-.row {padding: 0px; margin: 0px;}
-textarea {resize: none;}
-abbr {border-bottom: none!important;}
+/* buttons */
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #00bebe;
+    border-color: #2a7d7d;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+    color: #ffffff;
+    background-color: #2a7d7d;
+    border-color: #2a7d7d;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+    background-image: none;
+}
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+    background-color: #2a7d7d;
+    border-color: #2a7d7d;
+}
+.btn-primary .badge {
+    color: #00bebe;
+    background-color: #ffffff;
+}
+
+/* slider */
+#slidercontent img {
+    height: 80px;
+    width: auto;
+    padding: 10px 25px 0px 25px;
+}
+
+
+#sliderwrapper {
+    width:100%;
+    height: 110px;
+    overflow:hidden;
+}
+#slidercontent {
+    height: 80px;
+    opacity:0;
+}
+

@@ -1,8 +1,9 @@
 <?php
 
 // Frontend Pages
-Route::get('/', function (){return view('frontend.signup');});
-
+Route::get('/', 'FrontendController@create');
+Route::get('suppliers', 'FrontendController@index');
+Route::get('suppliers/{id}', 'FrontendController@show');
 
 // Profile Pages
 Route::group(['middleware' => 'auth'], function(){
@@ -61,12 +62,17 @@ Route::get('test/email', 'EmailController@send');
 
 
 
-
-
-
-
 Route::controllers([
 		'auth' => 'Auth\AuthController',
 		'password' => 'Auth\PasswordController',
 	]);
+
+
+
+/*
+ * Today
+ *
+ * -> Editor with pic upload
+ * -> Deploy with Forge
+ */
 

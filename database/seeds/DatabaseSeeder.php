@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder {
 			'email' => 'kuschnik2.gerhard@gmail.com',
 			'password' => Hash::make('homepage88'),
 			'staff' => true,
-			'supplier' => false,
+			'supplier' => true,
 			]);
 
 		// Supplier
