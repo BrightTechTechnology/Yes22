@@ -58,6 +58,10 @@ Route::group(['middleware' => ['staff']], function() {
 
 // tests
 Route::get('test/email', 'EmailController@send');
+Route::get('test/db', function(){
+	$tester = App\User::findOrFail(1);
+	return $tester->email;
+});
 
 
 
@@ -70,9 +74,17 @@ Route::controllers([
 
 
 /*
- * Today
+ * Forge
  *
- * -> Editor with pic upload
- * -> Deploy with Forge
+	Name:	Yes22
+	IP Address:	128.199.247.209
+	Username:	forge
+	Sudo Password:	E9akKjekFH8uYHA3vkti
+	Database Username:	forge
+	Database Password:	rVPoUWgslT5pEjxxyYVS
+
+	ssh yes22
+
+
  */
 
