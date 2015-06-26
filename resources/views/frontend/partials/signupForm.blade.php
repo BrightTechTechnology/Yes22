@@ -17,26 +17,23 @@
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 					<div class="form-group">
-						<div class="col-md-6">
+						<div class="col-xs-12">
 							<input placeholder="Name" type="text" class="form-control" name="name" value="{{ old('name') }}">
 						</div>
 					</div>
-
 					<div class="form-group">
-						<div class="col-md-6">
+						<div class="col-xs-12">
 							<input placeholder="E-Mail" type="email" class="form-control" name="email" value="{{ old('email') }}">
 						</div>
 					</div>
-
 					<div class="form-group">
-						<div class="col-md-6">
+						<div class="col-xs-12">
 							<input placeholder="Password" type="password" class="form-control" name="password">
 						</div>
 					</div>
-
 					<div class="form-group">
-						<div class="col-md-6">
-							<input placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation">
+						<div class="col-xs-12">
+								<input placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation">
 						</div>
 					</div>
 
@@ -48,7 +45,6 @@
 						</div>
 					</div>
 				</form>
-
 		</div>
 	</div>
 </div>

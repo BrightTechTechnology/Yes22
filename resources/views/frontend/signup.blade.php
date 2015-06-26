@@ -15,7 +15,7 @@
         <a data-toggle="modal" data-target="#myModal" style="cursor:pointer" class="btn btn-lg btn-primary">{{$button}}</a>
     </div>
     <div class="row pad-md">
-        <img src="{{\URL::asset('img/product-thumb.png')}}" class="img-responsive float-right pad-md" style="max-width: 50%;" />
+        <img src="{{\URL::asset('img/product-thumb.png')}}" class="img-responsive float-right pad-md animated infinite pulse" style="max-width: 50%;" />
         <p class="pad-md">
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
@@ -56,7 +56,7 @@
         <a data-toggle="modal" data-target="#myModal" style="cursor:pointer" class="btn btn-lg btn-primary">{{$button}}</a>
     </div>
 
-    <div class="row text-center">
+    <div class="row text-centesignur">
         <a href="{{\URL::action('FrontendController@index')}}">See our suppliers</a>
     </div>
 
