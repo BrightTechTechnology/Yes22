@@ -17,7 +17,7 @@ class EmailController extends Controller
         Mail::send('emails.signup', [], function ($message) use ($email) {
             $message->from('support@gotarot.com.hk', 'GoTarot Supprt');
             $message->to($email);
-            $message->subject('Thanks, man');
+            $message->subject('Signup successful');
         });
     }
 }
