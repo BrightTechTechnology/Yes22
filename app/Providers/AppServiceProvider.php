@@ -1,6 +1,7 @@
 <?php namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Contracts\SMS;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -28,7 +29,9 @@ class AppServiceProvider extends ServiceProvider {
 		$this->app->bind(
 			'Illuminate\Contracts\Auth\Registrar',
 			'App\Services\Registrar'
+
 		);
+
 	}
 
 }

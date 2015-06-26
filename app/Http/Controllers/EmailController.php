@@ -12,10 +12,10 @@ class EmailController extends Controller
 {
     public function send()
     {
-        $email = 'gerhard@gotarot.com.hk';
+        $email = 'kuschnik.gerhard@gmail.com';
 
         Mail::send('emails.signup', [], function ($message) use ($email) {
-            $message->from('support@gotarot.com.hk', 'GoTarot Supprt');
+            $message->from('support@gotarot.com.hk', 'GoTarot Support');
             $message->to($email);
             $message->subject('Signup successful');
         });

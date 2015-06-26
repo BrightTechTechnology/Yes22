@@ -58,6 +58,7 @@ Route::group(['middleware' => ['staff']], function() {
 
 // tests
 Route::get('test/email', 'EmailController@send');
+Route::get('test/sms', 'SMSController@send');
 Route::get('test/db', function(){
 	$tester = App\User::findOrFail(1);
 	return $tester->email;
