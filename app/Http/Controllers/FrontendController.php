@@ -11,6 +11,26 @@ use App\Article;
 
 class FrontendController extends Controller
 {
+
+    public function __construct ()
+    {
+        // language settings
+
+        if (\Cookie::has('lang')) {
+            \App::setLocale(\Cookie::get('lang'));
+        }
+
+        if (
+            (\Input::get('lang') == 'de') ||
+            (\Input::get('lang') == 'en') ||
+            (\Input::get('lang') == 'hk') ||
+            (\Input::get('lang') == 'tw')
+        ) {
+            \Cookie::make('lang', \Input::get('lang'));
+            \App::setLocale(\Input::get('lang'));
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
