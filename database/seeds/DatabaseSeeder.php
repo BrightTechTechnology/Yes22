@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder {
 			'title' => 'this is an article',
 			'content' => 'this is the article content',
 			'active' => true,
-			'id_user' => 2,
+			'user_id' => 2,
 		]);
 
 	}

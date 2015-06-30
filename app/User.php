@@ -40,11 +40,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->plan;
 	*/
 
-	public function isStaff () {
+	public function article ()
+	{
+		return $this->hasMany('App\Article');
+	}
+
+	public function isStaff ()
+	{
 		return $this->staff;
 	}
 
-	public function isSupplier () {
+	public function isSupplier ()
+	{
 		return $this->supplier;
 	}
 }

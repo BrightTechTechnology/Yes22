@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Supplier;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,10 +17,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::where('id_user', '=', \Auth::user()->id)
+        $articles = User::find(\Auth::user()->id)->article()
             ->where('active', true)
             ->orderBy('id', 'desc')
             ->paginate(25);
+
         return view('supplier.article', compact('articles'));
     }
 
@@ -44,7 +46,7 @@ class ArticleController extends Controller
         $article->content = \Input::get('content');
         $article->title = \Input::get('title');
         $article->active = true;
-        $article->id_user = \Auth::user()->id;
+        $article->user_id = \Auth::user()->id;
         $article->save();
 
         return redirect()->action('Supplier\ArticleController@index');
