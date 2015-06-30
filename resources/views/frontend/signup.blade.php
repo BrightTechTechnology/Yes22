@@ -96,4 +96,13 @@
         }
         scroll();
     </script>
+
+    @if (count($errors) > 0)
+        <!-- show modal if have flash messages -->
+        <script type="text/javascript">
+            $(window).load(function(){
+                $('#myModal').modal('show');
+            });
+        </script>
+    @endif
 @stop
