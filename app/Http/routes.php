@@ -65,6 +65,11 @@ Route::group(['middleware' => ['staff']], function() {
 });
 
 
+// if anything forwards to home, forward it to main page
+	Route::get('home', function(){
+		return redirect()->to('/');
+	});
+
 
 // tests
 Route::get('test/email', 'EmailController@send');
@@ -81,21 +86,3 @@ Route::controllers([
 		'auth' => 'Auth\AuthController',
 		'password' => 'Auth\PasswordController',
 	]);
-
-
-
-/*
- * Forge
- *
-	Name:	Yes22
-	IP Address:	128.199.247.209
-	Username:	forge
-	Sudo Password:	E9akKjekFH8uYHA3vkti
-	Database Username:	forge
-	Database Password:	rVPoUWgslT5pEjxxyYVS
-
-	ssh yes22
-
-
- */
-
