@@ -57,8 +57,9 @@
     </div>
 
     <div class="row text-centesignur">
-        <a href="{{\URL::action('FrontendController@index')}}">See our suppliers</a>
+        <h4><a href="{{\URL::action('FrontendController@index')}}">See our suppliers</a></h4>
     </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -76,7 +77,7 @@
 @section('js-additions')
 <!-- slider -->
     <script type="text/javascript">
-        $('#slidercontent').animate({'opacity': '1'}, 2000);
+        $('#slidercontent').css({'opacity': '1'});
 
         function scroll (){
             $('#slidercontent').animate({'margin-left': '-1000'}, 8000, 'linear');

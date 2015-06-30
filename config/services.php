@@ -34,4 +34,10 @@ return [
 		'secret' => '',
 	],
 
+
+	'facebook' => [
+		'client_id' => 'your-facebook-app-id',
+		'client_secret' => 'your-facebook-app-secret',
+		'redirect' => 'http://your-callback-url',
+	],
 ];

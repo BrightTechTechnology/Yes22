@@ -48,6 +48,14 @@ class DatabaseSeeder extends Seeder {
 			'supplier' => false,
 			]);
 
+		// Articles
+		\App\Article::create([
+			'title' => 'this is an article',
+			'content' => 'this is the article content',
+			'active' => true,
+			'id_user' => 2,
+		]);
+
 	}
 
 }

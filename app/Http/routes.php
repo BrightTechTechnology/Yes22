@@ -21,8 +21,18 @@ Route::group(['middleware' => 'auth'], function(){
 Route::group(['middleware' => 'supplier'], function(){
 	Route::get('supplier', 'Supplier\DashboardController@index');
 	Route::get('supplier/dashboard', 'Supplier\DashboardController@index');
+
 	Route::get('supplier/profile', 'Supplier\ProfileController@edit');
 	Route::post('supplier/profile', 'Supplier\ProfileController@update');
+
+	Route::get('supplier/article/', 'Supplier\ArticleController@index');
+	Route::get('supplier/article/create', 'Supplier\ArticleController@create');
+	Route::post('supplier/article/create', 'Supplier\ArticleController@store');
+	Route::get('supplier/article/edit/{id}', 'Supplier\ArticleController@edit');
+	Route::post('supplier/article/edit/{id}', 'Supplier\ArticleController@update');
+	Route::delete('supplier/article/{id}', 'Supplier\ArticleController@destroy');
+
+
 });
 
 // Backend Pages

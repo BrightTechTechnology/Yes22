@@ -13,11 +13,31 @@
 			</div>
 		</div>
 		<div class="row">
+			<h3>Suppliers</h3>
 			<ul>
 				@foreach ($suppliers as $supplier)
 					<li><a href="{{\URL::to('/suppliers')}}/{{$supplier->id}}">{{$supplier->name}}</a></li>
 				@endforeach
 			</ul>
+		</div>
+		<div class="row">
+			<h3>Articles</h3>
+
+			{{-- Model Listing --}}
+			<div class="table-responsive">
+				<table class="table table-striped table-hover">
+					<thead>
+					@foreach ($articles as $article)
+						<tr>
+							<td>
+								<h3>{{$article['title']}}</h3><BR>
+								{!! $article['content'] !!}
+							</td>
+						</tr>
+					@endforeach
+				</table>
+			</div>
+
 		</div>
 	</div>
 @stop

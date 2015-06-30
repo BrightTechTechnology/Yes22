@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Article;
 
 class FrontendController extends Controller
 {
@@ -18,7 +19,8 @@ class FrontendController extends Controller
     public function index()
     {
         $suppliers = User::where('supplier', true)->get();
-        return view('frontend.suppliers', compact('suppliers'));
+        $articles = Article::where('active', true)->take(5)->orderBy('id', 'desc')->get();
+        return view('frontend.suppliers', compact('suppliers', 'articles'));
     }
 
     /**
