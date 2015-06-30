@@ -29,9 +29,6 @@
 </head>
 <body>
 
-	@include('frontend/partials/languageSelector')
-	@yield('languageSelector')
-
 	@if (isset($confirmation))
 		<div class="row">
 			<div class="col-lg-12">

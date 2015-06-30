@@ -12,8 +12,17 @@
         {{--( WHAT) (WHY) (HOW) --}}
         <h1 class="text-turquoise">Interesting Fortune Telling</h1>
         <h3>Get answers and call top-rated psychics.</h3>
+        <h4>{{ trans('signup.slogan') }}</h4>
         <a data-toggle="modal" data-target="#myModal" style="cursor:pointer" class="btn btn-lg btn-primary">{{$button}}</a>
     </div>
+
+    <div class="row pad-md">
+        <p class="pad-md">
+            @include('frontend/partials/languageSelector')
+            @yield('languageSelector')
+        </p>
+    </div>
+
     <div class="row pad-md">
         <img src="{{\URL::asset('img/product-thumb.png')}}" class="img-responsive float-right pad-md animated infinite pulse" style="max-width: 50%;" />
         <p class="pad-md">

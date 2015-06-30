@@ -16,6 +16,8 @@ class FrontendController extends Controller
     {
         // language settings
 
+
+
         if (\Cookie::has('lang')) {
             \App::setLocale(\Cookie::get('lang'));
         }
@@ -26,7 +28,7 @@ class FrontendController extends Controller
             (\Input::get('lang') == 'hk') ||
             (\Input::get('lang') == 'tw')
         ) {
-            \Cookie::make('lang', \Input::get('lang'));
+            \Cookie::queue('lang', \Input::get('lang'), 60*24*365);
             \App::setLocale(\Input::get('lang'));
         }
     }
