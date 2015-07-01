@@ -1,7 +1,5 @@
 <?php
 
-<?php
-
 return [
 
     "accepted"             => ":attribute wurde nicht akzeptiert.",
