@@ -32,7 +32,18 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('supplier.articleCreate');
+        $title = '';
+        $content = '';
+
+        if (\Input::old('title')) {
+            $title = \Input::old('title');
+        }
+
+        if (\Input::old('content')) {
+            $content = \Input::old('content');
+        }
+
+        return view('supplier.articleCreate', compact ('title', 'content'));
     }
 
     /**
@@ -47,9 +58,14 @@ class ArticleController extends Controller
         $article->title = \Input::get('title');
         $article->active = true;
         $article->user_id = \Auth::user()->id;
-        $article->save();
 
-        return redirect()->action('Supplier\ArticleController@index');
+        if (\Input::has('title') && \Input::has('content')) {
+            $article->save();
+            return redirect()->action('Supplier\ArticleController@index');
+        }
+
+        \Session::flash('flash-message', 'ERROR: Article title and content needs to be filled out.');
+        return redirect()->action('Supplier\ArticleController@create')->withInput();
     }
 
     /**

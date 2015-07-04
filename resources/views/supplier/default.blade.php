@@ -67,6 +67,22 @@
 		}
 	?>
 
+	<?php
+	if (\Session::has('flash-message')) {
+		echo'
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								'.\Session::get('flash-message').'
+							</div>
+						</div>
+					</div>
+				</div>
+			';
+	}
+	?>
+
 	<div class="container">
 		@yield('content')
 	</div>
