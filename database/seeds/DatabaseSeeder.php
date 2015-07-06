@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder {
 		Model::unguard();
 		// Staff
 		\App\User::create([
-			'name' => 'gkuschnik',
+			'username' => 'gkuschnik',
+			'officialname' => 'Gerhard',
 			'email' => 'kuschnik.gerhard@gmail.com',
 			'password' => Hash::make('homepage88'),
 			'staff' => true,
@@ -23,7 +24,8 @@ class DatabaseSeeder extends Seeder {
 			]);
 
 		\App\User::create([
-			'name' => 'gkuschnik2',
+			'username' => 'gkuschnik2',
+			'officialname' => 'Gerdi',
 			'email' => 'kuschnik2.gerhard@gmail.com',
 			'password' => Hash::make('homepage88'),
 			'staff' => true,
@@ -32,7 +34,8 @@ class DatabaseSeeder extends Seeder {
 
 		// Supplier
 		\App\User::create([
-			'name' => 'mani',
+			'username' => 'mani',
+			'officialname' => 'Mani Cheung',
 			'email' => 'mani@mani-healing.com',
 			'password' => Hash::make('Schaumbad'),
 			'staff' => false,
@@ -41,7 +44,8 @@ class DatabaseSeeder extends Seeder {
 
 		// User
 		\App\User::create([
-			'name' => 'fengelhardt',
+			'username' => 'fengelhardt',
+			'officialname' => 'Felix Engelhardt',
 			'email' => 'fengelh@gmail.com',
 			'password' => Hash::make('Schaumbad'),
 			'staff' => false,

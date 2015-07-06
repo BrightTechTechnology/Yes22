@@ -44,9 +44,9 @@ class FrontendController extends Controller
         //
     }
 
-    public function forwardShow($name)
+    public function forwardShow($username)
     {
-        $supplier = \App\User::where('name', '=', $name)->first();
+        $supplier = \App\User::where('username', '=', $username)->first();
         if ($supplier != null) {
             if ($supplier->supplier == true) {
                 return view('frontend.supplierProfile', compact('supplier'));
