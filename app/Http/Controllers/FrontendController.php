@@ -44,6 +44,16 @@ class FrontendController extends Controller
         //
     }
 
+    public function forwardShow($name)
+    {
+        $supplier = \App\User::where('name', '=', $name)->first();
+        if ($supplier != null) {
+            if ($supplier->supplier == true) {
+                return view('frontend.supplierProfile', compact('supplier'));
+            }
+        }
+    }
+
     /**
      * Display the specified resource.
      *
@@ -53,7 +63,9 @@ class FrontendController extends Controller
     public function show($id)
     {
         $supplier = User::where('id', $id)->first();
-        return view('frontend.supplierProfile', compact('supplier'));
+        if ($supplier != null) {
+            return view('frontend.supplierProfile', compact('supplier'));
+        }
     }
 
     /**

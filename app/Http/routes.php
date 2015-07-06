@@ -80,9 +80,12 @@ Route::get('test/db', function(){
 });
 
 
-
-
 Route::controllers([
 		'auth' => 'Auth\AuthController',
 		'password' => 'Auth\PasswordController',
-	]);
+]);
+
+// if nothing found for the route, check if we can find a supplier.
+Route::get('{name}', 'FrontendController@forwardShow');
+
+
