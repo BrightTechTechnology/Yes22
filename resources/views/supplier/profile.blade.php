@@ -3,6 +3,7 @@
 @section('content')
 	<div class="row">
 		<div class ="container">
+			<a href="{{ \Request::root().'/'.$username }}" class="btn btn-info" target="_blank">View profile</a><BR/><BR/>
 			<form method="POST" action="{{ \URL::current() }}" >
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<label for="officialname">Your name to be published</label>
@@ -10,7 +11,7 @@
 				<label for="officialname">Your profile</label>
 				<textarea id="profile" name="profile" rows="15">{{ $profile or ''}}</textarea>
 				<div class="text-right">
-					<button class="btn-info">Save profile</button>
+					<button class="btn-success">Save profile</button>
 				</div>
 			</form>
 		</div>

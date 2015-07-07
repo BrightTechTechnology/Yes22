@@ -13,11 +13,12 @@ class ProfileController extends Controller
     public function edit()
     {
         $profile = \Auth::user()->profile;
+        $username = \Auth::user()->username;
         $officialname = \Auth::user()->officialname;
         if ($officialname == '') {
             $officialname = \Auth::user()->username;
         }
-        return view('supplier.profile', compact('profile', 'officialname'));
+        return view('supplier.profile', compact('profile', 'username', 'officialname'));
     }
 
     public function update()

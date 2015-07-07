@@ -1,5 +1,11 @@
 <?php
-	$title = 'This is '.$supplier['name'];
+
+	$title = 'This is '.$supplier['officialname'];
+
+	if ($supplier['officialname'] == ''){
+		$title = 'This is '.$supplier['username'];
+	}
+
 ?>
 
 
