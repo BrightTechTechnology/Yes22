@@ -14,18 +14,20 @@ class ProfileController extends Controller
     {
         $profile = \Auth::user()->profile;
         $officialname = \Auth::user()->officialname;
+        if ($officialname == '') {
+            $officialname = \Auth::user()->username;
+        }
         return view('supplier.profile', compact('profile', 'officialname'));
     }
 
     public function update()
     {
+        // save the input
         \Auth::user()->profile = \Input::get('profile');
-        $profile = \Input::get('profile');
         \Auth::user()->officialname = \Input::get('officialname');
-        $officialname = \Input::get('officialname');
         \Auth::user()->save();
 
-        return view('supplier.profile', compact('profile', 'officialname'));
+        return redirect()->action('Supplier\ProfileController@edit');
     }
 
 }

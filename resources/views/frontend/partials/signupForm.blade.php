@@ -18,7 +18,7 @@
 
 					<div class="form-group">
 						<div class="col-xs-12">
-							<input placeholder="Name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+							<input placeholder="Name" type="text" class="form-control" name="username" value="{{ old('name') }}">
 						</div>
 					</div>
 					<div class="form-group">

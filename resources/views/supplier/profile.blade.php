@@ -5,7 +5,9 @@
 		<div class ="container">
 			<form method="POST" action="{{ \URL::current() }}" >
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<label for="officialname">Your name to be published</label>
 				<input type="text" id="officialname" name="officialname" class="form-control" placeholder="Name to be published" value="{{ $officialname or ''}}" maxlength="50"><BR/>
+				<label for="officialname">Your profile</label>
 				<textarea id="profile" name="profile" rows="15">{{ $profile or ''}}</textarea>
 				<div class="text-right">
 					<button class="btn-info">Save profile</button>
