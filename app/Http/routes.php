@@ -13,7 +13,6 @@ Route::group(['middleware' => 'auth'], function(){
 	// Billing
 	Route::get('profile/billing', 'BillingController@showForm');
 	Route::post('profile/billing', 'BillingController@ChargeClient');
-
 });
 
 

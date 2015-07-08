@@ -15,10 +15,10 @@ class CreateCallsTable extends Migration {
 		Schema::create('calls', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('destination');
+			$table->string('destination')->index();
 			$table->boolean('active');
-			$table->string('session');
-			$table->string('txn_ref');
+			$table->string('session')->index();
+			$table->string('txn_ref')->index();
 			$table->timestamps();
 			// $table->integer('supplier');
 		});
