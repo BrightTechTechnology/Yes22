@@ -27,7 +27,7 @@
 <script>
     $(document).ready(function(){
 
-        @if (\Input::has('rating') == 'true')
+        @if (\Input::has('rating'))
             var startRating = {{\Input::get('rating')}};
         @else
             var startRating = 5;
@@ -61,6 +61,10 @@
 
         $('#rating-wrapper').on('click', function() {
             $(this).addClass('animated flash');
+            $.ajax({
+                type: 'GET',
+                url: '{{\URL::action('RatingController@store')}}/?user=10&score=5&item=supplier&item_id=4'
+            });
         });
 
         $('#rating1').on('mouseover', function() {

@@ -30,8 +30,6 @@ Route::group(['middleware' => 'supplier'], function(){
 	Route::get('supplier/article/edit/{id}', 'Supplier\ArticleController@edit');
 	Route::post('supplier/article/edit/{id}', 'Supplier\ArticleController@update');
 	Route::delete('supplier/article/{id}', 'Supplier\ArticleController@destroy');
-
-
 });
 
 // Backend Pages
@@ -64,10 +62,7 @@ Route::group(['middleware' => ['staff']], function() {
 });
 
 
-// if anything forwards to home, forward it to main page
-	Route::get('home', function(){
-		return redirect()->to('/');
-	});
+Route::get('rating', 'RatingController@store');
 
 
 // tests
@@ -83,6 +78,11 @@ Route::controllers([
 		'auth' => 'Auth\AuthController',
 		'password' => 'Auth\PasswordController',
 ]);
+
+// if anything forwards to home, forward it to main page
+Route::get('home', function(){
+    return redirect()->to('/');
+});
 
 // if nothing found for the route, check if we can find a supplier.
 Route::get('{name}', 'FrontendController@forwardShow');

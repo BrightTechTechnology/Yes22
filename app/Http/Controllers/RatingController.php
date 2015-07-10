@@ -14,15 +14,11 @@ class RatingController extends Controller
     {
         // only logged in users can rate
         // does this work with ajax?
-
-        if ( ! \Auth::check()){
-            abort(404, 'cannot rate');
-        }
     }
 
-    public function CreateRating()
+    public function store()
     {
-        $userId = \Auth::User()->id;
+        $userId = \Input::get('user');
         $score = \Input::get('score');
         $item = \Input::get('item');
         $item_id = \Input::get('item_id');
@@ -33,18 +29,17 @@ class RatingController extends Controller
             ->where('item_id', '=', $item_id)
             ->first();
 
-        if ( ! $rating) {
-            // update rating bc ratings need to be unique
+        if ($rating) {
+            $rating->score = $score;
+            $rating->save();
+        } else {
+            Rating::create([
+                'user_id' => $userId,
+                'score' => $score,
+                'item' => $item,
+                'item_id' => $item_id,
+            ]);
         }
-
-        Rating::create([
-            'user_id' => $userId,
-            'score' => $score,
-            'item' => $item,
-            'item_id' => $item_id,
-        ]);
-
-
     }
 
     public function ShowRating($item, $id)
