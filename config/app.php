@@ -147,7 +147,6 @@ return [
 		'App\Providers\RouteServiceProvider',
 		'App\Providers\BillingServiceProvider',
 		Laravel\Socialite\SocialiteServiceProvider::class,
-
 	],
 
 	/*

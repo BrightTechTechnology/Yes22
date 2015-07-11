@@ -15,7 +15,7 @@ class BillingController extends Controller {
 
 	public function showForm()
 	{
-		return view('frontend.billing');
+		return view('profile.billing');
 	}
 
 	public function chargeClient()

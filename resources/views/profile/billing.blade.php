@@ -2,7 +2,7 @@
 	$title = 'Billing with Stripe';
 ?>
 
-@extends('frontend/default')
+@extends('profile/default')
 
 @section('head-additions')
 
@@ -35,7 +35,7 @@
 				</form>
 			</div>
 		@else
-			@include ('frontend/partials/creditCardForm')
+			@include ('profile/partials/creditCardForm')
 			@yield ('creditCardForm')
 		@endif
 
