@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rating;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -47,31 +48,59 @@ class FrontendController extends Controller
     public function forwardShow($username)
     {
         $supplier = \App\User::where('username', '=', $username)->first();
-        if ($supplier != null) {
-            if ($supplier->supplier == true) {
-                return view('frontend.supplierProfile', compact('supplier'));
-            }
+        if ($supplier->supplier == true) {
+            return $this->show($supplier->id);
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function show($id)
     {
+        // data for rating JS
+        $ratingDisplay['item'] = 'supplier';
+        $ratingDisplay['item_id'] = $id;
+
+        // calculate score
+        $ratings = Rating::where('item_id', $id)->where('item', 'supplier')->get();
+
+        $ratingSum = 0;
+        $ratingCount = 0;
+        foreach ($ratings as $rating) {
+            $ratingSum = $ratingSum + $rating->score;
+            $ratingCount = $ratingCount + 1;
+        }
+        if ($ratingCount > 0) {
+            $ratingScore = $ratingSum / $ratingCount;
+            $ratingDisplay['scoreInteger'] = round($ratingScore, 0);
+            $ratingDisplay['scorePoint'] = number_format(round($ratingScore, 1), 1);
+            $ratingDisplay['scoreVotes'] = $ratingCount;
+        } else {
+            $ratingDisplay['scoreInteger'] = 0;
+            $ratingDisplay['scorePoint'] = '0.0';
+            $ratingDisplay['scoreVotes'] = '0.0';
+        }
+
+        if (\Auth::check()) {
+            $ratingDisplay['activated'] = 'true';
+        } else {
+            $ratingDisplay['activated'] = 'false';
+        }
+
         $supplier = User::where('id', $id)->first();
         if ($supplier != null) {
-            return view('frontend.supplierProfile', compact('supplier'));
+            return view('frontend.supplierProfile', compact('supplier', 'ratingDisplay'));
         }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function edit($id)
@@ -82,7 +111,7 @@ class FrontendController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function update($id)
@@ -93,7 +122,7 @@ class FrontendController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function destroy($id)

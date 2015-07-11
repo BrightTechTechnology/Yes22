@@ -27,19 +27,13 @@
 <script>
     $(document).ready(function(){
 
-        @if (\Input::has('rating'))
-            var startRating = {{\Input::get('rating')}};
-        @else
-            var startRating = 5;
-        @endif
-
-        @if (\Input::get('ratingactive') == 'true')
-            var activated = true;
-        @endif
+        var activated = {{ $ratingDisplay['activated'] }};
+        var scoreInteger = {{ $ratingDisplay['scoreInteger'] }};
+        var item = '{{ $ratingDisplay['item'] }}';
 
         // fill fix div
         for (var i = 1; i < 6; i++) {
-            if(startRating < i) {
+            if(scoreInteger < i) {
                 $('#rating-wrapper-fix').prepend('☆');
             } else {
                 $('#rating-wrapper-fix').prepend('★');
@@ -63,7 +57,7 @@
             $(this).addClass('animated flash');
             $.ajax({
                 type: 'GET',
-                url: '{{\URL::action('RatingController@store')}}/?user=10&score=5&item=supplier&item_id=4'
+                url: '{{\URL::action('RatingController@store')}}/?user={{\Auth::user()->id or ''}}&score={{ 5 }}&item={{$ratingDisplay['item']}}&item_id={{$ratingDisplay['item_id']}}'
             });
         });
 
