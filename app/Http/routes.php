@@ -62,7 +62,7 @@ Route::group(['middleware' => ['staff']], function() {
 });
 
 
-Route::get('rating', 'RatingController@store');
+Route::post('rating', 'RatingController@store');
 
 
 // tests

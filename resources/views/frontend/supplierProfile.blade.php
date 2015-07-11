@@ -48,19 +48,6 @@
             });
         }
 
-        $('#rating-wrapper-hover').on('mouseout', function(){
-            $('#rating-wrapper-hover').hide();
-            $('#rating-wrapper-fix').show();
-        });
-
-        $('#rating-wrapper').on('click', function() {
-            $(this).addClass('animated flash');
-            $.ajax({
-                type: 'GET',
-                url: '{{\URL::action('RatingController@store')}}/?user={{\Auth::user()->id or ''}}&score={{ 5 }}&item={{$ratingDisplay['item']}}&item_id={{$ratingDisplay['item_id']}}'
-            });
-        });
-
         $('#rating1').on('mouseover', function() {
             $('#rating1').html('★');
             $('#rating2').html('★');
@@ -70,6 +57,7 @@
         });
         $('#rating1').on('click', function() {
             $('#rating-wrapper').html('★★★★★');
+            scoreClick = 5;
         });
 
         $('#rating2').on('mouseover', function() {
@@ -81,6 +69,7 @@
         });
         $('#rating2').on('click', function() {
             $('#rating-wrapper').html('☆★★★★');
+            scoreClick = 4;
         });
 
         $('#rating3').on('mouseover', function() {
@@ -92,6 +81,7 @@
         });
         $('#rating3').on('click', function() {
             $('#rating-wrapper').html('☆☆★★★');
+            scoreClick = 3;
         });
 
         $('#rating4').on('mouseover', function() {
@@ -103,6 +93,7 @@
         });
         $('#rating4').on('click', function() {
             $('#rating-wrapper').html('☆☆☆★★');
+            scoreClick = 2;
         });
 
         $('#rating5').on('mouseover', function() {
@@ -114,6 +105,27 @@
         });
         $('#rating5').on('click', function() {
             $('#rating-wrapper').html('☆☆☆☆★');
+            scoreClick = 1;
+        });
+
+        $('#rating-wrapper-hover').on('mouseout', function(){
+            $('#rating-wrapper-hover').hide();
+            $('#rating-wrapper-fix').show();
+        });
+
+        $('#rating-wrapper').on('click', function() {
+            $(this).addClass('animated flash');
+            $.ajax({
+                type: 'POST',
+                url: '{{\URL::action('RatingController@store')}}',
+                data: {
+                    user:"{{\Auth::user()->id or ''}}",
+                    score: scoreClick,
+                    item: '{{$ratingDisplay['item']}}',
+                    item_id: {{$ratingDisplay['item_id']}},
+                    _token: '{{csrf_token()}}'
+                }
+            });
         });
     });
 </script>
