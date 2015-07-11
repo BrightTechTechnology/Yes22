@@ -16,7 +16,7 @@
 			<h3>Suppliers</h3>
 			<ul>
 				@foreach ($suppliers as $supplier)
-					<li><a href="{{\URL::to('/suppliers')}}/{{$supplier->id}}">{{$supplier->name}}</a></li>
+					<li><a href="{{\URL::to('/')}}/{{$supplier->username}}">{{$supplier->officialname}}</a></li>
 				@endforeach
 			</ul>
 		</div>
