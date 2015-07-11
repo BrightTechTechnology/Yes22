@@ -123,7 +123,7 @@
                     type: 'POST',
                     url: '{{\URL::action('RatingController@store')}}',
                     data: {
-                        user:"{{\Auth::user()->id or ''}}",
+                        user: '{{$ratingDisplay['user_id']}}',
                         score: scoreClick,
                         item: '{{$ratingDisplay['item']}}',
                         item_id: {{$ratingDisplay['item_id']}},

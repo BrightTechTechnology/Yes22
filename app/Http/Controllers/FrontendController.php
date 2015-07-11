@@ -65,9 +65,15 @@ class FrontendController extends Controller
         $ratingDisplay['item'] = 'supplier';
         $ratingDisplay['item_id'] = $id;
 
+        $ratingDisplay['user_id'] = '';
+        $ratingDisplay['activated'] = 'false';
+        if (\Auth::check()) {
+            $ratingDisplay['activated'] = 'true';
+            $ratingDisplay['user_id'] = \Auth::user()->id;
+        }
+
         // calculate score
         $ratings = Rating::where('item_id', $id)->where('item', 'supplier')->get();
-
         $ratingSum = 0;
         $ratingCount = 0;
         foreach ($ratings as $rating) {
@@ -85,16 +91,12 @@ class FrontendController extends Controller
             $ratingDisplay['scoreVotes'] = '0.0';
         }
 
-        if (\Auth::check()) {
-            $ratingDisplay['activated'] = 'true';
-        } else {
-            $ratingDisplay['activated'] = 'false';
-        }
-
         $supplier = User::where('id', $id)->first();
         if ($supplier != null) {
             return view('frontend.supplierProfile', compact('supplier', 'ratingDisplay'));
         }
+
+        abort(404, 'cannot find supplier');
     }
 
     /**
