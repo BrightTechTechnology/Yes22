@@ -7,6 +7,10 @@
 
 @extends('frontend/default')
 
+@section('js-preditions')
+    <script src="/js/fb-init.js"></script>
+@stop
+
 @section('content')
 	<div class="container-fluid">
 		<div class="row">

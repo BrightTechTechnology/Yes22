@@ -1,9 +1,11 @@
 <?php
 
 // Frontend Pages
-Route::get('/', 'FrontendController@create');
-Route::get('suppliers', 'FrontendController@index');
-Route::get('suppliers/{id}', 'FrontendController@show');
+Route::get('/', 'FrontendController@showSignup');
+Route::get('social', 'FrontendController@ShowSocialLogin');
+Route::get('suppliers', 'FrontendController@showSuppliers');
+Route::get('suppliers/{id}', 'FrontendController@showSupplier');
+
 
 // Profile Pages
 Route::group(['middleware' => 'auth'], function(){
@@ -85,6 +87,6 @@ Route::get('home', function(){
 });
 
 // if nothing found for the route, check if we can find a supplier.
-Route::get('{name}', 'FrontendController@forwardShow');
+Route::get('{name}', 'FrontendController@forwardShowSupplier');
 
 

@@ -14,11 +14,21 @@ class FrontendController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * show signup page
      *
      * @return Response
      */
-    public function index()
+    public function showSignup()
+    {
+        return view('frontend.signup');
+    }
+
+    /**
+     * show list of all supppliers
+     *
+     * @return Response
+     */
+    public function showSuppliers()
     {
         $suppliers = User::where('supplier', true)->get();
         $articles = Article::where('active', true)->take(5)->orderBy('id', 'desc')->get();
@@ -26,40 +36,12 @@ class FrontendController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return view('frontend.signup');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store()
-    {
-        //
-    }
-
-    public function forwardShow($username)
-    {
-        $supplier = \App\User::where('username', '=', $username)->first();
-        if ($supplier->supplier == true) {
-            return $this->show($supplier->id);
-        }
-    }
-
-    /**
-     * Display the specified resource.
+     * show specific suppplier.
      *
      * @param  int $id
      * @return Response
      */
-    public function show($id)
+    public function showSupplier($id)
     {
         // data for rating JS
         $ratingDisplay['item'] = 'supplier';
@@ -99,36 +81,17 @@ class FrontendController extends Controller
         abort(404, 'cannot find supplier');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
+    public function showSocialLogin (){
+        return view('frontend.socialLogin');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function update($id)
+
+    public function forwardShowSupplier($username)
     {
-        //
+        $supplier = \App\User::where('username', '=', $username)->first();
+        if ($supplier->supplier == true) {
+            return $this->showSupplier($supplier->id);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

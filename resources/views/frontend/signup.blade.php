@@ -66,7 +66,7 @@
     </div>
 
     <div class="row text-centesignur">
-        <h4><a href="{{\URL::action('FrontendController@index')}}">See our suppliers</a></h4>
+        <h4><a href="{{\URL::action('FrontendController@showSuppliers')}}">See our suppliers</a></h4>
     </div>
 
 
