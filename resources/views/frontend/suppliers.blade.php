@@ -30,7 +30,7 @@
 					@foreach ($articles as $article)
 						<tr>
 							<td>
-								<h3>{{$article['title']}} by {{$article->user()->first()->name}} </h3>
+								<h3>{{$article['title']}} by {{$article->user()->first()->officialname}} </h3>
 								{!! $article['content'] !!}
 							</td>
 						</tr>

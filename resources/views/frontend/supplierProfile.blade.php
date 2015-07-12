@@ -21,7 +21,12 @@
 			{!!$supplier['profile']!!}
 		</div>
         <div class="row">
-            <div id="disqus_thread"></div>
+            <div class="fb-like" data-share="true" data-width="450" data-show-faces="true">
+            </div>
+        </div>
+        <div class="row">
+            <div id="disqus_thread">
+            </div>
 		</div>
 	</div>
 @stop
