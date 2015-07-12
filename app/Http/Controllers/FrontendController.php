@@ -44,34 +44,7 @@ class FrontendController extends Controller
     public function showSupplier($id)
     {
         // data for rating JS
-        $ratingDisplay['item'] = 'supplier';
-        $ratingDisplay['item_id'] = $id;
-
-        $ratingDisplay['user_id'] = '';
-        $ratingDisplay['activated'] = 'false';
-        if (\Auth::check()) {
-            $ratingDisplay['activated'] = 'true';
-            $ratingDisplay['user_id'] = \Auth::user()->id;
-        }
-
-        // calculate score
-        $ratings = Rating::where('item_id', $id)->where('item', 'supplier')->get();
-        $ratingSum = 0;
-        $ratingCount = 0;
-        foreach ($ratings as $rating) {
-            $ratingSum = $ratingSum + $rating->score;
-            $ratingCount = $ratingCount + 1;
-        }
-        if ($ratingCount > 0) {
-            $ratingScore = $ratingSum / $ratingCount;
-            $ratingDisplay['scoreInteger'] = round($ratingScore, 0);
-            $ratingDisplay['scorePoint'] = number_format(round($ratingScore, 1), 1);
-            $ratingDisplay['scoreVotes'] = $ratingCount;
-        } else {
-            $ratingDisplay['scoreInteger'] = 0;
-            $ratingDisplay['scorePoint'] = '0.0';
-            $ratingDisplay['scoreVotes'] = '0.0';
-        }
+        $ratingDisplay = $this->getRatingData('supplier', $id);
 
         $supplier = User::where('id', $id)->first();
         if ($supplier != null) {
@@ -94,4 +67,38 @@ class FrontendController extends Controller
         }
     }
 
+    public function getRatingData($item, $itemId)
+    {
+        $ratingData = [];
+        $ratingData['item'] = $item;
+        $ratingData['itemId'] = $itemId;
+
+        $ratingData['userId'] = '';
+        $ratingData['activated'] = 'false';
+        if (\Auth::check()) {
+            $ratingData['activated'] = 'true';
+            $ratingData['userId'] = \Auth::user()->id;
+        }
+
+        // calculate score
+        $ratings = Rating::where('item_id', $itemId)->where('item', $item)->get();
+        $ratingSum = 0;
+        $ratingCount = 0;
+        foreach ($ratings as $rating) {
+            $ratingSum = $ratingSum + $rating->score;
+            $ratingCount = $ratingCount + 1;
+        }
+        if ($ratingCount > 0) {
+            $ratingScore = $ratingSum / $ratingCount;
+            $ratingData['scoreInteger'] = round($ratingScore, 0);
+            $ratingData['scorePoint'] = number_format(round($ratingScore, 1), 1);
+            $ratingData['scoreVotes'] = $ratingCount;
+        } else {
+            $ratingData['scoreInteger'] = 0;
+            $ratingData['scorePoint'] = '0.0';
+            $ratingData['scoreVotes'] = '0.0';
+        }
+
+    return $ratingData;
+    }
 }
