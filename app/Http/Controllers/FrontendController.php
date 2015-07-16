@@ -97,7 +97,7 @@ class FrontendController extends Controller
         } else {
             $ratingData['scoreInteger'] = 0;
             $ratingData['scorePoint'] = '0.0';
-            $ratingData['scoreVotes'] = '0.0';
+            $ratingData['scoreVotes'] = '0';
         }
 
     return $ratingData;

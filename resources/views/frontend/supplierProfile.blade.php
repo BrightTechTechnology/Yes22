@@ -6,9 +6,6 @@
 
 @section('head-additions')
     <meta name="fb_api_key" content="{{env('FB_APP_ID')}}">
-@stop
-
-@section('head-additions')
     <meta name="ratingActivated" content="{{ $ratingDisplay['activated'] }}">
     <meta name="ratingUserId" content="{{ $ratingDisplay['userId'] }}">
     <meta name="ratingItem" content="{{ $ratingDisplay['item'] }}">
