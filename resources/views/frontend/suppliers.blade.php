@@ -1,15 +1,14 @@
-<?php
-	$title = 'Here are our suppliers';
-?>
-
-
 @extends('frontend/default')
+
+@section('title')
+    Our Supplier list
+@stop
 
 @section('content')
 	<div class="container-fluid">
 		<div class="row">
 			<div class="well text-center">
-				{{$title}}
+                Our Supplier list
 			</div>
 		</div>
 		<div class="row">
@@ -23,7 +22,7 @@
 		<div class="row">
 			<h3>Articles</h3>
 
-			{{-- Model Listing --}}
+			{{-- Article Listing --}}
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
 					<thead>

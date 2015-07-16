@@ -1,11 +1,8 @@
-<?php
-	$title = 'This is '.$supplier['officialname'];
-	if ($supplier['officialname'] == ''){
-		$title = 'This is '.$supplier['username'];
-	}
-?>
-
 @extends('frontend/default')
+
+@section('title')
+    This is {{ $supplier['officialname']}}'s profile
+@stop
 
 @section('head-additions')
     <meta name="ratingActivated" content="{{ $ratingDisplay['activated'] }}">
@@ -26,7 +23,7 @@
 		<div class="row">
 			<div class="well text-center">
 				<div style="float: left">
-                    {{$title}}
+                    This is {{ $supplier['officialname']}}'s profile
                 </div>
                 @include('frontend/partials/rating')
 			</div>

@@ -1,10 +1,8 @@
-<?php
-$title = 'Welcome to the Place of Answers';
-//WHAT you will get
-$button = 'Get your first free call';
-?>
-
 @extends('frontend/default')
+
+@section('title')
+    Log in socially
+@stop
 
 @section('js-preditions')
     <script src="/js/fb-login.js"></script>

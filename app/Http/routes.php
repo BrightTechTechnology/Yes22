@@ -60,7 +60,7 @@ Route::group(['middleware' => ['staff']], function() {
 	// Admin
 	Route::get('backend/admin','Backend\AdminController@index');
 		Route::get('backend/admin/destroy/{id}','Backend\AdminController@destroy');
-
+        Route::get('backend/admin/search','Backend\AdminController@search');
 });
 
 

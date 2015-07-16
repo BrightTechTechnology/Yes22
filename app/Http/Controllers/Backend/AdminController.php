@@ -2,8 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\User;
 
 class AdminController extends Controller {
 
@@ -94,4 +93,35 @@ class AdminController extends Controller {
 		return \View::make('backend.admin', compact('confirmation', 'admins', 'suppliers'));
 	}
 
+    public function search (){
+        $result = [];
+        if (\Input::has('add_backend_user')) {
+            $input = \Input::get('add_backend_user');
+            $users = User::where('email', 'LIKE', '%' . $input . '%')
+                ->where('staff', '!=', 1)
+                ->orderBy('email')
+                ->take(5)
+                ->get();
+            if ($users) {
+                foreach ($users as $user) {
+                    array_push($result, $user->email);
+                }
+            }
+            return \Response::json($result, 200);
+        }
+        if (\Input::has('add_supplier')) {
+            $input = \Input::get('add_supplier');
+            $users = User::where('email', 'LIKE', '%' . $input . '%')
+                ->where('supplier', '!=', 1)
+                ->orderBy('email')
+                ->take(5)
+                ->get();
+            if ($users) {
+                foreach ($users as $user) {
+                    array_push($result, $user->email);
+                }
+            }
+            return \Response::json($result, 200);
+        }
+    }
 }

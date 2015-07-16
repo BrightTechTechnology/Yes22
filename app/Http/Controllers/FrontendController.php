@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Rating;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\User;
 use App\Article;
 
@@ -20,7 +18,10 @@ class FrontendController extends Controller
      */
     public function showSignup()
     {
-        return view('frontend.signup');
+        $viewStrings = [
+            'cta' => 'Get you first free thing',
+        ];
+        return view('frontend.signup', $viewStrings);
     }
 
     /**
@@ -62,7 +63,7 @@ class FrontendController extends Controller
     public function forwardShowSupplier($username)
     {
         $supplier = \App\User::where('username', '=', $username)->first();
-        if ($supplier->supplier == true) {
+        if ($supplier) {
             return $this->showSupplier($supplier->id);
         }
     }

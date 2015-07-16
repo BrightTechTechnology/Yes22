@@ -1,10 +1,8 @@
-<?php
-	$title = 'Welcome to the Place of Answers';
-    //WHAT you will get
-    $button = 'Get your first free call';
-?>
-
 @extends('frontend/default')
+
+@section('title')
+    Welcome to Yes22 Market!
+@stop
 
 @section('content')
 
@@ -13,7 +11,7 @@
         <h1 class="text-turquoise">Interesting Fortune Telling</h1>
         <h3>Get answers and call top-rated psychics.</h3>
         <h4>{{ trans('signup.slogan') }}</h4>
-        <a data-toggle="modal" data-target="#myModal" style="cursor:pointer" class="btn btn-lg btn-primary">{{$button}}</a>
+        <a data-toggle="modal" data-target="#myModal" style="cursor:pointer" class="btn btn-lg btn-primary">{{$cta}}</a>
     </div>
 
     <div class="row pad-md">
@@ -62,7 +60,7 @@
     </div>
 
     <div class="row text-center">
-        <a data-toggle="modal" data-target="#myModal" style="cursor:pointer" class="btn btn-lg btn-primary">{{$button}}</a>
+        <a data-toggle="modal" data-target="#myModal" style="cursor:pointer" class="btn btn-lg btn-primary">{{$cta}}</a>
     </div>
 
     <div class="row text-centesignur">
