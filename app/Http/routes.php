@@ -58,9 +58,13 @@ Route::group(['middleware' => ['staff']], function() {
 	Route::get('backend/openInvoices', 'Backend\OpenInvoicesController@index');
 
 	// Admin
-	Route::get('backend/admin','Backend\AdminController@index');
-		Route::get('backend/admin/destroy/{id}','Backend\AdminController@destroy');
+        Route::get('backend/admin','Backend\AdminController@index');
         Route::get('backend/admin/search','Backend\AdminController@search');
+        Route::get('backend/admin/addStaff','Backend\AdminController@addStaff');
+        Route::get('backend/admin/removeStaff','Backend\AdminController@removeStaff');
+        Route::get('backend/admin/addSupplier','Backend\AdminController@addSupplier');
+        Route::get('backend/admin/removeSupplier','Backend\AdminController@removeSupplier');
+        Route::get('backend/admin/destroy/','Backend\AdminController@destroy');
 });
 
 

@@ -3,100 +3,41 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Contracts\View\View;
 
-class AdminController extends Controller {
+class AdminController extends Controller
+{
 
-	public function __construct (){
-		$this->middleware('staff');
-	}
+    public function __construct()
+    {
+        $this->middleware('staff');
+    }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$admins = \App\User::where('staff', true)->get();
-		$suppliers = \App\User::where('supplier', true)->get();
-		return \View::make('backend.admin', compact('admins', 'suppliers'));
-	}
+    /**
+     * Display a admin page in backend
+     *
+     * @return View
+     */
+    public function index()
+    {
+        $staffs = \App\User::where('staff', true)->get();
+        $suppliers = \App\User::where('supplier', true)->get();
+        $users = \App\User::all();
+        return \View::make('backend.admin', compact('staffs', 'suppliers', 'users'));
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-
-		$user = \App\User::find($id);
-		$confirmation = 'The account of '.$user->name.' got removed.';
-		$user->delete();
-
-		$admins = \App\User::where('staff', true)->get();
-		$suppliers = \App\User::where('supplier', true)->get();
-		return \View::make('backend.admin', compact('confirmation', 'admins', 'suppliers'));
-	}
-
-    public function search (){
+    /**
+     * Ajax route for finding users through form input
+     *
+     * @return array in json with emails
+     */
+    public function search()
+    {
+        //if (\Request::ajax()) {
         $result = [];
-        if (\Input::has('add_backend_user')) {
-            $input = \Input::get('add_backend_user');
+        if (\Input::has('add_staff')) {
+            $input = \Input::get('add_staff');
             $users = User::where('email', 'LIKE', '%' . $input . '%')
                 ->where('staff', '!=', 1)
                 ->orderBy('email')
@@ -104,7 +45,7 @@ class AdminController extends Controller {
                 ->get();
             if ($users) {
                 foreach ($users as $user) {
-                    array_push($result, $user->email);
+                    $result[$user->id] = $user->email;
                 }
             }
             return \Response::json($result, 200);
@@ -118,10 +59,69 @@ class AdminController extends Controller {
                 ->get();
             if ($users) {
                 foreach ($users as $user) {
-                    array_push($result, $user->email);
+                    $result[$user->id] = $user->email;
                 }
             }
             return \Response::json($result, 200);
         }
+        //}
+    }
+
+    /*
+    * add somebody staff rights
+    */
+    public function addStaff()
+    {
+        $user = User::where('id', \Input::get('id'))->first();
+        $user->staff = true;
+        $user->save();
+        return Redirect()->back();
+    }
+
+    /*
+    * remove somebody staff rights
+    */
+    public function removeStaff()
+    {
+        $user = User::where('id', \Input::get('id'))->first();
+        $user->staff = false;
+        $user->save();
+        return Redirect()->back();
+    }
+
+    /*
+     * add somebody supplier rights
+     */
+    public function addSupplier()
+    {
+        $user = User::where('id', \Input::get('id'))->first();
+        $user->supplier = true;
+        $user->save();
+        return Redirect()->back();
+    }
+
+    /*
+     * add somebody supplier rights
+     */
+    public function removeSupplier()
+    {
+        $user = User::where('id', \Input::get('id'))->first();
+        $user->supplier = false;
+        $user->save();
+        return Redirect()->back();
+    }
+
+    /**
+     * Delete a user account
+     *
+     * @param  int $id
+     * @return View
+     */
+    public function destroy()
+    {
+        $user = User::where('id', \Input::get('id'))->first();
+        $confirmation = 'The account of ' . $user->name . ' got removed.';
+        $user->delete();
+        return Redirect()->back();
     }
 }
