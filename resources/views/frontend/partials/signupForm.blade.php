@@ -21,7 +21,7 @@
                         <a href="{{action('Auth\AuthController@redirectToFacebook')}}" class="btn btn-info mar-md">{{ trans('signup.login_via_fb') }}</a>
                     </div>
                 @endif
-				<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+				<form class="form-horizontal" role="form" action="{{ url('/auth/register/') }}" method="POST" >
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 					<div class="form-group">
