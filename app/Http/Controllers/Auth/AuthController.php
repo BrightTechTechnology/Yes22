@@ -27,7 +27,9 @@ class AuthController extends Controller {
     {
         $user = Socialite::driver('facebook')->user();
 
-        $token = $user->token;
+        dd($user);
+
+        $user->token;
 
         // OAuth One Providers
         $token = $user->token;
