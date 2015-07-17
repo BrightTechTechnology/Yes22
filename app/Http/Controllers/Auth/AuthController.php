@@ -29,14 +29,15 @@ class AuthController extends Controller {
         $response = Socialite::driver('facebook')->user();
 
         if ($response) {
-            // find user in local db
+            // if find user in local db, redirect to login
             $user = User::where('email', $response->getEmail())->first();
             if ($user) {
                 // login the user
                 \Auth::login($user, true);
+                return \Redirect::to('/');
             }
 
-            // if user not found locally, simply redirect back with the inputs
+            // if user not found locally, redirect back with the inputs
             if ( ! $user) {
                 $user = [];
                 $emailInPieces = explode('@', $response->getEmail());
