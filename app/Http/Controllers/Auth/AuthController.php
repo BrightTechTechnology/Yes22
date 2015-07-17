@@ -46,8 +46,7 @@ class AuthController extends Controller {
             }
 
             $cta = 'Get you first free thing';
-
-            return view('frontend.signup', compact('viewStrings', 'socialLogin', 'cta')); // redirect to signup which will redirect to profile/supplier/backend
+            return view('frontend.signup', compact('user', 'socialLogin', 'cta')); // redirect to signup which will redirect to profile/supplier/backend
 
         }
     }
