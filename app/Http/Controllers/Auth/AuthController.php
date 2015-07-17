@@ -30,7 +30,7 @@ class AuthController extends Controller {
 
         if ($response) {
             // find user in local db
-            $user = \User::where('email', $response->getEmail())->first();
+            $user = User::where('email', $response->getEmail())->first();
             if ($user) {
                 // login the user
                 \Auth::login($user, true);
