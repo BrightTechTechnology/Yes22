@@ -48,30 +48,6 @@ class AuthController extends Controller {
             return \Redirect::to('/', compact('user', 'socialLogin')); // redirect to signup which will redirect to profile/supplier/backend
 
         }
-
-        // $user->token; // for auth
-        // $user->getId(); // fb id
-        // $user->getName(); // real name
-        // $user->getEmail(). // email adress
-        // $user->getAvatar(); // avatar url
-
-        /**
-        User {#252 ▼
-            +token: "fsddfsdffds"
-            +id: "1234234320324"
-            +nickname: null
-            +name: "First last"
-            +email: "john@example.com"
-            +avatar: "https://graph.facebook.com/v2.4/3423424234/picture?type=normal"
-            +"user": array:4 [▼
-                "first_name" => "First"
-                "last_name" => "Last"
-                "email" => "john@example.com"
-                "id" => "32424234234"
-            ]
-            +"avatar_original": "https://graph.facebook.com/v2.4/324234234234/picture?width=1920"
-        }
-         */
     }
 	/*
 	|--------------------------------------------------------------------------
