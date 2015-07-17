@@ -8,6 +8,19 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller {
 
+    /*
+|--------------------------------------------------------------------------
+| Registration & Login Controller
+|--------------------------------------------------------------------------
+|
+| This controller handles the registration of new users, as well as the
+| authentication of existing users. By default, this controller uses
+| a simple trait to add these behaviors. Why don't you explore it?
+|
+*/
+
+    use AuthenticatesAndRegistersUsers;
+
     /**
      * Redirect the user to the FB authentication page.
      *
@@ -51,18 +64,7 @@ class AuthController extends Controller {
 
         }
     }
-	/*
-	|--------------------------------------------------------------------------
-	| Registration & Login Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller handles the registration of new users, as well as the
-	| authentication of existing users. By default, this controller uses
-	| a simple trait to add these behaviors. Why don't you explore it?
-	|
-	*/
 
-	use AuthenticatesAndRegistersUsers;
 
 	// the branches after signup or login of auth/login are defined in RedirectIfAuthenticated
 	// if dont use the below, can do this in routes Route::get('home', function (){return Redirect::to('auth/login');});
@@ -89,8 +91,8 @@ class AuthController extends Controller {
 	public function validator(array $data)
 	{
 		return Validator::make($data, [
-			'username' => 'required|max:255',
-			'email' => 'required|email|max:255|unique:users',
+			'username' => 'required|max:255|unique:users,username',
+			'email' => 'required|email|max:255|unique:users,email',
 			'password' => 'required|confirmed|min:6',
 		]);
 	}
