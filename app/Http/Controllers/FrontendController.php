@@ -11,6 +11,11 @@ use App\Article;
 class FrontendController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('guest', ['only' => 'showSignup']);
+    }
+
     /**
      * show signup page
      *

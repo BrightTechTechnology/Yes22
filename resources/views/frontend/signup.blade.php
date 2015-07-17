@@ -95,7 +95,7 @@
         scroll();
     </script>
 
-    @if (count($errors) > 0)
+    @if ((count($errors) > 0) || (isset($socialLogin)))
         <!-- show modal if have flash messages -->
         <script type="text/javascript">
             $(window).load(function(){
@@ -103,4 +103,5 @@
             });
         </script>
     @endif
+
 @stop

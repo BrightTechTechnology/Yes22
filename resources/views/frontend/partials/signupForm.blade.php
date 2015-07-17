@@ -12,7 +12,14 @@
 						</ul>
 					</div>
 				@endif
-
+                @if (isset($socialLogin))
+                    <div class="info alert-info">
+                        <strong>{{ trans('signup.enter_password') }}</strong><br><br>
+                    </div>
+                @endif
+                <div class="row">
+                    <a href="{{action('Auth\AuthController@redirectToFacebook')}}" class="btn btn-info mar-md">{{ trans('signup.login_via_fb') }}</a>
+                </div>
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 

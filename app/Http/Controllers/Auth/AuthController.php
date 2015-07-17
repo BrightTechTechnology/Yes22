@@ -9,7 +9,7 @@ use Laravel\Socialite\Facades\Socialite;
 class AuthController extends Controller {
 
     /**
-     * Redirect the user to the GitHub authentication page.
+     * Redirect the user to the FB authentication page.
      *
      * @return Response
      */
@@ -25,15 +25,53 @@ class AuthController extends Controller {
      */
     public function handleFacebookCallback()
     {
-        $user = Socialite::driver('facebook')->user();
+        // get user object from FB
+        $response = Socialite::driver('facebook')->user();
 
-        $user->token; // for auth
-        $user->getId(); // fb id
-        $user->getName(); // real name
-        $user->getEmail(). // email adress
-        $user->getAvatar(); // avatar url
+        if ($response) {
+            // find user in local db
+            $user = \User::where('email', $response->getEmail())->first();
+            if ($user) {
+                // login the user
+                \Auth::login($user, true);
+            }
 
-        dd($user);
+            // if user not found locally, simply redirect back with the inputs
+            if ( ! $user) {
+                $user = [];
+                $emailInPieces = explode('@', $response->getEmail());
+                $user['username'] = $emailInPieces[0];
+                $user['email'] = $response->getEmail();
+                $socialLogin = true;
+            }
+
+            return \Redirect::to('/', compact('user', 'socialLogin')); // redirect to signup which will redirect to profile/supplier/backend
+
+        }
+
+        // $user->token; // for auth
+        // $user->getId(); // fb id
+        // $user->getName(); // real name
+        // $user->getEmail(). // email adress
+        // $user->getAvatar(); // avatar url
+
+        /**
+        User {#252 ▼
+            +token: "fsddfsdffds"
+            +id: "1234234320324"
+            +nickname: null
+            +name: "First last"
+            +email: "john@example.com"
+            +avatar: "https://graph.facebook.com/v2.4/3423424234/picture?type=normal"
+            +"user": array:4 [▼
+                "first_name" => "First"
+                "last_name" => "Last"
+                "email" => "john@example.com"
+                "id" => "32424234234"
+            ]
+            +"avatar_original": "https://graph.facebook.com/v2.4/324234234234/picture?width=1920"
+        }
+         */
     }
 	/*
 	|--------------------------------------------------------------------------
