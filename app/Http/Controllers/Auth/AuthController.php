@@ -54,13 +54,7 @@ class AuthController extends Controller {
             if ( ! $user) {
                 $user = [];
                 $emailInPieces = explode('@', $response->getEmail());
-
-                // check if username exists (need to do because form unintentionally posts to the fb url)
-                $check = User::where('username', $emailInPieces[0])->first();
-                $user['username'] = '';
-                if (!$check) {
-                    $user['username'] = $emailInPieces[0];
-                }
+                $user['username'] = $emailInPieces[0];
                 $user['email'] = $response->getEmail();
                 $socialLogin = true;
             }
