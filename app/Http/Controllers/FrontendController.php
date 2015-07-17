@@ -55,11 +55,6 @@ class FrontendController extends Controller
         abort(404, 'cannot find supplier');
     }
 
-    public function showSocialLogin (){
-        return view('frontend.socialLogin');
-    }
-
-
     public function forwardShowSupplier($username)
     {
         $supplier = \App\User::where('username', '=', $username)->first();

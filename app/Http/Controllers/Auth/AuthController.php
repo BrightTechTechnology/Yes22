@@ -4,9 +4,42 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\User;
 use Validator;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller {
 
+    /**
+     * Redirect the user to the GitHub authentication page.
+     *
+     * @return Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::with('facebook')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Facebook.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+
+        $token = $user->token;
+
+        // OAuth One Providers
+        $token = $user->token;
+        $tokenSecret = $user->tokenSecret;
+
+        // All Providers
+        $user->getId();
+        $user->getNickname();
+        $user->getName();
+        $user->getEmail();
+        $user->getAvatar();
+    }
 	/*
 	|--------------------------------------------------------------------------
 	| Registration & Login Controller

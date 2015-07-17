@@ -1,11 +1,14 @@
 <?php
 
 // Frontend Pages
+
 Route::get('/', 'FrontendController@showSignup');
-Route::get('social', 'FrontendController@ShowSocialLogin');
 Route::get('suppliers', 'FrontendController@showSuppliers');
 Route::get('suppliers/{id}', 'FrontendController@showSupplier');
 
+
+Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 
 // Profile Pages
 Route::group(['middleware' => 'auth'], function(){
