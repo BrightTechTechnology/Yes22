@@ -45,7 +45,11 @@ class AuthController extends Controller {
                 $socialLogin = true;
             }
 
-            return \Redirect::to('/', compact('user', 'socialLogin')); // redirect to signup which will redirect to profile/supplier/backend
+            $viewStrings = [
+                'cta' => 'Get you first free thing',
+            ];
+            
+            return view('frontend.signup', compact('viewStrings', 'socialLogin', 'viewStrings')); // redirect to signup which will redirect to profile/supplier/backend
 
         }
     }
