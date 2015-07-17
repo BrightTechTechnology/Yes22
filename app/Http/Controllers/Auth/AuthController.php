@@ -13,7 +13,7 @@ class AuthController extends Controller {
      *
      * @return Response
      */
-    public function redirectToProvider()
+    public function redirectToFacebook()
     {
         return Socialite::with('facebook')->redirect();
     }
@@ -23,24 +23,20 @@ class AuthController extends Controller {
      *
      * @return Response
      */
-    public function handleProviderCallback()
+    public function handleFacebookCallback()
     {
         $user = Socialite::driver('facebook')->user();
 
-        dd($user);
-
-        $user->token;
-
-        // OAuth One Providers
         $token = $user->token;
-        $tokenSecret = $user->tokenSecret;
 
         // All Providers
-        $user->getId();
-        $user->getNickname();
-        $user->getName();
-        $user->getEmail();
-        $user->getAvatar();
+        echo $user->getId();
+        echo $user->getNickname();
+        echo $user->getName();
+        echo $user->getEmail();
+        echo $user->getAvatar();
+
+        dd($user);
     }
 	/*
 	|--------------------------------------------------------------------------

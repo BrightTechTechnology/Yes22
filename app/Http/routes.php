@@ -5,10 +5,7 @@
 Route::get('/', 'FrontendController@showSignup');
 Route::get('suppliers', 'FrontendController@showSuppliers');
 Route::get('suppliers/{id}', 'FrontendController@showSupplier');
-
-
-Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
-Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
+Route::post('rating', 'RatingController@store');
 
 // Profile Pages
 Route::group(['middleware' => 'auth'], function(){
@@ -70,23 +67,20 @@ Route::group(['middleware' => ['staff']], function() {
         Route::get('backend/admin/destroy/','Backend\AdminController@destroy');
 });
 
+//Auth
+Route::get('auth/facebook', 'Auth\AuthController@redirectToFacebook');
+Route::get('auth/facebook/callback', 'Auth\AuthController@handleFacebookCallback');
+Route::controllers([
+		'auth' => 'Auth\AuthController',
+		'password' => 'Auth\PasswordController',
+]);
 
-Route::post('rating', 'RatingController@store');
+
 
 
 // tests
 Route::get('test/email', 'EmailController@send');
 Route::get('test/sms', 'SMSController@send');
-Route::get('test/db', function(){
-	$tester = App\User::findOrFail(1);
-	return $tester->email;
-});
-
-
-Route::controllers([
-		'auth' => 'Auth\AuthController',
-		'password' => 'Auth\PasswordController',
-]);
 
 // if anything forwards to home, forward it to main page
 Route::get('home', function(){

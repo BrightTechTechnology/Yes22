@@ -18,41 +18,46 @@
 						</div>
 					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="col-md-3">
+                            <a href="{{action('Auth\AuthController@redirectToFacebook')}}" class="btn btn-info mar-md">Login via Facebook</a>
+                    </div>
+                    <div class="col-md-9">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">E-Mail Address</label>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                </div>
+                            </div>
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
-							</div>
-						</div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                            </div>
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="remember"> Remember Me
-									</label>
-								</div>
-							</div>
-						</div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remember"> Remember Me
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Login</button>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary">Login</button>
 
-								<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
-							</div>
-						</div>
-					</form>
+                                    <a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 				</div>
 			</div>
 		</div>
