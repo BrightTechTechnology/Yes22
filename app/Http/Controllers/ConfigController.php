@@ -84,13 +84,16 @@ class ConfigController extends Controller
                 case 'gotarot.hk':
                     $theme = 'gotarot';
                     break;
+                case 'first1.com':
+                    $theme = 'first1';
+                    break;
                 default:
                     $theme = 'whitelabel';
                     break;
             }
         }
 
-        $theme = ucfirst($theme);
+        $theme = lcfirst($theme);
 
         return $theme;
     }

@@ -80,10 +80,10 @@ Route::get('home', function(){
 
 
 // Frontend forwarding
-Route::get('{method}', 'FrontendController@routeForwardGet');
-Route::get('/', 'FrontendController@routeForwardGet');
-Route::post('{method}', 'FrontendController@routeForwardPost');
-Route::post('/', 'FrontendController@routeForwardGet');
+Route::get('{method}', 'FrontendController@routeForward');
+Route::post('{method}', 'FrontendController@routeForward');
+Route::get('/', 'FrontendController@routeForward');
+Route::post('/', 'FrontendController@routeForward');
 
 
 

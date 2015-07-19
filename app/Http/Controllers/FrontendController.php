@@ -29,23 +29,14 @@ class FrontendController extends Controller
      * forwards to current theme
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function routeForwardGet($method = 'index')
+    public function routeForward($method = 'index')
     {
         $theme = $this->config->getTheme();
+        $theme = ucfirst($theme);
         $pageControllerPath = '\App\Http\Controllers\Themes\\'.$theme.'\PageController';
         $pageController = new $pageControllerPath;
         return $pageController->$method();
     }
-
-
-
-    public function routeForwardPost($route)
-    {
-        //Todo
-    }
-
-
-
 
 
     /**
@@ -55,10 +46,7 @@ class FrontendController extends Controller
      */
     public function showSignup()
     {
-        $viewStrings = [
-            'cta' => 'Get you first free thing',
-        ];
-        return view('frontend.signup', $viewStrings);
+
     }
 
     /**
