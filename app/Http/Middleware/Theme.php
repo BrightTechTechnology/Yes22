@@ -4,13 +4,13 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Language
+class Theme
 {
 
     public function __construct(\App\Http\Controllers\ConfigController $configController)
     {
-        $language = $configController->getLanguage();
-        $configController->setLanguage($language);
+        $theme = $configController->getTheme();
+        $configController->setTheme($theme);
     }
 
     /**

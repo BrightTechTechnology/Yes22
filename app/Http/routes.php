@@ -7,7 +7,7 @@ Route::get('suppliers', 'FrontendController@showSuppliers');
 Route::get('suppliers/{id}', 'FrontendController@showSupplier');
 Route::post('rating', 'RatingController@store');
 
-// Profile Pages
+// LOGGED IN: Profile Pages
 Route::group(['middleware' => 'auth'], function(){
 	Route::get('profile', 'Profile\DashboardController@index');
 	Route::get('profile/dashboard', 'Profile\DashboardController@index');
