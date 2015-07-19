@@ -1,11 +1,5 @@
 <?php
 
-// Frontend Pages
-
-Route::get('/', 'FrontendController@showSignup');
-Route::get('suppliers', 'FrontendController@showSuppliers');
-Route::get('suppliers/{id}', 'FrontendController@showSupplier');
-Route::post('rating', 'RatingController@store');
 
 // LOGGED IN: Profile Pages
 Route::group(['middleware' => 'auth'], function(){
@@ -75,9 +69,6 @@ Route::controllers([
 		'password' => 'Auth\PasswordController',
 ]);
 
-
-
-
 // tests
 Route::get('test/email', 'EmailController@send');
 Route::get('test/sms', 'SMSController@send');
@@ -87,7 +78,20 @@ Route::get('home', function(){
     return redirect()->to('/');
 });
 
-// if nothing found for the route, check if we can find a supplier.
-Route::get('{name}', 'FrontendController@forwardShowSupplier');
+
+// Frontend forwarding
+Route::get('{method}', 'FrontendController@routeForwardGet');
+Route::get('/', 'FrontendController@routeForwardGet');
+Route::post('{method}', 'FrontendController@routeForwardPost');
+Route::post('/', 'FrontendController@routeForwardGet');
+
+
+
+// Route::get('suppliers', 'FrontendController@showSuppliers');
+// Route::get('suppliers/{id}', 'FrontendController@showSupplier');
+// Route::post('rating', 'RatingController@store');
+
+
+
 
 

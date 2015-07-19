@@ -8,13 +8,45 @@ use App\Http\Requests;
 use App\User;
 use App\Article;
 
+/**
+ * Class FrontendController
+ * @package App\Http\Controllers
+ *
+ * Takes care of global methods that are one level above the specific theme
+ *  but NOT model specific
+ *  but NOT problem specific
+ */
 class FrontendController extends Controller
 {
+    protected $config;
 
-    public function __construct()
+    public function __construct(ConfigController $config)
     {
-        $this->middleware('guest', ['only' => 'showSignup']);
+        $this->config = $config;
     }
+
+    /**
+     * forwards to current theme
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function routeForwardGet($method = 'index')
+    {
+        $theme = $this->config->getTheme();
+        $pageControllerPath = '\App\Http\Controllers\Themes\\'.$theme.'\PageController';
+        $pageController = new $pageControllerPath;
+        return $pageController->$method();
+    }
+
+
+
+    public function routeForwardPost($route)
+    {
+        //Todo
+    }
+
+
+
+
 
     /**
      * show signup page
@@ -100,6 +132,6 @@ class FrontendController extends Controller
             $ratingData['scoreVotes'] = '0';
         }
 
-    return $ratingData;
+        return $ratingData;
     }
 }

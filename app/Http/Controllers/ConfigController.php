@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 
 /*
- *  Methods to get and set language and theme
+ *  Get and set language
+ *  Get theme
  */
 
 class ConfigController extends Controller
 {
+    protected $themeOverwrite = 'Whitelabel'; // use only for development when theme is not determined by domain
+
     /**
      * is run through middleware language
      *
@@ -59,29 +62,16 @@ class ConfigController extends Controller
         \App::setLocale($language);
     }
 
-
-
-
     /**
-     * is run through middleware theme
+     * get the currently active theme
      *
      * @return string theme
      */
 
     public function getTheme()
     {
-        // TODO: Reomve this option in production
-        // theme settings from input
-        $allThemes = ['whitelabel', 'gotarot', 'first1'];
-        if (in_array(\Input::get('theme') , $allThemes)){
-            $theme = \Input::get('theme');
-        }
-
-        // theme settings from cookie
-        if (!isset($theme)) {
-            if (\Cookie::has('theme')) {
-                $theme = \Cookie::get('lang');
-            }
+        if (isset($this->themeOverwrite)) {
+            $theme = $this->themeOverwrite;
         }
 
         // $theme setting from url
@@ -100,12 +90,14 @@ class ConfigController extends Controller
             }
         }
 
+        $theme = ucfirst($theme);
+
         return $theme;
     }
 
     public function setTheme($theme)
     {
-        \Cookie::queue('theme', $theme, 60 * 24 * 365);
+        // nothing yet. maybe need to filter DB queries etc
     }
 
 }
