@@ -31,22 +31,22 @@ class PageController extends Controller
 
             'productImageUrl' =>       '/img/product-thumb.png',
 
-            'testimonial1' =>       [
+            'testimonials' =>       [
                                         'text' => 'Great website have recommended to family and friends',
                                         'author' => 'Shereen A',
                                         'time' => \Carbon\Carbon::today()->formatLocalized('%A %d %B %Y'),
                                         'rating' => 5,
                                     ],
-            'testimonial2' =>       [
+                                    [
                                         'text' => 'Great website have recommended to family and friends',
                                         'author' => 'Shereen A',
                                         'time' => \Carbon\Carbon::today()->formatLocalized('%A %d %B %Y'),
                                         'rating' => 5,
                                     ],
-            'testimonial3' =>       [
+            [
                                         'text' => 'Great website have recommended to family and friends',
                                         'author' => 'Shereen A',
-                                        'time' => \Carbon\Carbon::today()->formatLocalized('%A %d %B %Y'),
+                                        'time' => \Carbon\Carbon::yesterday()->formatLocalized('%A %d %B %Y'),
                                         'rating' => 5,
                                     ],
         ];
