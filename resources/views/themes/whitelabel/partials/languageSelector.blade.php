@@ -1,0 +1,6 @@
+<div class="row pad-md text-right">
+    <a href="?lang=hk">HK</a>
+    <a href="?lang=tw">TW</a>
+    <a href="?lang=en">EN</a>
+    <a href="?lang=de">DE</a>
+</div>

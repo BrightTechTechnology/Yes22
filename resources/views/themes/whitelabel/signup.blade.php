@@ -1,6 +1,6 @@
 @extends('themes.whitelabel.default')
 
-@section('body')
+@section('content')
 
     <div class="row bg-dark-grey text-white text-left pad-lg">
         <h1 class="text-turquoise">{{$headline}}</h1>
@@ -10,36 +10,18 @@
     </div>
 
     <div class="row pad-md">
+        <img src="{{ $productImageUrl }}" class="img-responsive float-right pad-md animated infinite pulse" style="max-width: 50%;" />
         <p class="pad-md">
-            @include('old/partials/languageSelector')
-            @yield('languageSelector')
+            {{$articleText}}
         </p>
     </div>
 
-    <div class="row pad-md">
-        <img src="{{\URL::asset('img/product-thumb.png')}}" class="img-responsive float-right pad-md animated infinite pulse" style="max-width: 50%;" />
-        <p class="pad-md">
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-    </div>
-    <!-- slider -->
-    <div class="row pad-lg">
-        <div id="sliderwrapper">
-            <div id="slidercontent" style="width:2000px;">
-                @for ($i=0; $i<2; $i++)
-                    <img src="{{\URL::asset('img/slider/cnn.gif')}}" />
-                    <img src="{{\URL::asset('img/slider/scmp.png')}}" />
-                    <img src="{{\URL::asset('img/slider/tvb.png')}}" />
-                    <img src="{{\URL::asset('img/slider/apple-daily.jpg')}}" />
-                    <img src="{{\URL::asset('img/slider/atv.png')}}" />
-                @endfor
-            </div>
-        </div>
-    </div>
+    @include('themes.whitelabel.partials.slider')
+
     <div class="row pad-lg">
         <blockquote>
             <p><i>"Great website have recommended to family and friends"</i></p>
-            <footer>Shereen A, England, United Kingdom, on {{Carbon\Carbon::today()->formatLocalized('%A %d %B %Y')}}.</footer>
+            <footer>Shereen A, England, United Kingdom, on .</footer>
             ★★★★★ 5 / 5
         </blockquote>
         <blockquote>
@@ -136,18 +118,7 @@
     @stop
 
     @section('js-additions')
-            <!-- slider -->
-    <script type="text/javascript">
-        $('#slidercontent').css({'opacity': '1'});
 
-        function scroll (){
-            $('#slidercontent').animate({'margin-left': '-1000'}, 8000, 'linear');
-            $('#slidercontent').animate({'margin-left': '0'}, 1, function(){
-                scroll();
-            });
-        }
-        scroll();
-    </script>
 
     @if ((count($errors) > 0) || (isset($socialLogin)))
             <!-- show modal if have flash messages -->

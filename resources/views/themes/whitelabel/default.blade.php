@@ -7,8 +7,9 @@
 @section('body')
 
     {{-- default code of the whitelabel theme --}}
-    {{-- no default code just  yet --}}
 
-    @yield('body')
+    @include('themes.whitelabel.partials.languageSelector')
+
+    @yield('content')
 
 @stop
