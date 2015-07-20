@@ -1,4 +1,4 @@
-<div class="row pad-md text-right">
+<div class="col-xs-6">
     <a href="?lang=hk">HK</a>
     <a href="?lang=tw">TW</a>
     <a href="?lang=en">EN</a>

@@ -8,7 +8,10 @@
 
     {{-- default code of the whitelabel theme --}}
 
-    @include('themes.whitelabel.partials.languageSelector')
+    <div class="row pad-md text-right">
+        @include('themes.whitelabel.partials.loginLink')
+        @include('themes.whitelabel.partials.languageSelector')
+    </div>
 
     @yield('content')
 
