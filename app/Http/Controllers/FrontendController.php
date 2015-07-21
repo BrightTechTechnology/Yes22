@@ -25,7 +25,7 @@ class FrontendController extends Controller
      * forwards to current theme
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function routeForward($method = 'index')
+    public function routeForward($method = 'index', $id = false)
     {
         $theme = $this->config->getTheme();
         $theme = ucfirst($theme);
@@ -34,7 +34,11 @@ class FrontendController extends Controller
 
         // check if page exists in theme, otherwise run fallback
         if (method_exists($pageController, $method)){
-            $result = $pageController->$method();
+            if ($id){
+                $result = $pageController->$method($id);
+            } else {
+                $result = $pageController->$method();
+            }
         } else {
             $result = $pageController->fallback($method);
         }

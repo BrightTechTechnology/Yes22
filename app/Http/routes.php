@@ -78,18 +78,17 @@ Route::get('home', function(){
     return redirect()->to('/');
 });
 
+//Ajax handling
+Route::post('ajax/rating', 'AjaxController@rating');
 
 // Frontend forwarding
+Route::get('{method}/{id}', 'FrontendController@routeForward');
+Route::post('{method}/{id}', 'FrontendController@routeForward');
 Route::get('{method}', 'FrontendController@routeForward');
 Route::post('{method}', 'FrontendController@routeForward');
 Route::get('/', 'FrontendController@routeForward');
 Route::post('/', 'FrontendController@routeForward');
 
-
-
-// Route::get('suppliers', 'FrontendController@showSuppliers');
-// Route::get('suppliers/{id}', 'FrontendController@showSupplier');
-// Route::post('rating', 'RatingController@store');
 
 
 

@@ -16,6 +16,7 @@ use App\Rating;
 
 class PageController extends Controller
 {
+
     public function index()
     {
         // just forward to signup page on index
@@ -29,12 +30,13 @@ class PageController extends Controller
 
         if ($supplier) {
             // data for rating JS
-            // $ratingDisplay = $this->getRatingData('supplier', $id);
+            $rating = new Rating;
+            $ratingDisplay = $rating->getRatingData('supplier', $supplier->id);
 
             $data = [
                 'title' =>          'This is the supplier '.$supplier->officialname.' | Whitelabel',
                 'supplier' =>       $supplier,
-                'ratingDisplay' =>  $this->getRatingData('supplier', $supplier->id),
+                'ratingDisplay' =>  $ratingDisplay,
             ];
 
             return view($this->getViewName(), $data);
@@ -42,6 +44,7 @@ class PageController extends Controller
 
         abort(404, 'Cannot find page');
     }
+
 
     /**
      * signup page
@@ -109,15 +112,29 @@ class PageController extends Controller
     public function articles()
     {
         $data = [
-            'title' =>      'This is the articlee overview | Whitelabel',
+            'title' =>      'This is the article overview | Whitelabel',
             'articles' =>   Article::where('active', true)->take(5)->orderBy('id', 'desc')->get(),
         ];
 
         return view($this->getViewName(), $data);
     }
 
+    /**
+     * shhow one article
+     *
+     * @return \Illuminate\View\View
+     */
+    public function article($id)
+    {
+        $data = [
+            'title' =>     'This is article with id '.$id.' | Whitelabel',
+            'article' =>   Article::where('active', true)->where('id', $id)->first(),
+        ];
 
-    // todo: put into Trait
+        return view($this->getViewName(), $data);
+    }
+
+
     protected function getViewName ()
     {
         $NameSpacePieces = explode('\\', __NAMESPACE__);
@@ -127,41 +144,4 @@ class PageController extends Controller
         $viewName = 'themes'.'.'.$theme.'.'.$route;
         return $viewName;
     }
-
-    // todo: put into sensible place, model maybe?
-    protected function getRatingData($item, $itemId)
-    {
-        $ratingData = [];
-        $ratingData['item'] = $item;
-        $ratingData['itemId'] = $itemId;
-
-        $ratingData['userId'] = '';
-        $ratingData['activated'] = 'false';
-        if (\Auth::check()) {
-            $ratingData['activated'] = 'true';
-            $ratingData['userId'] = \Auth::user()->id;
-        }
-
-        // calculate score
-        $ratings = Rating::where('item_id', $itemId)->where('item', $item)->get();
-        $ratingSum = 0;
-        $ratingCount = 0;
-        foreach ($ratings as $rating) {
-            $ratingSum = $ratingSum + $rating->score;
-            $ratingCount = $ratingCount + 1;
-        }
-        if ($ratingCount > 0) {
-            $ratingScore = $ratingSum / $ratingCount;
-            $ratingData['scoreInteger'] = round($ratingScore, 0);
-            $ratingData['scorePoint'] = number_format(round($ratingScore, 1), 1);
-            $ratingData['scoreVotes'] = $ratingCount;
-        } else {
-            $ratingData['scoreInteger'] = 0;
-            $ratingData['scorePoint'] = '0.0';
-            $ratingData['scoreVotes'] = '0';
-        }
-
-        return $ratingData;
-    }
-
 }

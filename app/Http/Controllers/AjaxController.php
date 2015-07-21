@@ -2,21 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Rating;
 
-class RatingController extends Controller
+class AjaxController extends Controller
 {
-    public function __construct()
-    {
-        // only logged in users can rate
-        // does this work with ajax?
-    }
 
-    public function store()
+    public function rating()
     {
         $userId = \Input::get('user');
         $score = \Input::get('score');
@@ -40,17 +32,5 @@ class RatingController extends Controller
                 'item_id' => $item_id,
             ]);
         }
-    }
-
-    public function ShowRating($item, $id)
-    {
-        // check if have any ratings
-        // calculate average of ratings
-
-    }
-
-    public function RemoveRating($item, $id)
-    {
-        // remove rating of that single user
     }
 }

@@ -2,6 +2,8 @@
 
 @section('head')
     <title>{{$title or 'Welcome!'}}</title>
+
+    @yield('head-additions')
 @stop
 
 @section('body')

@@ -33,11 +33,6 @@
         <h4><a href="/articles">See our articles</a></h4>
     </div>
 
-
     @include('themes.whitelabel.partials.signupModal')
-
-
-
-
 
 @stop

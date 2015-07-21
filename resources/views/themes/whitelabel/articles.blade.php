@@ -4,8 +4,10 @@
     <div class="row">
         <h3>Articles</h3>
         @foreach ($articles as $article)
-            <h4>{{$article['title']}} by {{$article->user()->first()->officialname}} </h4>
-            {!! $article['content'] !!}
+            <a href="/article/{{$article['id']}}">
+                <h4>{{$article['title']}} by {{$article->user()->first()->officialname}}</h4>
+                {!! str_limit($article['content'], $limit = 100, $end = '...') !!}
+            </a>
         @endforeach
     </div>
 @stop
