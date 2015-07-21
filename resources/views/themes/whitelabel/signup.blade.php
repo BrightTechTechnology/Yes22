@@ -29,15 +29,13 @@
     </div>
 
     <div class="row text-centesignur">
-        <h4><a href="">See our suppliers</a></h4>
+        <h4><a href="/suppliers">See our suppliers</a></h4>
+        <h4><a href="/articles">See our articles</a></h4>
     </div>
 
 
     @include('themes.whitelabel.partials.signupModal')
 
-    @stop
-
-    @section('js-additions')
 
 
 

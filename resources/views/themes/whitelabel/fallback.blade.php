@@ -1,8 +1,4 @@
-@extends('frontend/default')
-
-@section('title')
-    This is {{ $supplier['officialname']}}'s profile
-@stop
+@extends('themes.whitelabel.default')
 
 @section('head-additions')
     <meta name="fb_api_key" content="{{env('FB_APP_ID')}}">
@@ -15,23 +11,20 @@
     <meta name="ratingCsrf" content="{{ csrf_token() }}">
 @stop
 
-@section('js-preditions')
-    <script src="/js/fb-init.js"></script>
-@stop
-
 @section('content')
-	<div class="container-fluid">
-		<div class="row">
-			<div class="well text-center">
-				<div style="float: left">
+    <script src="/js/fb-init.js"></script>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="well text-center">
+                <div style="float: left">
                     This is {{ $supplier['officialname']}}'s profile
                 </div>
                 @include('frontend/partials/rating')
-			</div>
-		</div>
-		<div class="row">
-			{!!$supplier['profile']!!}
-		</div>
+            </div>
+        </div>
+        <div class="row">
+            {!!$supplier['profile']!!}
+        </div>
         <div class="row">
             <div class="fb-like" data-share="true" data-width="450" data-show-faces="true">
             </div>
@@ -39,11 +32,8 @@
         <div class="row">
             <div id="disqus_thread">
             </div>
-		</div>
-	</div>
-@stop
-
-@section('js-additions')
+        </div>
+    </div>
     <script src="/js/disqus.js"></script>
     <script src="js/rating.js"></script>
 @stop
