@@ -1,6 +1,10 @@
 @extends('themes.whitelabel.default')
 
 @section('head-additions')
+    <script src="{{ asset('/js/global/rating.min.js') }}"></script>
+    <script src="{{ asset('/js/global/disqus.min.js') }}"></script>
+    <script src="{{ asset('/js/whitelabel/fb-init.min.js') }}"></script>
+
     <meta name="fb_api_key" content="{{env('FB_APP_ID')}}">
     <meta name="ratingActivated" content="{{ $ratingDisplay['activated'] }}">
     <meta name="ratingUserId" content="{{ $ratingDisplay['userId'] }}">
@@ -12,7 +16,6 @@
 @stop
 
 @section('content')
-    <script src="/js/fb-init.js"></script>
     <div class="container-fluid">
         <div class="row">
             <div class="well text-center">
@@ -45,6 +48,4 @@
             </div>
         </div>
     </div>
-    <script src="/js/disqus.js"></script>
-    <script src="js/rating.js"></script>
 @stop

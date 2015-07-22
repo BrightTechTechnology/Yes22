@@ -6,14 +6,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('/css/general.css') }}" rel="stylesheet">
-        <link href="{{ asset('/css/animate.css') }}" rel="stylesheet">
+        <!-- Global CSS -->
+        <link href="{{ asset('/css/global/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/global/general.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/global/animate.css') }}" rel="stylesheet">
 
-        <!-- Scripts -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        <script src="/js/ga.js"></script>
+        <!-- Global JS -->
+        <script src="{{ asset('/js/global/jquery.min.js') }}"></script>
+        <script src="{{ asset('/js/global/bootstrap.min.js') }}"></script>
 
         <!-- Fonts -->
         <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>

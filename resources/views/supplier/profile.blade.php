@@ -19,7 +19,7 @@
 @stop
 
 @section('js-additions')
-	<script src="{{ asset('/js/tinymce/tinymce.min.js') }}"></script>
+	<script src="{{ asset('/js/global/tinymce/tinymce.min.js') }}"></script>
 	<script type="text/javascript">
 		tinymce.init({
 			selector: "textarea",

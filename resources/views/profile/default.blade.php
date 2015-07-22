@@ -6,9 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{{ $title }}</title>
 
-	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/general.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/animate.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/global/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/global/general.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/global/animate.css') }}" rel="stylesheet">
 
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

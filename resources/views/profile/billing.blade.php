@@ -48,5 +48,6 @@
 		<!-- Stripe billing JS -->
 		<script src="https://js.stripe.com/v2/"></script>
 		<script src="/js/billing.js"></script>
+    <script src="{{ asset('/js/global/billing.js') }}"></script>
 	@endif
 @stop
