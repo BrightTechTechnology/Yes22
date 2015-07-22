@@ -26,12 +26,15 @@ class PageController extends Controller
     public function fallback($method)
     {
         // show supplier in case no specific page exists
-        $supplier = \App\User::where('username', '=', $method)->where('supplier','=', 1)->first();
+        $supplier = \App\User::where('username', '=', $method)
+            ->where('supplier','=', 1)
+            ->where('theme','=', 'whitelabel')
+            ->first();
 
         if ($supplier) {
             // data for rating JS
             $rating = new Rating;
-            $ratingDisplay = $rating->getRatingData('supplier', $supplier->id);
+            $ratingDisplay = $rating->getRatingData('whitelabel', 'supplier', $supplier->id);
 
             $data = [
                 'title' =>          'This is the supplier '.$supplier->officialname.' | Whitelabel',
@@ -97,7 +100,9 @@ class PageController extends Controller
     {
         $data = [
             'title' =>      'This is the supplier overview | Whitelabel',
-            'suppliers' =>  User::where('supplier', true)->get(),
+            'suppliers' =>  User::where('supplier', true)
+                ->where('theme','=', 'whitelabel')
+                ->get(),
         ];
 
         return view($this->getViewName(), $data);
@@ -113,7 +118,11 @@ class PageController extends Controller
     {
         $data = [
             'title' =>      'This is the article overview | Whitelabel',
-            'articles' =>   Article::where('active', true)->take(5)->orderBy('id', 'desc')->get(),
+            'articles' =>   Article::where('active', true)
+                ->where('theme','=', 'whitelabel')
+                ->orderBy('id', 'desc')
+                ->take(5)
+                ->get(),
         ];
 
         return view($this->getViewName(), $data);
@@ -128,7 +137,10 @@ class PageController extends Controller
     {
         $data = [
             'title' =>     'This is article with id '.$id.' | Whitelabel',
-            'article' =>   Article::where('active', true)->where('id', $id)->first(),
+            'article' =>   Article::where('active', true)
+                ->where('id', $id)
+                ->where('theme','=', 'whitelabel')
+                ->first(),
         ];
 
         return view($this->getViewName(), $data);

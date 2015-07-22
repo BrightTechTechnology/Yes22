@@ -9,7 +9,7 @@ class Rating extends Model
     protected $fillable = ['user_id', 'score', 'item', 'item_id'];
 
 
-    public function getRatingData($item, $itemId)
+    public function getRatingData($theme, $item, $itemId)
     {
         $ratingData = [];
         $ratingData['item'] = $item;
@@ -23,7 +23,10 @@ class Rating extends Model
         }
 
         // calculate score
-        $ratings = Rating::where('item_id', $itemId)->where('item', $item)->get();
+        $ratings = Rating::where('item_id', $itemId)
+            ->where('item', $item)
+            ->where('theme', $theme)
+            ->get();
         $ratingSum = 0;
         $ratingCount = 0;
         foreach ($ratings as $rating) {
