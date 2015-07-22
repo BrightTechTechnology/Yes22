@@ -1,13 +1,14 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Exception;
 
 
 class BillingController extends Controller {
 
+    /**
+     * need to be logged in order to access your profile
+     */
 	public function __construct () {
 		$this->middleware('auth');
 	}

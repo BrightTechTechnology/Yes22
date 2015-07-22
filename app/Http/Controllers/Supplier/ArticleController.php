@@ -58,6 +58,7 @@ class ArticleController extends Controller
         $article->title = \Input::get('title');
         $article->active = true;
         $article->user_id = \Auth::user()->id;
+        $article->theme = \Auth::user()->theme;
 
         if (\Input::has('title') && \Input::has('content')) {
             $article->save();

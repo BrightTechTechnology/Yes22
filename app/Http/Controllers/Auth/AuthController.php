@@ -100,6 +100,7 @@ class AuthController extends Controller {
 			'username' => 'required|max:255|unique:users,username',
 			'email' => 'required|email|max:255|unique:users,email',
 			'password' => 'required|confirmed|min:6',
+            'theme' => 'required|in:whitelabel,gotarot,first1',
 		]);
 	}
 
@@ -115,6 +116,7 @@ class AuthController extends Controller {
 			'username' => $data['username'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
+            'theme' => $data['theme'],
 		]);
 	}
 

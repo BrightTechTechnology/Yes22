@@ -1,17 +1,5 @@
 <?php
 
-
-// LOGGED IN: Profile Pages
-Route::group(['middleware' => 'auth'], function(){
-	Route::get('profile', 'Profile\DashboardController@index');
-	Route::get('profile/dashboard', 'Profile\DashboardController@index');
-
-	// Billing
-	Route::get('profile/billing', 'BillingController@showForm');
-	Route::post('profile/billing', 'BillingController@ChargeClient');
-});
-
-
 // Supplier Pages
 Route::group(['middleware' => 'supplier'], function(){
 	Route::get('supplier', 'Supplier\DashboardController@index');
@@ -78,16 +66,37 @@ Route::get('home', function(){
     return redirect()->to('/');
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// LOGGED IN: Profile Pages
+    Route::get('profile', 'Profile\DashboardController@index');
+    Route::get('profile/dashboard', 'Profile\DashboardController@index');
+
+    // Billing
+    Route::get('profile/billing', 'BillingController@showForm');
+    Route::post('profile/billing', 'BillingController@ChargeClient');
+
 //Ajax handling
 Route::post('ajax/rating', 'AjaxController@rating');
 
 // Frontend forwarding
-Route::get('{method}/{id}', 'FrontendController@routeForward');
-Route::post('{method}/{id}', 'FrontendController@routeForward');
-Route::get('{method}', 'FrontendController@routeForward');
-Route::post('{method}', 'FrontendController@routeForward');
-Route::get('/', 'FrontendController@routeForward');
-Route::post('/', 'FrontendController@routeForward');
+Route::any('{method}/{id}', 'FrontendController@routeForward');
+Route::any('{method}', 'FrontendController@routeForward');
+Route::any('/', 'FrontendController@routeForward');
 
 
 

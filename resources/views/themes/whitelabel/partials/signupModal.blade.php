@@ -26,7 +26,7 @@
                             @endif
                             <form class="form-horizontal" role="form" action="{{ url('/auth/register/') }}" method="POST" >
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                                <input type="hidden" name="theme" value="whitelabel">
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <label for="username">Username</label>

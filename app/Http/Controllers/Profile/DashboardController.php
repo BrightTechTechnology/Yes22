@@ -3,14 +3,12 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
-
 class DashboardController extends Controller {
 
-	public function __construct (){
-		// this is how middleware parameters work
-		// $this->middleware('staff:yearly');
-
+    /**
+     * need to be logged in order to access your profile
+     */
+    public function __construct (){
 		$this->middleware('auth');
 	}
 
