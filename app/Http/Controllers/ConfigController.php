@@ -11,7 +11,7 @@ use App\Http\Requests;
 
 class ConfigController extends Controller
 {
-    protected $themeOverwrite = 'Whitelabel'; // use only for development when theme is not determined by domain
+    protected $themeOverwrite = 'Gotarot'; // use only for development when theme is not determined by domain
 
     /**
      * is run through middleware language
