@@ -21,6 +21,54 @@ class AuthController extends Controller {
 
     use AuthenticatesAndRegistersUsers;
 
+	// the branches after signup or login of auth/login are defined in RedirectIfAuthenticated
+	// if dont use the below, can do this in routes Route::get('home', function (){return Redirect::to('auth/login');});
+	protected $redirectTo = '/login';
+
+	/**
+	 * Create a new authentication controller instance.
+	 *
+	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
+	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->middleware('guest', ['except' => 'getLogout']);
+	}
+
+	/**
+	 * Get a validator for an incoming registration request.
+	 *
+	 * @param  array  $data
+	 * @return \Illuminate\Contracts\Validation\Validator
+	 */
+	public function validator(array $data)
+	{
+		return Validator::make($data, [
+			'username' => 'required|max:255|unique:users,username',
+			'email' => 'required|email|max:255|unique:users,email',
+			'password' => 'required|confirmed|min:6',
+            'theme' => 'required|in:whitelabel,gotarot,first1',
+		]);
+	}
+
+	/**
+	 * Create a new user instance after a valid registration.
+	 *
+	 * @param  array  $data
+	 * @return User
+	 */
+	public function create(array $data)
+	{
+		return User::create([
+			'username' => $data['username'],
+			'email' => $data['email'],
+			'password' => bcrypt($data['password']),
+            'theme' => $data['theme'],
+		]);
+	}
+
     /**
      * Redirect the user to the FB authentication page.
      *
@@ -70,54 +118,5 @@ class AuthController extends Controller {
 
         }
     }
-
-
-	// the branches after signup or login of auth/login are defined in RedirectIfAuthenticated
-	// if dont use the below, can do this in routes Route::get('home', function (){return Redirect::to('auth/login');});
-	protected $redirectTo = '/auth/login';
-
-	/**
-	 * Create a new authentication controller instance.
-	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('guest', ['except' => 'getLogout']);
-	}
-
-	/**
-	 * Get a validator for an incoming registration request.
-	 *
-	 * @param  array  $data
-	 * @return \Illuminate\Contracts\Validation\Validator
-	 */
-	public function validator(array $data)
-	{
-		return Validator::make($data, [
-			'username' => 'required|max:255|unique:users,username',
-			'email' => 'required|email|max:255|unique:users,email',
-			'password' => 'required|confirmed|min:6',
-            'theme' => 'required|in:whitelabel,gotarot,first1',
-		]);
-	}
-
-	/**
-	 * Create a new user instance after a valid registration.
-	 *
-	 * @param  array  $data
-	 * @return User
-	 */
-	public function create(array $data)
-	{
-		return User::create([
-			'username' => $data['username'],
-			'email' => $data['email'],
-			'password' => bcrypt($data['password']),
-            'theme' => $data['theme'],
-		]);
-	}
 
 }

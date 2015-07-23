@@ -1,4 +1,4 @@
-@extends('auth/default')
+@extends('themes/whitelabel/auth/default')
 
 @section('content')
 <div class="container-fluid">

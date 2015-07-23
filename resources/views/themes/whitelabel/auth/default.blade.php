@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{{-- remove this and replace with theme-wide default --}}
 <html lang="en">
 <head>
 	<meta charset="utf-8">

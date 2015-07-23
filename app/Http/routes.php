@@ -52,11 +52,9 @@ Route::group(['middleware' => ['staff']], function() {
 //Auth
 Route::get('auth/facebook', 'Auth\AuthController@redirectToFacebook');
 Route::get('auth/facebook/callback', 'Auth\AuthController@handleFacebookCallback');
-Route::controllers([
-		'auth' => 'Auth\AuthController',
-		'password' => 'Auth\PasswordController',
-]);
 
+Route::controller('/', 'Auth\PasswordController');
+Route::controller('/', 'Auth\AuthController');
 
 // feature tests
 Route::get('test/email', 'EmailController@send');
