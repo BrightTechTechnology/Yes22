@@ -2,7 +2,7 @@
 
 @section('head')
     <title>{{$title or 'Welcome!'}}</title>
-    <script src="{{ asset('/js/whitelabel/ja.js') }}"></script>
+    <script src="{{ asset('/js/whitelabel/ga.js') }}"></script>
     @yield('head-additions')
 @stop
 

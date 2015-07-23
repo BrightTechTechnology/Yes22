@@ -16,7 +16,7 @@
 }
 
 body {
-	background: url(bg-splash.jpg) no-repeat center center;
+	background: url(/img/gotarot/bg-splash.jpg) no-repeat center center;
 	  background-attachment: fixed;
 	  -webkit-background-size: 100%;
 	  -moz-background-size: 100%;
