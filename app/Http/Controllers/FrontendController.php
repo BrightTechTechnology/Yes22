@@ -25,7 +25,7 @@ class FrontendController extends Controller
      * forwards to current theme
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function routeForward($method = 'index', $id = false)
+    public function routeForward($method = 'index', $id = false, $subId = false)
     {
         $theme = $this->config->getTheme();
         $theme = ucfirst($theme);

@@ -82,13 +82,6 @@ Route::get('home', function(){
 
 
 
-// LOGGED IN: Profile Pages
-    Route::get('profile', 'Profile\DashboardController@index');
-    Route::get('profile/dashboard', 'Profile\DashboardController@index');
-
-    // Billing
-    Route::get('profile/billing', 'BillingController@showForm');
-    Route::post('profile/billing', 'BillingController@ChargeClient');
 
 //Ajax handling
 Route::post('ajax/rating', 'AjaxController@rating');

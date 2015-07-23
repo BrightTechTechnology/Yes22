@@ -17,6 +17,23 @@ use App\Rating;
 class PageController extends Controller
 {
 
+    //////////////////// UNIVERSAL METHODS FOR EVERY THEME ////////////////////
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['only'=>['profile','postBilling']]);
+    }
+
+    protected function getViewName ()
+    {
+        $NameSpacePieces = explode('\\', __NAMESPACE__);
+        $theme = lcfirst(end($NameSpacePieces));
+        $route = debug_backtrace()[1]['function'];
+
+        $viewName = 'themes'.'.'.$theme.'.'.$route;
+        return $viewName;
+    }
+
     public function index()
     {
         // just forward to signup page on index
@@ -48,6 +65,27 @@ class PageController extends Controller
         abort(404, 'Cannot find page');
     }
 
+    //////////////////// PROFILE GET & POST HANDLING ////////////////////
+
+    public function profile($id = 'index', $subId = false)
+    {
+        $viewPath = $this->getViewName().'/'.$id;
+
+        if (\Request::isMethod('get') && \View::exists($viewPath)) {
+            return view($this->getViewName().'/'.$id);
+        }
+
+        if (\Request::isMethod('post')) {
+            $controllerName = 'App\Http\Controllers\\'.ucfirst($id).'Controller';
+            $methodName = 'post'.ucfirst($id);
+
+            $controller = new $controllerName;
+            return $controller->$methodName();
+        }
+        abort(404, 'Cannot find page');
+    }
+
+    //////////////////// FRONTEND PAGES ////////////////////
 
     /**
      * signup page
@@ -146,14 +184,4 @@ class PageController extends Controller
         return view($this->getViewName(), $data);
     }
 
-
-    protected function getViewName ()
-    {
-        $NameSpacePieces = explode('\\', __NAMESPACE__);
-        $theme = lcfirst(end($NameSpacePieces));
-        $route = debug_backtrace()[1]['function'];
-
-        $viewName = 'themes'.'.'.$theme.'.'.$route;
-        return $viewName;
-    }
 }

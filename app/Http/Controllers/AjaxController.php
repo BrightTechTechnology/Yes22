@@ -7,7 +7,6 @@ use App\Rating;
 
 class AjaxController extends Controller
 {
-
     public function rating()
     {
         $userId = \Input::get('user');
