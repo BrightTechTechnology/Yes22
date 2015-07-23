@@ -27,6 +27,12 @@ class FrontendController extends Controller
      */
     public function routeForward($method = 'index', $id = false, $subId = false)
     {
+        //special case: if any auth controller etc forwards to home -> forward to index
+        if ($method = 'home') {
+            $method = 'index';
+        }
+
+        // get data for forwarding
         $theme = $this->config->getTheme();
         $theme = ucfirst($theme);
         $pageControllerPath = '\App\Http\Controllers\Themes\\'.$theme.'\PageController';

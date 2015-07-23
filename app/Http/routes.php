@@ -57,31 +57,10 @@ Route::controllers([
 		'password' => 'Auth\PasswordController',
 ]);
 
-// tests
+
+// feature tests
 Route::get('test/email', 'EmailController@send');
 Route::get('test/sms', 'SMSController@send');
-
-// if anything forwards to home, forward it to main page
-Route::get('home', function(){
-    return redirect()->to('/');
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //Ajax handling
 Route::post('ajax/rating', 'AjaxController@rating');
