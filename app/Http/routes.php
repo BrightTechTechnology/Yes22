@@ -53,8 +53,8 @@ Route::group(['middleware' => ['staff']], function() {
 Route::get('auth/facebook', 'Auth\AuthController@redirectToFacebook');
 Route::get('auth/facebook/callback', 'Auth\AuthController@handleFacebookCallback');
 
-Route::controller('/', 'Auth\PasswordController');
-Route::controller('/', 'Auth\AuthController');
+Route::controller('auth', 'Auth\AuthController');
+Route::controller('password', 'Auth\PasswordController');
 
 // feature tests
 Route::get('test/email', 'EmailController@send');
@@ -64,6 +64,7 @@ Route::get('test/sms', 'SMSController@send');
 Route::post('ajax/rating', 'AjaxController@rating');
 
 // Frontend forwarding
+Route::any('{method}/{id}/{subId}', 'FrontendController@routeForward');
 Route::any('{method}/{id}', 'FrontendController@routeForward');
 Route::any('{method}', 'FrontendController@routeForward');
 Route::any('/', 'FrontendController@routeForward');

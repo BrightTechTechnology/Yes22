@@ -30,4 +30,20 @@ class PasswordController extends Controller {
 		$this->middleware('guest');
 	}
 
+    public function getConfirm()
+    {
+        $config = new \App\Http\Controllers\ConfigController;
+        $theme = $config->getTheme();
+        $viewPath = 'themes.'.$theme.'.auth.confirm';
+        return view($viewPath);
+    }
+
+    public function getReset()
+    {
+        $config = new \App\Http\Controllers\ConfigController;
+        $theme = $config->getTheme();
+        $viewPath = 'themes.'.$theme.'.auth.reset';
+        return view($viewPath);
+    }
+
 }

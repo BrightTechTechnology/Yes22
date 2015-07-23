@@ -25,6 +25,48 @@ class AuthController extends Controller {
 	// if dont use the below, can do this in routes Route::get('home', function (){return Redirect::to('auth/login');});
 	protected $redirectTo = '/login';
 
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getSignup()
+    {
+        $config = new \App\Http\Controllers\ConfigController;
+        $theme = $config->getTheme();
+        $viewPath = 'themes.'.$theme.'.auth.signup';
+        return view($viewPath);
+    }
+
+    /**
+     * Show the application login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getLogin()
+    {
+        $config = new \App\Http\Controllers\ConfigController;
+        $theme = $config->getTheme();
+        $viewPath = 'themes.'.$theme.'.auth.login';
+        return view($viewPath);
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getRegister()
+    {
+        $config = new \App\Http\Controllers\ConfigController;
+        $theme = $config->getTheme();
+        $viewPath = 'themes.'.$theme.'.auth.register';
+        return view($viewPath);
+    }
+
+
+
 	/**
 	 * Create a new authentication controller instance.
 	 *
