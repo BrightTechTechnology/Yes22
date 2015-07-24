@@ -11,7 +11,8 @@
                             <!-- Logo + description -->
                             <div class="logo">
                                 <strong>Go</strong>Tarot<span style="font-size:33%">.com.hk</span><br>
-                                <span>Call tarot masters</span>
+                                <span>Call tarot masters</span><BR>
+                                <a id="bookmarkme" href="#" rel="sidebar" title="bookmark this page">Bookmark This Page</a>
                             </div>
 
                             <!-- Social Media -->
