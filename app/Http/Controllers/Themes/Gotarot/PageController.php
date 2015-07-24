@@ -36,8 +36,22 @@ class PageController extends Controller
 
     public function index()
     {
-        $data = [
-            'title' =>              'Welcome! | Gotarot',
+         $data = [
+            'title' => 'Welcome! | Gotarot',
+            'pages' => [
+                //'Splash' => 'splash',
+                //'Menue' => 'menu',
+                'About us' => 'about',
+                'Our Services' => 'services',
+                // 'blog',
+                // 'portfolio',
+                // 'gallery',
+                // 'videos',
+                // 'clients',
+                // 'twitter',
+                // 'contact',
+            ],
+
         ];
 
         return view($this->getViewName(), $data);
@@ -170,7 +184,7 @@ class PageController extends Controller
     }
 
     /**
-     * shhow one article
+     * show one article
      *
      * @return \Illuminate\View\View
      */
@@ -186,5 +200,4 @@ class PageController extends Controller
 
         return view($this->getViewName(), $data);
     }
-
 }
