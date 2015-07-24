@@ -27,8 +27,9 @@ class FrontendController extends Controller
      */
     public function routeForward($method = 'index', $id = false, $subId = false)
     {
+
         //special case: if any auth controller etc forwards to home -> forward to index
-        if ($method = 'home') {
+        if ($method == 'home') {
             $method = 'index';
         }
 
@@ -37,6 +38,8 @@ class FrontendController extends Controller
         $theme = ucfirst($theme);
         $pageControllerPath = '\App\Http\Controllers\Themes\\'.$theme.'\PageController';
         $pageController = new $pageControllerPath;
+
+
 
         // check if page exists in theme, otherwise run fallback
         if (method_exists($pageController, $method)){

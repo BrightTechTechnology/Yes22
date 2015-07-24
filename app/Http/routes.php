@@ -64,9 +64,9 @@ Route::get('test/sms', 'SMSController@send');
 Route::post('ajax/rating', 'AjaxController@rating');
 
 // Frontend forwarding
-Route::any('{method}/{id}/{subId}', 'FrontendController@routeForward');
-Route::any('{method}/{id}', 'FrontendController@routeForward');
-Route::any('{method}', 'FrontendController@routeForward');
+Route::any('/{method}/{id}/{subId}', 'FrontendController@routeForward');
+Route::any('/{method}/{id}', 'FrontendController@routeForward');
+Route::any('/{method}', 'FrontendController@routeForward');
 Route::any('/', 'FrontendController@routeForward');
 
 
