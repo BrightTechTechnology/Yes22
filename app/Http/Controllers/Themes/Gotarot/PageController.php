@@ -36,8 +36,11 @@ class PageController extends Controller
 
     public function index()
     {
-        // just forward to signup page on index
-        return $this->signup();
+        $data = [
+            'title' =>              'Welcome! | Gotarot',
+        ];
+
+        return view($this->getViewName(), $data);
     }
 
     public function fallback($method)
