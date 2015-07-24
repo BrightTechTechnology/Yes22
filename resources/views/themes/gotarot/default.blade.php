@@ -88,5 +88,5 @@
     <script type="text/javascript" src="{{ asset('/js/gotarot/jquery.fitvids.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/gotarot/code.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/gotarot/load.js') }}"></script>
-    
+
 @stop
