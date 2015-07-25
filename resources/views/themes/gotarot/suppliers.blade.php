@@ -1,7 +1,6 @@
 @extends('themes.gotarot.default')
 
 @section('content')
-    @include('themes.gotarot.pages.splash')
     @include('themes.gotarot.pages.menu')
 
     @foreach($pages as $description => $page)

@@ -12,14 +12,16 @@
 
                                 foreach($pages as $description => $page) {
                                     if ($description != 'Splash' && $description != 'Menu' && $description != 'Suppliers'){
-                                        echo '<li><a onclick="swiperParent.swipeTo('.$i.')\;"><img src="/img/gotarot/'.$page.'.png"><span>'.$description.'</span></a></li>';
+                                        echo '<li><a onclick="swiperParent.swipeTo('.$i.');"><img src="/img/gotarot/'.$page.'.png"><span>'.$description.'</span></a></li>';
+                                        $i = $i + 1;
                                     }
                                     if ($description == 'Suppliers'){
                                         foreach ($page as $supplier){
-                                            echo '<li><a onclick="swiperParent.swipeTo('.$i.');"><img src="/img/gotarot/'.$supplier['username'].'.png"><span>'.$supplier['officialname'].'</span></a></li>';
+                                            echo '<li><a onclick="swiperParent.swipeTo('.$i.');"><img src="/img/upload/supplier/supplier'.$supplier['id'].'.jpg" class="img-circle"><span>'.$supplier['officialname'].'</span></a></li>';
+                                            $i = $i + 1;
                                         }
                                     }
-                                    $i = $i + 1;
+
                                 }
                             ?>
                         </ul>
