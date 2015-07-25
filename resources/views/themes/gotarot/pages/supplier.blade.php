@@ -1,10 +1,9 @@
 @include('themes.gotarot.partials.contentPageWrapperTop')
 <h2 class="page_title">{{$supplier['officialname']}}</h2>
-<ul class="photo_gallery_13">
-    <li>
-        <a rel="gallery-3" href="/img/upload/supplier/supplier{{$supplier['id']}}.jpg" title="{{$supplier['officialname']}}" class="swipebox">
-            <img src="/img/upload/supplier/supplier{{$supplier['id']}}.jpg" class="img-responsive">
-        </a>
-    </li>
-</ul>
+<div class="image_single radius4">
+    <img src="/img/upload/supplier/supplier{{$supplier['id']}}.jpg" border="0" style="width:100%" class="img img-responsive">
+</div>
+<h3>{{$supplier['profile']}}</h3>
+
+
 @include('themes.gotarot.partials.contentPageWrapperBottom')

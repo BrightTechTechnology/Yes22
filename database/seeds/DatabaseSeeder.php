@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder {
                 'staff' => true,
                 'supplier' => false,
                 'theme' => $theme,
+                'profile' => $faker->bs.' '.$faker->bs.' '.$faker->bs.' '.$faker->bs.' '.$faker->bs,
             ]);
 
             // Supplier
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder {
                 'staff' => false,
                 'supplier' => true,
                 'theme' => $theme,
+                'profile' => $faker->bs.' '.$faker->bs.' '.$faker->bs.' '.$faker->bs.' '.$faker->bs,
             ]);
 
             // staff and supplier
@@ -52,6 +54,7 @@ class DatabaseSeeder extends Seeder {
                 'staff' => true,
                 'supplier' => true,
                 'theme' => $theme,
+                'profile' => $faker->bs.' '.$faker->bs.' '.$faker->bs.' '.$faker->bs.' '.$faker->bs,
             ]);
 
             // User
@@ -63,6 +66,7 @@ class DatabaseSeeder extends Seeder {
                 'staff' => false,
                 'supplier' => false,
                 'theme' => $theme,
+                'profile' => $faker->bs.' '.$faker->bs.' '.$faker->bs.' '.$faker->bs.' '.$faker->bs,
             ]);
 
             // Article

@@ -25,6 +25,7 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('/css/gotarot/idangerous.swiper.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('/css/gotarot/swipebox.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('/css/gotarot/custom.css') }}" >
+    <style> .pages_container { margin-left: 4.8%} </style>
 
     <!-- JS -->
     <script src="{{ asset('/js/gotarot/jquery.validate.min.js') }}"></script>
@@ -36,22 +37,14 @@
 
     {{-- default code of the gotarot theme --}}
 
-    <div class="row pad-md">
-        @include('themes.gotarot.partials.loginLink')
-        @include('themes.gotarot.partials.languageSelector')
-    </div>
 
     <!-- top menu -->
-    <div id="header">
-        <div class="gohomemenu radius20">
-            <a onclick="swiperParent.swipeTo(1);">
-                <img src="{{ asset('/img/gotarot/menu.png') }}"  >
-            </a>
+    <div id="header" class="row">
+        <div class="text-left pad-sm col-xs-6">
+            @include('themes.gotarot.partials.loginLink')
         </div>
-        <div class="gomenu radius20">
-            <a onclick="swiperParent.swipeTo(10);">
-                <img src="{{ asset('/img/gotarot/contact.png') }}"  >
-            </a>
+        <div class="text-right pad-sm col-xs-6" style="color:white!important;">
+            @include('themes.gotarot.partials.languageSelector')
         </div>
     </div>
 

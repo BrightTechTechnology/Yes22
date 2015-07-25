@@ -14,7 +14,7 @@
 <script type="text/javascript">
     $('#slidercontent').css({'opacity': '1'});
     function scroll (){
-        $('#slidercontent').animate({'margin-left': '-1000'}, 15000, 'linear');
+        $('#slidercontent').animate({'margin-left': '-790'}, 15000, 'linear');
         $('#slidercontent').animate({'margin-left': '0'}, 1, function(){
             scroll();
         });
