@@ -1,8 +1,16 @@
 @extends('themes.gotarot.default')
 
-@include('themes.gotarot.pages.menu)
 @section('content')
-    @foreach($pages['Suppliers'] as $supplier)
-        {{$supplier['officialname']}}
+    @include('themes.gotarot.pages.splash')
+    @include('themes.gotarot.pages.menu')
+
+    @foreach($pages as $description => $page)
+        @if ($description == 'Suppliers')
+            @foreach($page as $supplier)
+                @include('themes.gotarot.pages.supplier', ['supplier' => $supplier])
+            @endforeach
+        @endif
     @endforeach
 @stop
+
+

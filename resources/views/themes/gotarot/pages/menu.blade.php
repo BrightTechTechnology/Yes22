@@ -13,11 +13,13 @@
                                 foreach($pages as $description => $page) {
                                     if ($description != 'Splash' && $description != 'Menu' && $description != 'Suppliers'){
                                         echo '<li><a onclick="swiperParent.swipeTo('.$i.')\;"><img src="/img/gotarot/'.$page.'.png"><span>'.$description.'</span></a></li>';
-                                        $i = $i + 1;
                                     }
                                     if ($description == 'Suppliers'){
-                                        echo'suppliers!';
+                                        foreach ($page as $supplier){
+                                            echo '<li><a onclick="swiperParent.swipeTo('.$i.');"><img src="/img/gotarot/'.$supplier['username'].'.png"><span>'.$supplier['officialname'].'</span></a></li>';
+                                        }
                                     }
+                                    $i = $i + 1;
                                 }
                             ?>
                         </ul>
