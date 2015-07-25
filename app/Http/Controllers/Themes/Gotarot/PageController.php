@@ -51,7 +51,7 @@ class PageController extends Controller
             'title' => 'Welcome! | Gotarot',
             'pages' => [
                 'Splash' => 'splash',
-                'Menue' => 'menu',
+                'Menu' => 'menu',
                 'About us' => 'about',
                 'Our Services' => 'services',
                 'Blog' => 'blog',

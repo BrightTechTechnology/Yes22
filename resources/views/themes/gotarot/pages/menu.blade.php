@@ -11,7 +11,8 @@
                                 if (in_array('splash', $pages)) {$i ++;}
 
                                 foreach($pages as $description => $page) {
-                                    if ($description != 'Splash' && $description != 'Menu' && $description != 'Suppliers'){
+                                    $exclude_list = ['Splash', 'Menu', 'Suppliers'];
+                                    if( ! in_array($description, $exclude_list)){
                                         echo '<li><a onclick="swiperParent.swipeTo('.$i.');"><img src="/img/gotarot/'.$page.'.png"><span>'.$description.'</span></a></li>';
                                         $i = $i + 1;
                                     }
