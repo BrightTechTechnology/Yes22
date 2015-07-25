@@ -11,13 +11,15 @@
                             <span>Call tarot masters</span><BR>
                         </div>
 
-                        <!-- Social Media -->
+                        {{--<!-- Social Media -->
                         <ul class="splash_social">
                             <li><a href="#"><img src="{{ asset('/img/gotarot/facebook.png') }}"   border="0"></a></li>
                             <li><a href="#"><img src="{{ asset('/img/gotarot/twitter.png') }}"   border="0"></a></li>
                             <li><a href="#"><img src="{{ asset('/img/gotarot/google.png') }}"   border="0"></a></li>
                             <li><a href="#"><img src="{{ asset('/img/gotarot/pinterest.png') }}"   border="0"></a></li>
-                        </ul>
+                        </ul>--}}
+
+                        @include('themes.whitelabel.partials.slider')
 
                         <!-- Continue button -->
                         <div class="slide-to-navigate">

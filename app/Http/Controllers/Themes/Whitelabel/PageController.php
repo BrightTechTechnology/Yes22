@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Themes\Whitelabel;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DataController;
 use App\User;
 use App\Article;
 use App\Rating;
@@ -16,12 +17,14 @@ use App\Rating;
 
 class PageController extends Controller
 {
+    protected $dataController;
 
     //////////////////// UNIVERSAL METHODS FOR EVERY THEME ////////////////////
 
     public function __construct()
     {
         $this->middleware('auth', ['only'=>['profile','postBilling']]);
+        $this->dataController = new DataController;
     }
 
     protected function getViewName ()
@@ -136,11 +139,12 @@ class PageController extends Controller
      */
     public function suppliers()
     {
+        $suppliers = $this->dataController->suppliers();
+        dd($suppliers);
+
         $data = [
             'title' =>      'This is the supplier overview | Whitelabel',
-            'suppliers' =>  User::where('supplier', true)
-                ->where('theme','=', 'whitelabel')
-                ->get(),
+            'suppliers' =>  $suppliers,
         ];
 
         return view($this->getViewName(), $data);

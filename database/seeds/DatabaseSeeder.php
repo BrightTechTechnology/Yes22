@@ -12,54 +12,68 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
+
+        $faker = Faker\Factory::create();
+
 		Model::unguard();
-		// Staff
-		\App\User::create([
-			'username' => 'gkuschnik',
-			'officialname' => 'Gerhard',
-			'email' => 'kuschnik.gerhard@gmail.com',
-			'password' => Hash::make('homepage88'),
-			'staff' => true,
-			'supplier' => false,
-			]);
 
-		\App\User::create([
-			'username' => 'gkuschnik2',
-			'officialname' => 'Gerdi',
-			'email' => 'kuschnik2.gerhard@gmail.com',
-			'password' => Hash::make('homepage88'),
-			'staff' => true,
-			'supplier' => true,
-			]);
 
-		// Supplier
-		\App\User::create([
-			'username' => 'mani',
-			'officialname' => 'Mani Cheung',
-			'email' => 'mani@mani-healing.com',
-			'password' => Hash::make('Schaumbad'),
-			'staff' => false,
-			'supplier' => true,
-			]);
+        $themes = ['first1', 'gotarot', 'whitelabel'];
 
-		// User
-		\App\User::create([
-			'username' => 'fengelhardt',
-			'officialname' => 'Felix Engelhardt',
-			'email' => 'fengelh@gmail.com',
-			'password' => Hash::make('Schaumbad'),
-			'staff' => false,
-			'supplier' => false,
-			]);
+        foreach ($themes as $theme) {
+            // Staff
+            \App\User::create([
+                'username' => $faker->firstName,
+                'officialname' => $faker->name,
+                'email' => $faker->email,
+                'password' => Hash::make('password'),
+                'staff' => true,
+                'supplier' => false,
+                'theme' => $theme,
+            ]);
 
-		// Articles
-		\App\Article::create([
-			'title' => 'this is an article',
-			'content' => 'this is the article content',
-			'active' => true,
-			'user_id' => 2,
-		]);
+            // Supplier
+            \App\User::create([
+                'username' => $faker->firstName,
+                'officialname' => $faker->name,
+                'email' => $faker->email,
+                'password' => Hash::make('password'),
+                'staff' => false,
+                'supplier' => true,
+                'theme' => $theme,
+            ]);
 
+            // staff and supplier
+            \App\User::create([
+                'username' => $faker->firstName,
+                'officialname' => $faker->name,
+                'email' => $faker->email,
+                'password' => Hash::make('homepage88'),
+                'staff' => true,
+                'supplier' => true,
+                'theme' => $theme,
+            ]);
+
+            // User
+            \App\User::create([
+                'username' => $faker->firstName,
+                'officialname' => $faker->name,
+                'email' => $faker->email,
+                'password' => Hash::make('password'),
+                'staff' => false,
+                'supplier' => false,
+                'theme' => $theme,
+            ]);
+
+            // Article
+            \App\Article::create([
+                'title' => $faker->catchPhrase,
+                'content' => $faker->bs.' '.$faker->bs.' '.$faker->bs.' '.$faker->bs.' '.$faker->bs,
+                'active' => true,
+                'user_id' => 3,
+                'theme' => $theme,
+            ]);
+        }
 	}
 
 }

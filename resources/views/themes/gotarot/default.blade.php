@@ -64,7 +64,8 @@
         </div>
         <!--End of swiper wrapper -->
 
-        <div class="pagination">
+
+        <div class="pagination" style="visibility:hidden">
             <span class="swiper-pagination-switch swiper-visible-switch swiper-active-switch"></span>
             <span class="swiper-pagination-switch"></span>
             <span class="swiper-pagination-switch"></span>

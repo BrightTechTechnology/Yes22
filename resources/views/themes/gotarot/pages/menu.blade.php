@@ -6,13 +6,20 @@
                 <div class="slide-inner">
                     <div class="menu">
                         <ul>
-                            {{ $i = 2 }}
-                            @foreach($pages as $description => $page)
-                                @if ($page != 'splash' && $page != 'menu')
-                                    <li><a onclick="swiperParent.swipeTo({{$i}});"><img src="{{ asset('/img/gotarot/'.$page.'.png') }}"  ><span>{{$description}}</span></a></li>
-                                    {{ $i = $i + 1 }}
-                                @endif
-                            @endforeach
+                            <?php
+                                $i = 1;
+                                if (in_array('splash', $pages)) {$i ++;}
+
+                                foreach($pages as $description => $page) {
+                                    if ($description != 'Splash' && $description != 'Menu' && $description != 'Suppliers'){
+                                        echo '<li><a onclick="swiperParent.swipeTo('.$i.')\;"><img src="/img/gotarot/'.$page.'.png"><span>'.$description.'</span></a></li>';
+                                        $i = $i + 1;
+                                    }
+                                    if ($description == 'Suppliers'){
+                                        echo'suppliers!';
+                                    }
+                                }
+                            ?>
                         </ul>
                         <div class="clearfix"></div>
                     </div>

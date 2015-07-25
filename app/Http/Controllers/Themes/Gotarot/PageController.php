@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Themes\Gotarot;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Http\Controllers\DataController;
 use App\Article;
 use App\Rating;
 /**
@@ -17,92 +18,53 @@ use App\Rating;
 class PageController extends Controller
 {
 
+    protected $dataController;
+
     //////////////////// UNIVERSAL METHODS FOR EVERY THEME ////////////////////
 
     public function __construct()
     {
-        $this->middleware('auth', ['only'=>['profile','postBilling']]);
+        $this->middleware('auth', ['only'=>[]]);
+        $this->dataController = new DataController;
     }
 
-    protected function getViewName ()
+    protected function getViewName ($template = 'index')
     {
         $NameSpacePieces = explode('\\', __NAMESPACE__);
         $theme = lcfirst(end($NameSpacePieces));
-        $route = debug_backtrace()[1]['function'];
 
-        $viewName = 'themes'.'.'.$theme.'.'.$route;
+        $viewName = 'themes'.'.'.$theme.'.'.$template;
         return $viewName;
     }
 
-    public function index($data = [])
-    {
-        if ( $data == []) {
-            $data = [
-                'title' => 'Welcome! | Gotarot',
-                'pages' => [
-                    'Splash' => 'splash',
-                    'Menue' => 'menu',
-                    'About us' => 'about',
-                    'Our Services' => 'services',
-                    // 'blog',
-                    // 'portfolio',
-                    // 'gallery',
-                    // 'videos',
-                    // 'clients',
-                    // 'twitter',
-                    // 'contact',
-                ],
-            ];
-        }
-        return view($this->getViewName(), $data);
-    }
 
     public function fallback($method)
     {
-        // show supplier in case no specific page exists
-        $supplier = \App\User::where('username', '=', $method)
-            ->where('supplier','=', 1)
-            ->where('theme','=', 'gotarot')
-            ->first();
-
-        if ($supplier) {
-            // data for rating JS
-            $rating = new Rating;
-            $ratingDisplay = $rating->getRatingData('gotarot', 'supplier', $supplier->id);
-
-            $data = [
-                'title' =>          'This is the supplier '.$supplier->officialname.' | Gotarot',
-                'supplier' =>       $supplier,
-                'ratingDisplay' =>  $ratingDisplay,
-            ];
-
-            return view($this->getViewName(), $data);
-        }
-
-        abort(404, 'Cannot find page');
+        $this->index();
     }
 
-    //////////////////// PROFILE GET & POST HANDLING ////////////////////
-
-    public function profile($id = 'index', $subId = false)
-    {
-        $viewPath = $this->getViewName().'/'.$id;
-
-        if (\Request::isMethod('get') && \View::exists($viewPath)) {
-            return view($this->getViewName().'/'.$id);
-        }
-
-        if (\Request::isMethod('post')) {
-            $controllerName = 'App\Http\Controllers\\'.ucfirst($id).'Controller';
-            $methodName = 'post'.ucfirst($id);
-
-            $controller = new $controllerName;
-            return $controller->$methodName();
-        }
-        abort(404, 'Cannot find page');
-    }
 
     //////////////////// FRONTEND PAGES ////////////////////
+
+    public function index(){
+        $data = [
+            'title' => 'Welcome! | Gotarot',
+            'pages' => [
+                'Splash' => 'splash',
+                'Menue' => 'menu',
+                'About us' => 'about',
+                'Our Services' => 'services',
+                'Blog' => 'blog',
+                'Proftfolio' => 'portfolio',
+                'Gallery' => 'gallery',
+                'Videos' => 'videos',
+                'Clients' => 'clients',
+                'Twitter' => 'twitter',
+                'Contact' => 'contact',
+            ],
+        ];
+        return view($this->getViewName(), $data);
+    }
 
     /**
      * signup page
@@ -114,65 +76,28 @@ class PageController extends Controller
         $data = [
             'title' => 'Welcome! | Gotarot',
             'pages' => [
-                'gallery' => 'gallery',
+                'Splash' => 'splash',
+                'Signup' => 'signup',
             ],
         ];
-
-        return $this->index($data);
+        return view($this->getViewName(), $data);
     }
 
     /**
-     * supplier overview
+     * suppliers page
      *
      * @return \Illuminate\View\View
      */
     public function suppliers()
     {
+        $suppliers = $this->dataController->suppliers(9);
         $data = [
-            'title' =>      'This is the supplier overview | Gotarot',
-            'suppliers' =>  User::where('supplier', true)
-                ->where('theme','=', 'gotarot')
-                ->get(),
+            'title' => 'Suppliers! | Gotarot',
+            'pages' => [
+                'Menu' => 'menu',
+                'Suppliers' => $suppliers,
+            ],
         ];
-
-        return view($this->getViewName(), $data);
-    }
-
-
-    /**
-     * article overview
-     *
-     * @return \Illuminate\View\View
-     */
-    public function articles()
-    {
-        $data = [
-            'title' =>      'This is the article overview | Gotarot',
-            'articles' =>   Article::where('active', true)
-                ->where('theme','=', 'gotarot')
-                ->orderBy('id', 'desc')
-                ->take(5)
-                ->get(),
-        ];
-
-        return view($this->getViewName(), $data);
-    }
-
-    /**
-     * show one article
-     *
-     * @return \Illuminate\View\View
-     */
-    public function article($id)
-    {
-        $data = [
-            'title' =>     'This is article with id '.$id.' | Gotarot',
-            'article' =>   Article::where('active', true)
-                ->where('id', $id)
-                ->where('theme','=', 'gotarot')
-                ->first(),
-        ];
-
-        return view($this->getViewName(), $data);
+        return view($this->getViewName('suppliers'), $data);
     }
 }

@@ -52,7 +52,6 @@ Route::group(['middleware' => ['staff']], function() {
 //Auth
 Route::get('auth/facebook', 'Auth\AuthController@redirectToFacebook');
 Route::get('auth/facebook/callback', 'Auth\AuthController@handleFacebookCallback');
-
 Route::controller('auth', 'Auth\AuthController');
 Route::controller('password', 'Auth\PasswordController');
 
