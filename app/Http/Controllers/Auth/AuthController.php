@@ -126,6 +126,8 @@ class AuthController extends Controller {
                 //TODO: Send email with PW in that case
             }
 
+            \Auth::login($user);
+
             return \Redirect::to($this->redirectTo);
         }
     }
