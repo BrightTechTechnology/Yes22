@@ -43,15 +43,19 @@ class PageController extends Controller
     // forward to the following if already logged in
     public function authenticated()
     {
-        if (\Auth::user()->isStaff()) {
-            return redirect()->to(url('/backend'));
+        if (\Auth::check()) {
+            if (\Auth::user()->isStaff()) {
+                return redirect()->to('/backend');
+            }
+            elseif (\Auth::user()->isSupplier()) {
+                return redirect()->to('/supplier');
+            }
+            else {
+                return redirect()->to('/suppliers');
+            }
         }
-        elseif (\Auth::user()->isSupplier()) {
-            return redirect()->to(url('/supplier'));
-        }
-        else {
-            return redirect()->to(url('/suppliers'));
-        }
+
+        return redirect()->to('/');
     }
 
 

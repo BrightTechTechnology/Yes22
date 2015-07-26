@@ -30,7 +30,7 @@ class MustBeStaff {
 			return 'You do not have permission to access this page';
 		}
 		else {
-			return \View::make('auth.login');
+			return redirect()->to('authenticated');
 		}
 	}
 }

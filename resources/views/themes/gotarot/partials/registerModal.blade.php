@@ -60,7 +60,7 @@
         <!-- show modal if have flash messages -->
 <script type="text/javascript">
     $(window).load(function(){
-        $('#rgisterModal').modal('show');
+        $('#registerModal').modal('show');
     });
 </script>
 @endif

@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder {
             \App\User::create([
                 'name' => $faker->name,
                 'email' => $faker->email,
-                'password' => Hash::make('homepage88'),
+                'password' => Hash::make('password'),
                 'staff' => true,
                 'supplier' => true,
                 'theme' => $theme,
