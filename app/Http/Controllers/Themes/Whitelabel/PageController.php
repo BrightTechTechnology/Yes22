@@ -46,10 +46,7 @@ class PageController extends Controller
     public function fallback($method)
     {
         // show supplier in case no specific page exists
-        $supplier = \App\User::where('username', '=', $method)
-            ->where('supplier','=', 1)
-            ->where('theme','=', 'whitelabel')
-            ->first();
+        $supplier = $this->dataController->supplier($method)
 
         if ($supplier) {
             // data for rating JS

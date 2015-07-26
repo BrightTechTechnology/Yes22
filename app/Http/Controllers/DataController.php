@@ -21,6 +21,16 @@ class DataController extends Controller
         return User::where('supplier', true)
             ->where('theme','=', $theme)
             ->take($limit)
-            ->get()->toArray();
+            ->get()
+            ->toArray();
+    }
+
+    public function supplier ($name)
+    {
+        $theme = $this->config->getTheme();
+        return User::where('name', '=', $name)
+            ->where('theme','=', $theme)
+            ->where('supplier','=', 1)
+            ->first();
     }
 }

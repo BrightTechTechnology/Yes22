@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Themes\Gotarot;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataController;
+use App\Rating;
 
 /**
  * Class PageController
@@ -37,6 +38,23 @@ class PageController extends Controller
 
     public function fallback($method)
     {
+        // show supplier in case no specific page exists
+        $supplier = $this->dataController->supplier($method);
+
+        if ($supplier) {
+            // data for rating JS
+            $rating = new Rating;
+            $ratingDisplay = $rating->getRatingData('supplier', $supplier->id);
+
+            $data = [
+                'title' => 'This is the supplier ' . $supplier->name . ' | GoTarot',
+                'supplier' => $supplier,
+                'ratingDisplay' => $ratingDisplay,
+            ];
+
+            return view($this->getViewName('supplier'), $data);
+        }
+
         return $this->index();
     }
 
