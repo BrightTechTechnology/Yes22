@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Themes\Whitelabel;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataController;
-use App\User;
 use App\Article;
 use App\Rating;
+use App\Http\Controllers\PageControllerInterface;
+
 /**
  * Class PageController
  * @package App\Http\Controllers\Themes\Whitelabel
@@ -15,7 +16,7 @@ use App\Rating;
  * all routes for the Whitelabel sites
  */
 
-class PageController extends Controller
+class PageController extends Controller implements PageControllerInterface
 {
     protected $dataController;
 
@@ -46,7 +47,7 @@ class PageController extends Controller
     public function fallback($method)
     {
         // show supplier in case no specific page exists
-        $supplier = $this->dataController->supplier($method)
+        $supplier = $this->dataController->supplier($method);
 
         if ($supplier) {
             // data for rating JS
@@ -65,9 +66,21 @@ class PageController extends Controller
         abort(404, 'Cannot find page');
     }
 
-    public function login()
+    public function authenticated()
     {
-        return $this->suppliers();
+        if (\Auth::check()) {
+            if (\Auth::user()->isStaff()) {
+                return redirect()->to('/backend');
+            }
+            elseif (\Auth::user()->isSupplier()) {
+                return redirect()->to('/supplier');
+            }
+            else {
+                return redirect()->to('/suppliers');
+            }
+        }
+
+        return redirect()->to('/');
     }
 
     //////////////////// PROFILE GET & POST HANDLING ////////////////////

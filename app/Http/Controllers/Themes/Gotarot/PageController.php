@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataController;
 use App\Rating;
+use App\Http\Controllers\PageControllerInterface;
 
 /**
  * Class PageController
@@ -14,7 +15,7 @@ use App\Rating;
  * all routes for the Gotarot sites
  */
 
-class PageController extends Controller
+class PageController extends Controller implements PageControllerInterface
 {
 
     protected $dataController;

@@ -20,7 +20,7 @@
         <div class="row">
             <div class="well text-center">
                 <div style="float: left">
-                    This is {{ $supplier['officialname']}}'s profile
+                    This is {{ $supplier['name']}}'s profile
                 </div>
                 <abbr title="Average Rating: {{$ratingDisplay['scorePoint']}}, Votes: {{$ratingDisplay['scoreVotes']}}">
                     <div id="rating-wrapper" style="float:left; color: orange;">

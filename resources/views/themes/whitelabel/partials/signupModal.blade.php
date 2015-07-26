@@ -29,12 +29,6 @@
                                 <input type="hidden" name="theme" value="whitelabel">
                                 <div class="form-group">
                                     <div class="col-xs-12">
-                                        <label for="username">Username</label>
-                                        <input placeholder="Name" type="text" class="form-control" name="username" value="{{ old('name') }}{{$user['username'] or ''}}">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-xs-12">
                                         <label for="email">E-Mail</label>
                                         <input placeholder="E-Mail" type="email" class="form-control" name="email" value="{{ old('email') }}{{$user['email'] or ''}}">
                                     </div>
@@ -43,12 +37,6 @@
                                     <div class="col-xs-12">
                                         <label for="password">Password</label>
                                         <input placeholder="Password" type="password" class="form-control" name="password">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-xs-12">
-                                        <label for="password_confirmation">Password Confirmation</label>
-                                        <input placeholder="Password Confirmation" type="password" class="form-control" name="password_confirmation">
                                     </div>
                                 </div>
 
