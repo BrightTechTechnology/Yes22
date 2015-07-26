@@ -23,7 +23,7 @@ class AuthController extends Controller {
 
 	// the branches after signup or login of auth/login are defined in RedirectIfAuthenticated
 	// if dont use the below, can do this in routes Route::get('home', function (){return Redirect::to('auth/login');});
-	protected $redirectTo = '/login';
+	protected $redirectTo = 'auth/forward';
 
 
     /**
@@ -66,8 +66,25 @@ class AuthController extends Controller {
     }
 
 
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getForward()
+    {
+        if (\Auth::user()->isStaff()) {
+            return redirect(url('/backend'));
+        }
+        elseif (\Auth::user()->isSupplier()) {
+            return redirect(url('/supplier'));
+        }
+        else {
+            return redirect(url('/login'));
+        }
+    }
 
-	/**
+    /**
 	 * Create a new authentication controller instance.
 	 *
 	 * @param  \Illuminate\Contracts\Auth\Guard  $auth

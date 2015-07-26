@@ -15,7 +15,7 @@ class DataController extends Controller
         $this->config = new ConfigController;
     }
 
-    public function suppliers ($limit)
+    public function suppliers ($limit = 100000)
     {
         $theme = $this->config->getTheme();
         return User::where('supplier', true)

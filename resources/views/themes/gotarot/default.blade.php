@@ -41,7 +41,7 @@
     <!-- top menu -->
     <div id="header" class="row">
         <div class="text-left pad-sm col-xs-6">
-            @include('themes.gotarot.partials.loginLink')
+            @include('themes.gotarot.partials.accountNavigation')
         </div>
         <div class="text-right pad-sm col-xs-6" style="color:white!important;">
             @include('themes.gotarot.partials.languageSelector')

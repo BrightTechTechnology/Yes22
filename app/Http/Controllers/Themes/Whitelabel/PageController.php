@@ -68,6 +68,11 @@ class PageController extends Controller
         abort(404, 'Cannot find page');
     }
 
+    public function login()
+    {
+        return $this->suppliers();
+    }
+
     //////////////////// PROFILE GET & POST HANDLING ////////////////////
 
     public function profile($id = 'index', $subId = false)
@@ -140,7 +145,6 @@ class PageController extends Controller
     public function suppliers()
     {
         $suppliers = $this->dataController->suppliers();
-        dd($suppliers);
 
         $data = [
             'title' =>      'This is the supplier overview | Whitelabel',

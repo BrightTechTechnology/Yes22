@@ -40,15 +40,7 @@ class RedirectIfAuthenticated {
 
 		if ($this->auth->check())
 		{
-			if (\Auth::user()->isStaff()) {
-				return new RedirectResponse(url('/backend/dashboard'));
-			}
-			elseif (\Auth::user()->isSupplier()) {
-				return new RedirectResponse(url('/supplier/dashboard'));
-			}
-			else {
-				return new RedirectResponse(url('/profile/dashboard'));
-			}
+
 		}
 
 		return $next($request);

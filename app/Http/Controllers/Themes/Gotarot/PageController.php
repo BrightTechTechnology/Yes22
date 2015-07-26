@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Themes\Gotarot;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
 use App\Http\Controllers\DataController;
-use App\Article;
-use App\Rating;
+
 /**
  * Class PageController
  * @package App\Http\Controllers\Themes\Gotarot
@@ -24,7 +22,8 @@ class PageController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['only'=>[]]);
+        $this->middleware('auth', ['only'=>['']]);
+        $this->middleware('guest', ['only'=>['login']]);
         $this->dataController = new DataController;
     }
 
@@ -40,7 +39,12 @@ class PageController extends Controller
 
     public function fallback($method)
     {
-        $this->index();
+        return $this->index();
+    }
+
+    public function login()
+    {
+        return $this->suppliers();
     }
 
 
