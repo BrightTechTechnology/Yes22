@@ -4,15 +4,22 @@
 	<div class="row">
 		<div class ="container">
 			<a href="{{ \Request::root().'/'.$name }}" class="btn btn-info" target="_blank">View profile</a><BR/><BR/>
-			<form method="POST" action="{{ \URL::current() }}" >
+			<form method="POST" enctype="multipart/form-data" action="{{ \URL::current() }}" >
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<label for="name">Your name to be published</label>
 				<input type="text" id="name" name="name" class="form-control" placeholder="Name to be published" value="{{ $name or ''}}" maxlength="50"><BR/>
-				<label for="officialname">Your profile</label>
+
+                <img class="img-responsive" style="max-width: 300px" src="/img/upload/supplier/supplier{{$id}}.jpg?{{rand(1,32000)}}">
+                <label for="image">Change profile picture (picture will be cut to square shape)</label>
+                <input id="image" name="image" type="file" />
+
+                <BR><label for="profile">Your profile</label>
 				<textarea id="profile" name="profile" rows="15">{{ $profile or ''}}</textarea>
 				<div class="text-right">
 					<button class="btn-success">Save profile</button>
 				</div>
+
+
 			</form>
 		</div>
 	</div>

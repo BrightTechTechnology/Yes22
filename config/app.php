@@ -147,6 +147,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 		'App\Providers\BillingServiceProvider',
         'Laravel\Socialite\SocialiteServiceProvider',
+        'Intervention\Image\ImageServiceProvider',
 	],
 
 	/*
@@ -195,6 +196,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Socialite' => 'Laravel\Socialite\Facades\Socialite',
+        'Image' => 'Intervention\Image\Facades\Image'
 	],
 
 ];
