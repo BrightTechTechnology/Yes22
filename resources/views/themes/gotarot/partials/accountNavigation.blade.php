@@ -6,9 +6,7 @@
         @include('themes/gotarot/partials/loginModal')
     @else
         <a class="btn btn-default btn-xs" href="/auth/logout">Logout</a>
-        <a class="btn btn-default btn-xs" href="#">Suppliers</a>
-        <a class="btn btn-default btn-xs" href="#">News</a>
-        <a class="btn btn-default btn-xs" href="#">Messages</a>
-        <a class="btn btn-default btn-xs" href="#">Payment</a>
+        <a class="btn btn-default btn-xs" href="/suppliers">Suppliers</a>
+        <a class="btn btn-default btn-xs" href="/billing">Billing</a>
     @endif
 </div>

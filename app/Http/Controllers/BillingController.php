@@ -6,14 +6,6 @@ use Exception;
 
 class BillingController extends Controller
 {
-    /**
-     * need to be logged in order to access your profile
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function postBilling()
     {
         if (!\Auth::user()->billing_id) {

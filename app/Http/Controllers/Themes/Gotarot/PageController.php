@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataController;
 use App\Rating;
 use App\Http\Controllers\PageControllerInterface;
+use App\Http\Controllers\BillingController;
 
 /**
  * Class PageController
@@ -117,4 +118,30 @@ class PageController extends Controller implements PageControllerInterface
         ];
         return view($this->getViewName('suppliers'), $data);
     }
+
+    /**
+     * suppliers page
+     *
+     * @return \Illuminate\View\View
+     */
+    public function billing()
+    {
+
+    if (\Request::isMethod('post')) {
+        $billing = new BillingController;
+        return $billing->postBilling();
+    }
+
+    $data = [
+        'title' => 'Billing | Gotarot',
+        'pages' => [
+            'Billing' => 'billing',
+        ],
+    ];
+
+    return view($this->getViewName(), $data);
+    }
+
+
+
 }
