@@ -23,8 +23,7 @@ class DatabaseSeeder extends Seeder {
         foreach ($themes as $theme) {
             // Staff
             \App\User::create([
-                'username' => $faker->firstName,
-                'officialname' => $faker->name,
+                'name' => $faker->name,
                 'email' => $faker->email,
                 'password' => Hash::make('password'),
                 'staff' => true,
@@ -35,8 +34,7 @@ class DatabaseSeeder extends Seeder {
 
             // Supplier
             \App\User::create([
-                'username' => $faker->firstName,
-                'officialname' => $faker->name,
+                'name' => $faker->name,
                 'email' => $faker->email,
                 'password' => Hash::make('password'),
                 'staff' => false,
@@ -47,8 +45,7 @@ class DatabaseSeeder extends Seeder {
 
             // staff and supplier
             \App\User::create([
-                'username' => $faker->firstName,
-                'officialname' => $faker->name,
+                'name' => $faker->name,
                 'email' => $faker->email,
                 'password' => Hash::make('homepage88'),
                 'staff' => true,
@@ -59,8 +56,7 @@ class DatabaseSeeder extends Seeder {
 
             // User
             \App\User::create([
-                'username' => $faker->firstName,
-                'officialname' => $faker->name,
+                'name' => $faker->name,
                 'email' => $faker->email,
                 'password' => Hash::make('password'),
                 'staff' => false,

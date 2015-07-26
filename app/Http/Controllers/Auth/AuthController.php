@@ -5,26 +5,19 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\User;
 use Validator;
 use Laravel\Socialite\Facades\Socialite;
+use \App\Http\Controllers\ConfigController;
 
 class AuthController extends Controller {
 
-    /*
-|--------------------------------------------------------------------------
-| Registration & Login Controller
-|--------------------------------------------------------------------------
-|
-| This controller handles the registration of new users, as well as the
-| authentication of existing users. By default, this controller uses
-| a simple trait to add these behaviors. Why don't you explore it?
-|
-*/
-
     use AuthenticatesAndRegistersUsers;
 
-	// the branches after signup or login of auth/login are defined in RedirectIfAuthenticated
-	// if dont use the below, can do this in routes Route::get('home', function (){return Redirect::to('auth/login');});
-	protected $redirectTo = 'auth/forward';
+	protected $redirectTo = 'authenticated'; // where to redirect after successful login
 
+    public function __construct()
+    {
+        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->config = new ConfigController;
+    }
 
     /**
      * Show the application registration form.
@@ -33,8 +26,7 @@ class AuthController extends Controller {
      */
     public function getSignup()
     {
-        $config = new \App\Http\Controllers\ConfigController;
-        $theme = $config->getTheme();
+        $theme = $this->config->getTheme();
         $viewPath = 'themes.'.$theme.'.auth.signup';
         return view($viewPath);
     }
@@ -46,8 +38,7 @@ class AuthController extends Controller {
      */
     public function getLogin()
     {
-        $config = new \App\Http\Controllers\ConfigController;
-        $theme = $config->getTheme();
+        $theme = $this->config->getTheme();
         $viewPath = 'themes.'.$theme.'.auth.login';
         return view($viewPath);
     }
@@ -59,42 +50,10 @@ class AuthController extends Controller {
      */
     public function getRegister()
     {
-        $config = new \App\Http\Controllers\ConfigController;
-        $theme = $config->getTheme();
+        $theme = $this->config->getTheme();
         $viewPath = 'themes.'.$theme.'.auth.register';
         return view($viewPath);
     }
-
-
-    /**
-     * Show the application registration form.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getForward()
-    {
-        if (\Auth::user()->isStaff()) {
-            return redirect(url('/backend'));
-        }
-        elseif (\Auth::user()->isSupplier()) {
-            return redirect(url('/supplier'));
-        }
-        else {
-            return redirect(url('/login'));
-        }
-    }
-
-    /**
-	 * Create a new authentication controller instance.
-	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('guest', ['except' => 'getLogout']);
-	}
 
 	/**
 	 * Get a validator for an incoming registration request.
@@ -105,9 +64,8 @@ class AuthController extends Controller {
 	public function validator(array $data)
 	{
 		return Validator::make($data, [
-			'username' => 'required|max:255|unique:users,username',
 			'email' => 'required|email|max:255|unique:users,email',
-			'password' => 'required|confirmed|min:6',
+			'password' => 'required|min:6',
             'theme' => 'required|in:whitelabel,gotarot,first1',
 		]);
 	}
@@ -121,7 +79,7 @@ class AuthController extends Controller {
 	public function create(array $data)
 	{
 		return User::create([
-			'username' => $data['username'],
+			'name' => $this->getNameFromEmail($data['email']),
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
             'theme' => $data['theme'],
@@ -149,33 +107,33 @@ class AuthController extends Controller {
         $response = Socialite::driver('facebook')->user();
 
         if ($response) {
-            // if find user in local db, redirect to login
             $user = User::where('email', $response->getEmail())->first();
+
             if ($user) {
-                // login the user
+                // if find user in local db, login
                 \Auth::login($user, true);
-                return \Redirect::to('/');
+            } else {
+                // if find cannot find user in local db, create
+                $user = new User;
+                $user->name = $this->getNameFromEmail($response->getEmail());
+                $user->staff = false;
+                $user->supplier = false;
+                $user->email = $response->getEmail();
+                $user->password = \Hash::make(str_random(6));
+                $user->theme = $this->config->getTheme();
+                $user->save();
+
+                //TODO: Send email with PW in that case
             }
 
-            // if user not found locally, redirect back with the inputs
-            if ( ! $user) {
-                $user = [];
-                $emailInPieces = explode('@', $response->getEmail());
-
-                // check if username exists (need to do because form unintentionally posts to the fb url)
-                $check = User::where('username', $emailInPieces[0])->first();
-                $user['username'] = '';
-                if (!$check) {
-                    $user['username'] = $emailInPieces[0];
-                }
-                $user['email'] = $response->getEmail();
-                $socialLogin = true;
-            }
-
-            $cta = 'Get you first free thing';
-            return view('frontend.signup', compact('user', 'socialLogin', 'cta')); // redirect to signup which will redirect to profile/supplier/backend
-
+            return \Redirect::to($this->redirectTo);
         }
     }
 
+    protected function getNameFromEmail($email)
+    {
+        $emailInPieces = explode('@', $email);
+        $name = $emailInPieces[0];
+        return $name;
+    }
 }

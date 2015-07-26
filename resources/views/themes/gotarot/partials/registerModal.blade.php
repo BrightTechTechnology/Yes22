@@ -1,4 +1,4 @@
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -21,11 +21,11 @@
                                 </div>
                             @else
                                 <div class="row text-center">
-                                    <a href="{{action('Auth\AuthController@redirectToFacebook')}}" class="btn btn-info">Login via Facebook</a>
+                                    <a href="{{action('Auth\AuthController@redirectToFacebook')}}" class="btn btn-info">Register via Facebook</a>
                                 </div>
                             @endif
                             <hr>
-                            <form class="form-horizontal" role="form" action="{{ url('/auth/login/') }}" method="POST" >
+                            <form class="form-horizontal" role="form" action="{{ url('/auth/register/') }}" method="POST" >
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="theme" value="whitelabel">
                                 <div class="form-group">
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <div class="text-right mar-md">
                                         <button type="submit" class="btn btn-success">
-                                            Login
+                                            Register
                                         </button>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
         <!-- show modal if have flash messages -->
 <script type="text/javascript">
     $(window).load(function(){
-        $('#loginModal').modal('show');
+        $('#rgisterModal').modal('show');
     });
 </script>
 @endif

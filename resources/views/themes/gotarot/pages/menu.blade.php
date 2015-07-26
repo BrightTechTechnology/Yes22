@@ -20,7 +20,7 @@
                                         foreach ($page as $supplier){
                                             echo '<li><a onclick="swiperParent.swipeTo('.$i.');">
                                                 <img src="/img/upload/supplier/supplier'.$supplier['id'].'.jpg">
-                                                <span>'.$supplier['officialname'].'</span>
+                                                <span>'.$supplier['name'].'</span>
                                             </a></li>';
                                             $i = $i + 1;
                                         }

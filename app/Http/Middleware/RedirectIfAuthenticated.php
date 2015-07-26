@@ -25,7 +25,7 @@ class RedirectIfAuthenticated {
 	}
 
 	/**
-	 * Handle an incoming request.
+	 * forward logged in users
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  \Closure  $next
@@ -33,17 +33,12 @@ class RedirectIfAuthenticated {
 	 */
 	public function handle($request, Closure $next)
 	{
-
-		// this middleware should be applied to pages that are useless if already signed in 
-		 // (like a signup page)
-		 // like login page (auth/login)
-
-		if ($this->auth->check())
-		{
-
-		}
-
-		return $next($request);
+        // if logged in
+        if ($this->auth->check())
+        {
+               return redirect()->to('/authenticated');
+        }
+        return $next($request);
 	}
 
 }

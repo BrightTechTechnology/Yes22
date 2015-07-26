@@ -22,8 +22,6 @@ class PageController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['only'=>['']]);
-        $this->middleware('guest', ['only'=>['login']]);
         $this->dataController = new DataController;
     }
 
@@ -42,9 +40,18 @@ class PageController extends Controller
         return $this->index();
     }
 
-    public function login()
+    // forward to the following if already logged in
+    public function authenticated()
     {
-        return $this->suppliers();
+        if (\Auth::user()->isStaff()) {
+            return redirect()->to(url('/backend'));
+        }
+        elseif (\Auth::user()->isSupplier()) {
+            return redirect()->to(url('/supplier'));
+        }
+        else {
+            return redirect()->to(url('/suppliers'));
+        }
     }
 
 
@@ -65,23 +72,6 @@ class PageController extends Controller
                 'Clients' => 'clients',
                 'Twitter' => 'twitter',
                 'Contact' => 'contact',
-            ],
-        ];
-        return view($this->getViewName(), $data);
-    }
-
-    /**
-     * signup page
-     *
-     * @return \Illuminate\View\View
-     */
-    public function signup()
-    {
-        $data = [
-            'title' => 'Welcome! | Gotarot',
-            'pages' => [
-                'Splash' => 'splash',
-                'Signup' => 'signup',
             ],
         ];
         return view($this->getViewName(), $data);
