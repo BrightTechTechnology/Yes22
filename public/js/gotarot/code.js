@@ -4,17 +4,29 @@ $(function(){
         e.stopPropagation();
     })
 })
+
+
+var hide_nav = $('meta[name="hide_nav"]').attr('content');
+$('#header').animate({'top':'0px'},0);
+if (hide_nav === 'true'){
+    $('#header').animate({'top':'-100px'},0);
+}
+
 var swiperParent = new Swiper('.swiper-parent',{
 pagination: '.pagination',
 paginationClickable: true,
 onSlideChangeEnd : function() {
   //Do something when you touch the slide
-  if (swiperParent.activeIndex != 0){
+
+
+    if (swiperParent.activeIndex != 0){
   $('#header').animate({'top':'0px'},400);
   }
   if (swiperParent.activeIndex == 0){
-  $('#header').animate({'top':'-100px'},400);
-  }  
+      if (hide_nav === 'true') {
+          $('#header').animate({'top': '-100px'}, 400);
+      }
+  }
 }
 })
 
