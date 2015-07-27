@@ -139,7 +139,7 @@ class PageController extends Controller implements PageControllerInterface
         ],
     ];
 
-    return view($this->getViewName(), $data);
+    return view($this->getViewName('billing'), $data);
     }
 
 

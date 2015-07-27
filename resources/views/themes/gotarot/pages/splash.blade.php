@@ -6,7 +6,7 @@
                 <div class="slide-inner">
                     <div class="splash_container">
                         <!-- Logo + description -->
-                        <div class="logo">
+                        <div class="logo animated bounceInDown">
                             <strong>Go</strong>Tarot<span style="font-size:33%">.com.hk</span><br>
                             <span>Call tarot masters</span><BR>
                         </div>
@@ -24,7 +24,7 @@
                         <!-- Continue button -->
                         <div class="slide-to-navigate">
                             <a onclick="swiperParent.swipeTo(1);">
-                                <img src="{{ asset('/img/gotarot/slide-to-navigate.png') }}"   border="0">
+                                <img class="animated infinite pulse" src="{{ asset('/img/gotarot/slide-to-navigate.png') }}"   border="0">
                             </a>
                             <BR>slide to navigate
                         </div>
