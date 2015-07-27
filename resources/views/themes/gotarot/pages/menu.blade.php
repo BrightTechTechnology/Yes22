@@ -18,8 +18,8 @@
                                     }
                                     if ($description == 'Suppliers'){
                                         foreach ($page as $supplier){
-                                            echo '<li><a onclick="swiperParent.swipeTo('.$i.');">
-                                                <img style="width:100%!important; max-width:100%!important; " class="img img-circle" src="/img/upload/supplier/supplier'.$supplier['id'].'.jpg">
+                                            echo '<li style="background-image: none!important;"><a onclick="swiperParent.swipeTo('.$i.');">
+                                                <img style="width:100%!important; max-width:100%!important; border: 3px #dddddd solid;" class="img img-circle" src="/img/upload/supplier/supplier'.$supplier['id'].'.jpg">
                                                 <span>'.$supplier['name'].'</span>
                                             </a></li>';
                                             $i = $i + 1;
