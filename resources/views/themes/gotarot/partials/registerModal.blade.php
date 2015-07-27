@@ -21,7 +21,7 @@
                                 </div>
                             @else
                                 <div class="row text-center">
-                                    <a href="{{action('Auth\AuthController@redirectToFacebook')}}" class="btn btn-info">Register via Facebook</a>
+                                    <a href="{{action('Auth\AuthController@redirectToFacebook')}}" class="btn btn-info"><i class="fa fa-facebook-official"></i> Register via Facebook</a>
                                 </div>
                             @endif
                             <hr>

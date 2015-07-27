@@ -10,6 +10,8 @@
         <link href="{{ asset('/css/global/app.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/global/general.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/global/animate.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/global/animate.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
         <!-- Global JS -->
         <script src="{{ asset('/js/global/jquery.min.js') }}"></script>

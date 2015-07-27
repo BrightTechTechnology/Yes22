@@ -19,7 +19,7 @@
 					@endif
 
                     <div class="col-md-3">
-                            <a href="{{action('Auth\AuthController@redirectToFacebook')}}" class="btn btn-info mar-md">Login via Facebook</a>
+                            <a href="{{action('Auth\AuthController@redirectToFacebook')}}" class="btn btn-info mar-md"><i class="fa fa-facebook-official"></i> Login via Facebook</a>
                     </div>
                     <div class="col-md-9">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('auth/login') }}">
