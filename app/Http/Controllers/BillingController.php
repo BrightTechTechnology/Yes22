@@ -14,12 +14,17 @@ class BillingController extends Controller
         $billing = \App::make('App\Acme\Billing\BillingInterface');
         try {
             $user = \Auth::user();
-            $charge = $billing->charge($user);
+            $amount = 2000;
+            $amountFormatted = number_format($amount/100, 2);
+            $currency = 'usd';
+            $charge = $billing->charge($user, $amount, $currency);
             if ($charge) {
-                print_r('successful charge');
+                \Session::flash('flash-message', 'You credit card has been charged '.$currency.' '.$amountFormatted);
+                return \Redirect::refresh();
             }
         } catch (Exception $e) {
-            return \Redirect::refresh()->withFlashMessage($e->getMessage());
+            \Session::flash('flash-message', $e->getMessage());
+            return \Redirect::refresh();
         }
     }
 

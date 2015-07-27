@@ -2,5 +2,5 @@
 
 interface BillingInterface {
 	public function store ($token, $user);
-	public function charge ($token);
+	public function charge ($user, $amount, $currency);
 }

@@ -40,13 +40,19 @@
 
     <!-- top menu -->
     <div id="header" class="row">
-        <div class="text-left pad-sm col-xs-6">
-            @include('themes.gotarot.partials.accountNavigation')
+        <div class="row">
+            <div class="text-left pad-sm col-xs-6">
+                @include('themes.gotarot.partials.accountNavigation')
+            </div>
+            <div class="text-right pad-sm col-xs-6" style="color:white!important;">
+                @include('themes.gotarot.partials.languageSelector')
+            </div>
         </div>
-        <div class="text-right pad-sm col-xs-6" style="color:white!important;">
-            @include('themes.gotarot.partials.languageSelector')
+        <div class="row text-center">
+            <h2 style="color: white">{{\Session::get('flash-message')}}</h2>
         </div>
     </div>
+
 
     <div class="swiper-container swiper-parent">
         <!-- width is # of total pages * 800 -->

@@ -56,7 +56,7 @@ class StripeBilling implements BillingInterface {
 		}
 	}
 
-	public function charge($user){
+	public function charge($user, $amount, $currency){
 		try {
 
 		    return Charge::create([
