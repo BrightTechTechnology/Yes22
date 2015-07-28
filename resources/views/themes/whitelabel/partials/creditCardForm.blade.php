@@ -1,8 +1,6 @@
 @section('creditCardForm')
 	<div class="row form-group form">
 		<h1>Register credit card</h1>
-        <div class="payment-errors text-center" style="padding: 0 0 3px 0; display: block; font-size: 150%; font-weight: 900; color:red">
-        </div>
 		<form action="{{ \URL::current() }}" method="POST" accept-charset="UTF-8" id="billing-form" class="cmxform" novalidate="novalidate">
 			<input name="_token" type="hidden" value="{{ csrf_token() }}">
 			<div class="row">
@@ -38,6 +36,8 @@
 			<div class="row">
 				<BR><BR>
                 <input type="submit" value="Bill me!" class="form_submit radius4 green green_borderbottom">
+			</div>
+			<div class="payment-errors text-center" style="padding: 0 0 3px 0; display: block; font-size: 150%; font-weight: 900; color:red">
 			</div>
 		</form>
 	</div>
