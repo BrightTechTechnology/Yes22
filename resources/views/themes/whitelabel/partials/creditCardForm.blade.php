@@ -42,4 +42,23 @@
 		</form>
 	</div>
 
+    <h2 class="page_title">Get in touch</h2>
+    <h2 id="Note"></h2>
+    <div class="form">
+        <form class="cmxform" id="CommentForm" method="post" action="" novalidate="novalidate">
+            <label>Name:</label>
+            <input type="text" name="ContactName" id="ContactName" value="" class="form_input radius4 required">
+            <label>Email:</label>
+            <input type="text" name="ContactEmail" id="ContactEmail" value="" class="form_input radius4 required email">
+            <label>Message:</label>
+            <textarea name="ContactComment" id="ContactComment" class="form_textarea radius4 textarea required" rows="" cols=""></textarea>
+            <input type="submit" name="submit" class="form_submit radius4 green green_borderbottom" id="submit" value="Send">
+            <input class="" type="hidden" name="to" value="youremaill@yourwebsiteee.com">
+            <input class="" type="hidden" name="subject" value="Contacf form message">
+            <label id="loader" style="display:none;">
+                <img src="{{ asset('/img/gotarot/loader.gif') }}" alt="Loading..." id="LoadingGraphic">
+            </label>
+        </form>
+    </div>
+
 @stop
