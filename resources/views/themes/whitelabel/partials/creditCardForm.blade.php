@@ -37,7 +37,7 @@
 				<BR><BR>
                 <input type="submit" value="Bill me!" class="form_submit radius4 green green_borderbottom">
 			</div>
-			<div class="payment-errors">
+			<div class="payment-errors text-center" style="padding: 0 0 3px 0; display: block; font-size: 150%; font-weight: 900; color:red">
 			</div>
 		</form>
 	</div>
