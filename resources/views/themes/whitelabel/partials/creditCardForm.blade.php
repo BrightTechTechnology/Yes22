@@ -1,18 +1,18 @@
 @section('creditCardForm')
-	<div class="row form-group">
+	<div class="row form-group form">
 		<h1>Register credit card</h1>
-		<form action="{{ \URL::current() }}" method="POST" accept-charset="UTF-8" id="billing-form" class="cmxform">
+		<form action="{{ \URL::current() }}" method="POST" accept-charset="UTF-8" id="billing-form" class="cmxform" novalidate="novalidate">
 			<input name="_token" type="hidden" value="{{ csrf_token() }}">
 			<div class="row">
-				<span>Card Number</span>
+				<label>Card Number</label>
 				<input type="text" data-stripe="number" class="form_input radius4 required">
 			</div>
 			<div class="row">
-				<span>CVC Number</span>
+				<label>CVC Number</label>
 				<input type="text" data-stripe="cvc" class="form_input radius4 required">
 			</div>
 			<div class="row">
-				<span>Expiration Date</span><BR>
+				<label>Expiration Date</label><BR>
 				<select data-stripe="exp-month">
 					<option value="1">January</option>
 					<option value="2">Febrary</option>
@@ -41,24 +41,4 @@
 			</div>
 		</form>
 	</div>
-
-    <h2 class="page_title">Get in touch</h2>
-    <h2 id="Note"></h2>
-    <div class="form">
-        <form class="cmxform" id="CommentForm" method="post" action="" novalidate="novalidate">
-            <label>Name:</label>
-            <input type="text" name="ContactName" id="ContactName" value="" class="form_input radius4 required">
-            <label>Email:</label>
-            <input type="text" name="ContactEmail" id="ContactEmail" value="" class="form_input radius4 required email">
-            <label>Message:</label>
-            <textarea name="ContactComment" id="ContactComment" class="form_textarea radius4 textarea required" rows="" cols=""></textarea>
-            <input type="submit" name="submit" class="form_submit radius4 green green_borderbottom" id="submit" value="Send">
-            <input class="" type="hidden" name="to" value="youremaill@yourwebsiteee.com">
-            <input class="" type="hidden" name="subject" value="Contacf form message">
-            <label id="loader" style="display:none;">
-                <img src="{{ asset('/img/gotarot/loader.gif') }}" alt="Loading..." id="LoadingGraphic">
-            </label>
-        </form>
-    </div>
-
 @stop
