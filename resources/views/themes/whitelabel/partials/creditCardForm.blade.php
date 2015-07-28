@@ -1,18 +1,18 @@
 @section('creditCardForm')
 	<div class="row form-group">
 		<h1>Register credit card</h1>
-		<form action="{{ \URL::current() }}" method="POST" accept-charset="UTF-8" id="billing-form">
+		<form action="{{ \URL::current() }}" method="POST" accept-charset="UTF-8" id="billing-form" class="cmxform">
 			<input name="_token" type="hidden" value="{{ csrf_token() }}">
 			<div class="row">
 				<span>Card Number</span>
-				<input type="text" data-stripe="number">
+				<input type="text" data-stripe="number" class="form_input radius4 required">
 			</div>
 			<div class="row">
 				<span>CVC Number</span>
-				<input type="text" data-stripe="cvc">
+				<input type="text" data-stripe="cvc" class="form_input radius4 required">
 			</div>
 			<div class="row">
-				<span>Expiration Date</span>
+				<span>Expiration Date</span><BR>
 				<select data-stripe="exp-month">
 					<option value="1">January</option>
 					<option value="2">Febrary</option>
@@ -34,10 +34,12 @@
 				</select>
 			</div>
 			<div class="row">
-				<input type="submit" value="Bill me!">
+				<BR><BR>
+                <input type="submit" value="Bill me!" class="form_submit radius4 green green_borderbottom">
 			</div>
 			<div class="payment-errors">
 			</div>
 		</form>
 	</div>
+
 @stop

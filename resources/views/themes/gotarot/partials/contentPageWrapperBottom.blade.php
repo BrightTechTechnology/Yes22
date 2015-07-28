@@ -1,7 +1,7 @@
                         <div class="clearfix"></div>
-                        <div class="scrolltop radius20">
+                        <!-- <div class="scrolltop radius20">
                             <a><img src="{{ asset('/img/gotarot/top.png') }}" alt="Go on top" title="Go on top"></a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
