@@ -84,6 +84,7 @@ class PageController extends Controller implements PageControllerInterface
     public function index(){
         $data = [
             'title' => 'Welcome! | Gotarot',
+            'blade' => debug_backtrace()[0]['function'],
             'pages' => [
                 'Splash' => 'splash',
                 'Menu' => 'menu',
@@ -98,7 +99,7 @@ class PageController extends Controller implements PageControllerInterface
                 'Contact' => 'contact',
             ],
         ];
-        return view($this->getViewName(), $data);
+        return view($this->getViewName(debug_backtrace()[0]['function']), $data);
     }
 
     /**
@@ -111,12 +112,13 @@ class PageController extends Controller implements PageControllerInterface
         $suppliers = $this->dataController->suppliers(9);
         $data = [
             'title' => 'Suppliers! | Gotarot',
+            'blade' => debug_backtrace()[0]['function'],
             'pages' => [
                 'Menu' => 'menu',
                 'Suppliers' => $suppliers,
             ],
         ];
-        return view($this->getViewName('suppliers'), $data);
+        return view($this->getViewName(debug_backtrace()[0]['function']), $data);
     }
 
     /**
@@ -134,12 +136,13 @@ class PageController extends Controller implements PageControllerInterface
 
     $data = [
         'title' => 'Billing | Gotarot',
+        'blade' => debug_backtrace()[0]['function'],
         'pages' => [
             'Billing' => 'billing',
         ],
     ];
 
-    return view($this->getViewName('billing'), $data);
+    return view($this->getViewName(debug_backtrace()[0]['function']), $data);
     }
 
 

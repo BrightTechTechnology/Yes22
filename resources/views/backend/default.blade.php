@@ -6,8 +6,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Yes22 Backend</title>
 
-	<link href="{{ asset('/css/global/app.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/global/general.css') }}" rel="stylesheet">
+    <!-- Global CSS -->
+    <link href="{{ asset('/css/global/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/global/general.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/global/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/global/animate.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- Global JS -->
+    <script src="{{ asset('/js/global/jquery.min.js') }}"></script>
+    <script src="{{ asset('/js/global/bootstrap.min.js') }}"></script>
+
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>

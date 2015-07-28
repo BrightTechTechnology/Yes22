@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Contracts\View\View;
+use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
@@ -75,6 +76,7 @@ class AdminController extends Controller
         $user = User::where('id', \Input::get('id'))->first();
         $user->staff = true;
         $user->save();
+
         return Redirect()->back();
     }
 
@@ -96,6 +98,11 @@ class AdminController extends Controller
     {
         $user = User::where('id', \Input::get('id'))->first();
         $user->supplier = true;
+
+        // save picture
+        $img = Image::make('img/upload/supplier/default.jpg');
+        $img->save('img/upload/supplier/supplier'.$user->id.'.jpg', 80);
+
         $user->save();
         return Redirect()->back();
     }

@@ -103,4 +103,15 @@ class ConfigController extends Controller
         // nothing yet. maybe need to filter DB queries etc
     }
 
+    public function getLoginPath()
+    {
+        $loginPath = '/auth/login';
+
+        if ($this->getTheme() == 'gotarot'){
+            $loginPath = '/';
+        }
+        return $loginPath;
+    }
+
+
 }
