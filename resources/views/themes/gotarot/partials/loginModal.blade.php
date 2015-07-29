@@ -27,7 +27,6 @@
                             <hr>
                             <form class="form-horizontal" role="form" action="{{ url('/auth/login/') }}" method="POST" >
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="hidden" name="theme" value="whitelabel">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-xs-12">
