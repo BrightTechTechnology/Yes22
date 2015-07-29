@@ -19,7 +19,7 @@ class BillingController extends Controller
             $currency = 'usd';
             $charge = $billing->charge($user, $amount, $currency);
             if ($charge) {
-                \Session::flash('flash-message', 'You credit card has been charged '.$currency.' '.$amountFormatted);
+                \Session::flash('flash-message', 'Your credit card has been charged '.$currency.' '.$amountFormatted);
                 return \Redirect::refresh();
             }
         } catch (Exception $e) {

@@ -4,3 +4,6 @@
             <div class="swiper-slide swiper-slide-visible swiper-slide-active">
                 <div class="slide-inner">
                     <div class="pages_container">
+                        <div class="row text-center">
+                            <h2 style="color: blue">{{\Session::get('flash-message')}}</h2>
+                        </div>

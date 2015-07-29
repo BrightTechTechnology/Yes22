@@ -17,7 +17,7 @@
             <form action="{{ \URL::current() }}" method="POST" accept-charset="UTF-8" id="billing-form">
                 <input name="_token" type="hidden" value="{{ csrf_token() }}">
                 <div class="row">
-                    <input type="submit" value="Bill me again!">
+                    <input type="submit" value="Bill me again!" class="form_submit radius4 green green_borderbottom">
                 </div>
             </form>
         </div>

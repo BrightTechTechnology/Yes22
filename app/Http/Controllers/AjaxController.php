@@ -7,6 +7,11 @@ use App\Rating;
 
 class AjaxController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('ajax');
+    }
+
     public function rating()
     {
         $userId = \Input::get('user');

@@ -19,14 +19,14 @@ use App\Http\Controllers\BillingController;
 class PageController extends Controller implements PageControllerInterface
 {
 
-    protected $dataController;
-
-    //////////////////// UNIVERSAL METHODS FOR EVERY THEME ////////////////////
-
     public function __construct()
     {
         $this->dataController = new DataController;
     }
+
+    protected $dataController;
+
+    //////////////////// UNIVERSAL METHODS FOR EVERY THEME ////////////////////
 
     protected function getViewName ($template = 'index')
     {
@@ -35,6 +35,10 @@ class PageController extends Controller implements PageControllerInterface
 
         $viewName = 'themes'.'.'.$theme.'.'.$template;
         return $viewName;
+    }
+
+    public function tester(){
+        return 'hi';
     }
 
 
@@ -60,7 +64,11 @@ class PageController extends Controller implements PageControllerInterface
         return $this->index();
     }
 
-    // forward to the following if already logged in
+
+    // forward to the following
+    //  => after login or...
+    //  => if filtered because not authenticated
+
     public function authenticated()
     {
         if (\Auth::check()) {
@@ -109,6 +117,10 @@ class PageController extends Controller implements PageControllerInterface
      */
     public function suppliers()
     {
+        if ($this->noGuestAllowed()){
+            return $this->noGuestAllowed();
+        }
+
         $suppliers = $this->dataController->suppliers(9);
         $data = [
             'title' => 'Suppliers! | Gotarot',
@@ -118,6 +130,7 @@ class PageController extends Controller implements PageControllerInterface
                 'Suppliers' => $suppliers,
             ],
         ];
+
         return view($this->getViewName(debug_backtrace()[0]['function']), $data);
     }
 
@@ -128,21 +141,24 @@ class PageController extends Controller implements PageControllerInterface
      */
     public function billing()
     {
+        if ($this->noGuestAllowed()){
+            return $this->noGuestAllowed();
+        }
 
-    if (\Request::isMethod('post')) {
-        $billing = new BillingController;
-        return $billing->postBilling();
-    }
+        if (\Request::isMethod('post')) {
+            $billing = new BillingController;
+            return $billing->postBilling();
+        }
 
-    $data = [
-        'title' => 'Billing | Gotarot',
-        'blade' => debug_backtrace()[0]['function'],
-        'pages' => [
-            'Billing' => 'billing',
-        ],
-    ];
+        $data = [
+            'title' => 'Billing | Gotarot',
+            'blade' => debug_backtrace()[0]['function'],
+            'pages' => [
+                'Billing' => 'billing',
+            ],
+        ];
 
-    return view($this->getViewName(debug_backtrace()[0]['function']), $data);
+        return view($this->getViewName(debug_backtrace()[0]['function']), $data);
     }
 
 

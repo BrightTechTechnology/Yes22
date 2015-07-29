@@ -8,4 +8,11 @@ abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
 
+    protected function noGuestAllowed ()
+    {
+        if ( ! \Auth::check() ) {
+            \Session::flash('flash-message', 'Please login first');
+            return redirect('/');
+        }
+    }
 }

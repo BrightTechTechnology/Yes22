@@ -48,9 +48,6 @@
                 @include('themes.gotarot.partials.languageSelector')
             </div>
         </div>
-        <div class="row text-center">
-            <h2 style="color: white">{{\Session::get('flash-message')}}</h2>
-        </div>
     </div>
 
 

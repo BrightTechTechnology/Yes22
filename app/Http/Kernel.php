@@ -32,6 +32,7 @@ class Kernel extends HttpKernel {
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
 		'staff' => 'App\Http\Middleware\MustBeStaff',
 		'supplier' => 'App\Http\Middleware\MustBeSupplier',
+		'ajax' => 'App\Http\Middleware\MustBeAjax',
 	];
 
 }

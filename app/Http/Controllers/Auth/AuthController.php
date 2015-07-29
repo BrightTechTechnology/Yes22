@@ -15,11 +15,12 @@ class AuthController extends Controller {
     {
         $this->middleware('guest', ['except' => 'getLogout']);
         $this->config = new ConfigController;
-        $this->loginPath = $this->config->getLoginPath();
+        $this->loginPath = $this->config->getLoginPath(); // where to go after failed login attempt
     }
 
-    protected $redirectTo = 'authenticated'; // where to redirect after successful login
-    protected $loginPath; // where to go after failed login attempt
+    protected $redirectTo = 'authenticated'; // where to redirect after successful login or if filtered by route
+    protected $loginPath; // where to go after failed login attempt, set in constructor via config
+    protected $redirectAfterLogout = '/';
 
     /**
      * Show the application registration form.

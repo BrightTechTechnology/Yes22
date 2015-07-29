@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 
 class OpenInvoicesController extends Controller {
 
-	public function __construct (){
-		$this->middleware('staff');
-	}
+    public function __construct()
+    {
+        $this->middleware('staff');
+    }
+
 
 	/**
 	 * Display a listing of the resource.

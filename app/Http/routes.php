@@ -18,38 +18,30 @@ Route::group(['middleware' => 'supplier'], function(){
 
 // Backend Pages
 Route::group(['middleware' => ['staff']], function() {
-
-	// Dashboard
 	Route::get('backend', 'Backend\DashboardController@index');
 	Route::get('backend/dashboard', 'Backend\DashboardController@index');
 
-	// Whatsapp Reminders
 	Route::get('backend/whatsappReminders', 'Backend\WhatsappRemindersController@index');
 
-	// Connections
 	Route::get('backend/connections', 'Backend\ConnectionsController@index');
 
-	// Operations
 	Route::get('backend/operations', 'Backend\OperationsController@index');
 
-	// Client Lists
 	Route::get('backend/clientLists', 'Backend\ClientListsController@index');
-		Route::get('backend/clientLists/destroy/{id}','Backend\ClientListsController@destroy');
+    Route::get('backend/clientLists/destroy/{id}','Backend\ClientListsController@destroy');
 
-	// Open Invoices
 	Route::get('backend/openInvoices', 'Backend\OpenInvoicesController@index');
 
-	// Admin
-        Route::get('backend/admin','Backend\AdminController@index');
-        Route::get('backend/admin/search','Backend\AdminController@search');
-        Route::get('backend/admin/addStaff','Backend\AdminController@addStaff');
-        Route::get('backend/admin/removeStaff','Backend\AdminController@removeStaff');
-        Route::get('backend/admin/addSupplier','Backend\AdminController@addSupplier');
-        Route::get('backend/admin/removeSupplier','Backend\AdminController@removeSupplier');
-        Route::get('backend/admin/destroy/','Backend\AdminController@destroy');
+    Route::get('backend/admin','Backend\AdminController@index');
+    Route::get('backend/admin/search','Backend\AdminController@search');
+    Route::get('backend/admin/addStaff','Backend\AdminController@addStaff');
+    Route::get('backend/admin/removeStaff','Backend\AdminController@removeStaff');
+    Route::get('backend/admin/addSupplier','Backend\AdminController@addSupplier');
+    Route::get('backend/admin/removeSupplier','Backend\AdminController@removeSupplier');
+    Route::get('backend/admin/destroy/','Backend\AdminController@destroy');
 });
 
-//Auth
+//Authentication Engine, will redirect to 'authenticated' if already logged in
 Route::get('auth/facebook', 'Auth\AuthController@redirectToFacebook');
 Route::get('auth/facebook/callback', 'Auth\AuthController@handleFacebookCallback');
 Route::controller('auth', 'Auth\AuthController');

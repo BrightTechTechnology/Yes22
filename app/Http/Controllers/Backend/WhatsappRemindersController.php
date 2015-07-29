@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class WhatsappRemindersController extends Controller {
 
-	public function __construct (){
-		$this->middleware('staff');
-	}
+    public function __construct()
+    {
+        $this->middleware('staff');
+    }
 
 	/**
 	 * Display a listing of the resource.
