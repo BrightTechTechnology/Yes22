@@ -5,7 +5,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
-                            @if (count($errors) > 0)
+                            @if (count($errors) > 0 && Session::get('submit_form') == 'login')
                                 <div class="alert alert-danger">
                                     <strong>{{ trans('signup.following_errors') }}</strong><br><br>
                                     <ul>
@@ -56,11 +56,11 @@
     </div>
 </div>
 
-@if ((count($errors) > 0) || (isset($socialLogin)))
-        <!-- show modal if have flash messages -->
-<script type="text/javascript">
-    $(window).load(function(){
-        $('#loginModal').modal('show');
-    });
-</script>
+@if (Session::get('submit_form') == 'login' && count($errors) > 0)
+     <!-- show modal if have flash messages -->
+     <script type="text/javascript">
+        $(window).load(function(){
+            $('#loginModal').modal('show');
+        });
+    </script>
 @endif

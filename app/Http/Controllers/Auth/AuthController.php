@@ -88,8 +88,6 @@ class AuthController extends Controller {
             $theme = $data['theme'];
         }
 
-        dd($theme);
-
 		return User::create([
 			'name' => $this->getNameFromEmail($data['email']),
 			'email' => $data['email'],

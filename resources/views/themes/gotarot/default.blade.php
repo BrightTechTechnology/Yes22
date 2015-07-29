@@ -54,9 +54,7 @@
     <div class="swiper-container swiper-parent">
         <!-- width is # of total pages * 800 -->
         <div class="swiper-wrapper" style="width: 8800px; height: 511px;">
-
             @yield('content')
-
         </div>
         <!--End of swiper wrapper -->
 
