@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\ConfigController;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -9,10 +10,13 @@ use Intervention\Image\Facades\Image;
 class AdminController extends Controller
 {
 
-    public function __construct()
+    public function __construct(ConfigController $config)
     {
         $this->middleware('staff');
+        $this->config = $config;
     }
+
+    protected $config;
 
     /**
      * Display a admin page in backend
@@ -21,9 +25,15 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $staffs = \App\User::where('staff', true)->get();
-        $suppliers = \App\User::where('supplier', true)->get();
-        $users = \App\User::all();
+        $staffs = \App\User::where('staff', true)
+            ->where('theme', $this->config->getTheme())
+            ->get();
+
+        $suppliers = \App\User::where('supplier', true)
+            ->where('theme', $this->config->getTheme())
+            ->get();
+
+        $users = \App\User::where('theme', $this->config->getTheme());
         return \View::make('backend.admin', compact('staffs', 'suppliers', 'users'));
     }
 
@@ -41,6 +51,7 @@ class AdminController extends Controller
             $input = \Input::get('add_staff');
             $users = User::where('email', 'LIKE', '%' . $input . '%')
                 ->where('staff', '!=', 1)
+                ->where('theme', $this->config->getTheme())
                 ->orderBy('email')
                 ->take(5)
                 ->get();
@@ -55,6 +66,7 @@ class AdminController extends Controller
             $input = \Input::get('add_supplier');
             $users = User::where('email', 'LIKE', '%' . $input . '%')
                 ->where('supplier', '!=', 1)
+                ->where('theme', $this->config->getTheme())
                 ->orderBy('email')
                 ->take(5)
                 ->get();
@@ -75,6 +87,7 @@ class AdminController extends Controller
     {
         $user = User::where('id', \Input::get('id'))->first();
         $user->staff = true;
+        $user->theme = $this->config->getTheme();
         $user->save();
 
         return Redirect()->back();
@@ -98,6 +111,7 @@ class AdminController extends Controller
     {
         $user = User::where('id', \Input::get('id'))->first();
         $user->supplier = true;
+        $user->theme = $this->config->getTheme();
 
         // save picture
         $img = Image::make('img/upload/supplier/default.jpg');

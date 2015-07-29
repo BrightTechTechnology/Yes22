@@ -24,7 +24,6 @@ class PageController extends Controller implements PageControllerInterface
 
     public function __construct()
     {
-        $this->middleware('auth', ['only'=>['profile','postBilling']]);
         $this->dataController = new DataController;
     }
 
@@ -87,6 +86,10 @@ class PageController extends Controller implements PageControllerInterface
 
     public function profile($id = 'index', $subId = false)
     {
+        if ($this->noGuestAllowed()){
+            return $this->noGuestAllowed();
+        }
+
         $viewPath = $this->getViewName().'/'.$id;
 
         if (\Request::isMethod('get') && \View::exists($viewPath)) {

@@ -10,9 +10,12 @@ use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
-    public function __construct (){
+    public function __construct (ConfigController $config){
         $this->middleware('supplier');
+        $this->config = $config;
     }
+
+    protected $config;
 
     /**
      * Display a listing of the resource.
@@ -23,6 +26,7 @@ class ArticleController extends Controller
     {
         $articles = User::find(\Auth::user()->id)->article()
             ->where('active', true)
+            ->where('theme', $this->config->getTheme())
             ->orderBy('id', 'desc')
             ->paginate(25);
 

@@ -11,16 +11,17 @@ class AuthController extends Controller {
 
     use AuthenticatesAndRegistersUsers;
 
-    public function __construct()
+    public function __construct(ConfigController $config)
     {
         $this->middleware('guest', ['except' => 'getLogout']);
-        $this->config = new ConfigController;
+        $this->config = $config;
         $this->loginPath = $this->config->getLoginPath(); // where to go after failed login attempt
     }
 
     protected $redirectTo = 'authenticated'; // where to redirect after successful login or if filtered by route
     protected $loginPath; // where to go after failed login attempt, set in constructor via config
     protected $redirectAfterLogout = '/';
+    protected $config;
 
     /**
      * Show the application registration form.
@@ -81,11 +82,19 @@ class AuthController extends Controller {
 	 */
 	public function create(array $data)
 	{
+        $theme = $this->config->getTheme();
+
+        if (isset($data['theme'])){
+            $theme = $data['theme'];
+        }
+
+        dd($theme);
+
 		return User::create([
 			'name' => $this->getNameFromEmail($data['email']),
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
-            'theme' => $data['theme'],
+            'theme' => $theme,
 		]);
 	}
 
