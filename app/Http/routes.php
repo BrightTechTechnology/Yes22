@@ -52,10 +52,10 @@ Route::get('test/email', 'EmailController@send');
 Route::get('test/sms', 'SMSController@send');
 
 
-Route::any('test/incoming', function(){
-    $twiml = new Services_Twilio_Twiml();
-    $twiml->say('Hello - your app just answered the phone. Neat, eh?', array('voice' => 'alice'));
-    $response = Response::make($twiml, 200);
+Route::match(array('GET', 'POST'), '/test/incoming', function()
+{
+    $xml = '<Response><Say>Hello - your app just answered the phone. Neat, eh?</Say></Response>';
+    $response = Response::make($xml, 200);
     $response->header('Content-Type', 'text/xml');
     return $response;
 });
