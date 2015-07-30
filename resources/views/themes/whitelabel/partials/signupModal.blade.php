@@ -30,13 +30,13 @@
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <label for="email">E-Mail</label>
-                                        <input placeholder="E-Mail" type="email" class="form-control" name="email" value="{{ old('email') }}{{$user['email'] or ''}}">
+                                        <input placeholder="E-Mail" type="email" class="form-control" name="email" value="{{ old('email') }}{{$user['email'] or ''}}" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <label for="password">Password</label>
-                                        <input placeholder="Password" type="password" class="form-control" name="password">
+                                        <input placeholder="Password" type="password" class="form-control" name="password" required>
                                     </div>
                                 </div>
 
