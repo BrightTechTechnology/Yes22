@@ -54,7 +54,11 @@ Route::get('test/sms', 'SMSController@send');
 
 Route::match(array('GET', 'POST'), '/test/incoming', function()
 {
-    return '<Response><Say voice="alice">Hello - your app just answered the phone. Neat, eh?</Say></Response>';
+    $twiml = new Services_Twilio_Twiml();
+    $twiml->say('Hello - your app just answered the phone. Neat, eh?', array('voice' => 'alice'));
+    $response = Response::make($twiml, 200);
+    $response->header('Content-Type', 'text/xml');
+    return $response;
 });
 
 
