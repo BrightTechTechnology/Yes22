@@ -39,7 +39,10 @@ class ConfigController extends Controller
 
         // language settings from browser
         if (!isset($language)) {
-            $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+            $lang='';
+            if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"])){
+                $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+            }
             switch ($lang) {
                 case "zh":
                     $language = "hk";
