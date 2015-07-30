@@ -54,10 +54,7 @@ Route::get('test/sms', 'SMSController@send');
 
 Route::match(array('GET', 'POST'), '/test/incoming', function()
 {
-    $xml = '<Response><Say>Hello - your app just answered the phone. Neat, eh?</Say></Response>';
-    $response = Response::make($xml, 200);
-    $response->header('Content-Type', 'text/xml');
-    return $response;
+    return '<Response><Say voice="alice">Hello - your app just answered the phone. Neat, eh?</Say></Response>';
 });
 
 
