@@ -47,21 +47,11 @@ Route::get('auth/facebook/callback', 'Auth\AuthController@handleFacebookCallback
 Route::controller('auth', 'Auth\AuthController');
 Route::controller('password', 'Auth\PasswordController');
 
-// feature tests
-Route::get('test/email', 'EmailController@send');
-Route::get('test/sms', 'SMSController@send');
 
-
-Route::get('/test/incoming', function()
-{
-    $twiml = new Services_Twilio_Twiml();
-    $twiml->say('Hello - your app just answered the phone. Neat, eh?', array('voice' => 'alice'));
-    $response = Response::make($twiml, 200);
-    $response->header('Content-Type', 'text/xml');
-    return $response;
-});
-
-
+//Services
+Route::controller('/service/sms', 'Service\SmsController');
+Route::controller('/service/email', 'Service\EmailController');
+Route::controller('/service/call', 'Service\CallController');
 
 
 //Ajax handling

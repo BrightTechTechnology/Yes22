@@ -36,7 +36,7 @@ class FrontendController extends Controller
         // get data for forwarding
         $theme = $this->config->getTheme();
         $theme = ucfirst($theme);
-        $pageControllerPath = '\App\Http\Controllers\Themes\\'.$theme.'\PageController';
+        $pageControllerPath = '\App\Http\Controllers\Theme\\'.$theme.'\PageController';
         $pageController = new $pageControllerPath;
 
 

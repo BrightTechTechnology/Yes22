@@ -2,7 +2,7 @@
 
 
 
-class StripeBilling implements CallingInterface
+class TwilioCalling implements CallingInterface
 {
 
 }
