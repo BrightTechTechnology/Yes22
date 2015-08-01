@@ -15,15 +15,33 @@ class CallController extends Controller
         $this->callingService = new TwilioCalling;
     }
 
+
+
+
+
     public function getIncoming()
     {
-        //return $this->callingService->textRespond('Dialing out works, great, right?');
-        return $this->callingService->audioRespond('http://demo.twilio.com/hellomonkey/monkey.mp3');
+        $instructions = [
+            $this->callingService->say('hello people'),
+            $this->callingService->play('http://demo.twilio.com/hellomonkey/monkey.mp3'),
+        ];
+
+        return $this->callingService->makeResponse($instructions);
     }
 
-    public function getDial()
+
+
+
+
+
+
+
+
+
+
+    public function getOutboundCall()
     {
-        $this->callingService->dial('+85269079611', action('Service\CallController@getIncoming'));
+        return $this->callingService->outboundCall('+85269079611', action('Service\CallController@getIncoming'));
     }
 
 
