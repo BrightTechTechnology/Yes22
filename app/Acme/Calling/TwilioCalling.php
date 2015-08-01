@@ -29,7 +29,11 @@ class TwilioCalling implements CallingInterface
 
     public function textRespond($message)
     {
-        $xml = $this->xml->say($message, ['voice' => 'alice']);
+        $xml = '
+            <Response>
+                <Say>'.$message.'</Say>
+            </Response>
+        ';
         $response = \Response::make($xml, 200);
         $response->header('Content-Type', 'text/xml');
         return $response;
@@ -37,7 +41,11 @@ class TwilioCalling implements CallingInterface
 
     public function audioRespond($path)
     {
-        $xml = $this->xml->play($path);
+        $xml = '
+            <Response>
+                <Play>'.$path.'</Play>
+            </Response>
+        ';
         $response = \Response::make($xml, 200);
         $response->header('Content-Type', 'text/xml');
         return $response;

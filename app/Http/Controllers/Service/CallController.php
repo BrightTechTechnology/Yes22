@@ -17,8 +17,8 @@ class CallController extends Controller
 
     public function getIncoming()
     {
-        //return $this->callingService->textRespond('Dialing out works, great, right?');
-        return $this->callingService->audioRespond('http://demo.twilio.com/hellomonkey/monkey.mp3');
+        return $this->callingService->textRespond('Dialing out works, great, right?');
+        //return $this->callingService->audioRespond('http://demo.twilio.com/hellomonkey/monkey.mp3');
     }
 
     public function getDial()
