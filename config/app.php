@@ -145,11 +145,15 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
-		'App\Providers\BillingServiceProvider',
-		'App\Providers\CallingServiceProvider',
         'Laravel\Socialite\SocialiteServiceProvider',
         'Intervention\Image\ImageServiceProvider',
-	],
+
+        'App\Providers\BillingServiceProvider',
+        'App\Providers\CallingServiceProvider',
+        'App\Providers\SmsingServiceProvider',
+        'App\Providers\EmailingServiceProvider',
+        'App\Providers\InvoicingServiceProvider',
+    ],
 
 	/*
 	|--------------------------------------------------------------------------

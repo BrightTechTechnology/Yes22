@@ -49,9 +49,10 @@ Route::controller('password', 'Auth\PasswordController');
 
 
 //Services
-Route::controller('/service/sms', 'Service\SmsController');
-Route::controller('/service/email', 'Service\EmailController');
-Route::controller('/service/call', 'Service\CallController');
+Route::controller('/service/call', 'Service\CallingController');
+Route::controller('/service/sms', 'Service\SmsingController');
+Route::controller('/service/email', 'Service\EmailingController');
+Route::controller('/service/invoice', 'Service\InvoicingController');
 
 
 //Ajax handling

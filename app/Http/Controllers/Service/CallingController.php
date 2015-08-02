@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Service;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class CallController extends Controller
+class CallingController extends Controller
 {
     protected $callingService;
 
