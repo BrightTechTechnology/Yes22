@@ -1,11 +1,45 @@
 <?php namespace App\Acme\Invoicing;
 
 use App\Invoice;
+use App\Http\Controllers\ConfigController;
+use Carbon\Carbon;
 
-class AcmeInvoicing {
-    public function create ($data)
+class AcmeInvoicing
+{
+    protected $invoice;
+    protected $config;
+
+    public function __construct()
     {
-        $invoice = new Invoice;
-        dd($invoice);
+        $this->invoice = new Invoice;
+        $this->config = new ConfigController;
     }
+
+    /**
+     * persists invoice in database
+     * @param $data [start, end, rate, currency]
+     */
+    public function create($data)
+    {
+        $this->invoice->amount = $this->getAmount($data);
+        $this->invoice->currency = $data['currency'];
+        $this->invoice->user_id = \Auth::user()->id;
+        $this->invoice->theme = $this->config->getTheme();
+        $this->invoice->save();
+    }
+
+    /**
+     * @param $data [start, end, rate]
+     * @return int invoice amount in cents
+     */
+    public function getAmount($data)
+    {
+        $start = new Carbon ($data['start']);
+        $secondsDifference = $start->diffInSeconds($data['end']);
+        $rateCentsPerSecond = ($data['rate'] / 60) * 100;
+
+        $amountInCents = (integer) ($secondsDifference * $rateCentsPerSecond);
+        return $amountInCents;
+    }
+
 }

@@ -1,1 +1,7 @@
-Click here to reset your password: {{ url('password/reset/'.$token) }}
+<?php
+// this view forwards to the theme specific email template for resetting passwords
+$config = new App\Http\Controllers\ConfigController;
+$theme = $config->getTheme();
+?>
+
+@extends('theme/'.$theme.'/emails/passwordReset')

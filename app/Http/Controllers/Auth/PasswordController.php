@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\Http\Controllers\ConfigController;
 
 class PasswordController extends Controller {
 
@@ -25,24 +26,24 @@ class PasswordController extends Controller {
 	 * @param  \Illuminate\Contracts\Auth\PasswordBroker  $passwords
 	 * @return void
 	 */
+
+    protected $config;
+
 	public function __construct()
 	{
 		$this->middleware('guest');
-	}
+        $this->config = new ConfigController;
+    }
 
     public function getConfirm()
     {
-        $config = new \App\Http\Controllers\ConfigController;
-        $theme = $config->getTheme();
-        $viewPath = 'themes.'.$theme.'.auth.confirm';
+        $viewPath = 'theme.'.$this->config->getTheme().'.auth.confirm';
         return view($viewPath);
     }
 
     public function getReset()
     {
-        $config = new \App\Http\Controllers\ConfigController;
-        $theme = $config->getTheme();
-        $viewPath = 'themes.'.$theme.'.auth.reset';
+        $viewPath = 'theme.'.$this->config->getTheme().'.auth.reset';
         return view($viewPath);
     }
 

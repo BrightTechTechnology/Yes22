@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Service;
 
+use App\Http\Controllers\ConfigController;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class EmailingController extends Controller
 {
     protected $emailingService;
+    protected $config;
 
     public function __construct()
     {
         $this->emailingService = \App::make('App\Acme\Emailing\EmailingInterface');
+        $this->config = new ConfigController;
     }
 
     public function getSend()
@@ -22,7 +25,7 @@ class EmailingController extends Controller
             'fromEmail' =>  'support@gotarot.com.hk',
             'fromName'  =>  'Support',
             'subject'   =>  'Signup successful',
-            'theme'     =>  'emails.whitelabel.signup',
+            'theme'     =>  'signup',
         ];
 
         $this->emailingService->send($data);

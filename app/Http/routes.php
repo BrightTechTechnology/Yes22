@@ -67,5 +67,3 @@ Route::any('/', 'FrontendController@routeForward');
 
 
 
-
-

@@ -1,4 +1,4 @@
-@extends('themes/whitelabel/auth/default')
+@extends('theme/gotarot/auth/default')
 
 @section('content')
 <div class="container-fluid">
