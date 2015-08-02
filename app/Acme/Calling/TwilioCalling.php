@@ -114,7 +114,7 @@ class TwilioCalling implements CallingInterface
             // some more also, check here https://www.twilio.com/docs/api/twiml/record
     }
 
-    public function hangup
+    public function hangup ()
     {
         return '<Hangup/>';
     }
@@ -136,7 +136,7 @@ class TwilioCalling implements CallingInterface
             $result = $result.'<Body>'.$message.'</Body>';
         }
         $result = $result.'<Media>'.$path.'</Media>';
-        $result = $result.'</Message>'
+        $result = $result.'</Message>';
         return $result;
     }
 

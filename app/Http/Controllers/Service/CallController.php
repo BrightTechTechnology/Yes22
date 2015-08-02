@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Service;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Acme\Calling\TwilioCalling;
 
 class CallController extends Controller
 {
@@ -12,12 +11,8 @@ class CallController extends Controller
 
     public function __construct()
     {
-        $this->callingService = new TwilioCalling;
+        $this->callingService = \App::make('App\Acme\Calling\CallingInterface');
     }
-
-
-
-
 
     public function getIncoming()
     {
@@ -28,16 +23,6 @@ class CallController extends Controller
 
         return $this->callingService->makeResponse($instructions);
     }
-
-
-
-
-
-
-
-
-
-
 
     public function getOutboundCall()
     {

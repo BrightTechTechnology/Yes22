@@ -146,6 +146,7 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 		'App\Providers\BillingServiceProvider',
+		'App\Providers\CallingServiceProvider',
         'Laravel\Socialite\SocialiteServiceProvider',
         'Intervention\Image\ImageServiceProvider',
 	],
