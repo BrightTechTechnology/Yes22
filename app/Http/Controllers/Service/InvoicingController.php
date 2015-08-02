@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Service;
 
+use App\Http\Controllers\ConfigController;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -10,31 +11,39 @@ class InvoicingController extends Controller
 {
     protected $invoiceService;
     protected $emailingService;
+    protected $config;
 
     public function __construct()
     {
         $this->invoicingService = \App::make('App\Acme\Invoicing\InvoicingInterface');
         $this->emailingService = \App::make('App\Acme\Emailing\EmailingInterface');
+        $this->config = new ConfigController;
     }
 
     public function getCreate()
     {
-        $invoiceData = [
+        $createData = [
             'start' => Carbon::now()->subMinutes(30),
             'end' => Carbon::now(),
+            'supplier' => 'Mani',
             'rate' => 21,
             'currency' => 'HKD',
         ];
-        $invoiceId = $this->invoicingService->create($invoiceData);
-        $invoiceAmount = $this->invoicingService->getAmount($invoiceData);
+        $invoiceId = $this->invoicingService->create($createData);
+        $invoiceObject = $this->invoicingService->getInvoiceObject($invoiceId);
 
         $emailData = [
-          //$data [template, content, fromEmail, fromName, toEmail, toName, subject]
             'template' => 'invoice',
             'content' => [
-                'invoiceId' => $invoiceId,
-                'invoiceDate' => Carbon::now()->format('Y/m/d'),
-                'invoiceAmount' => $invoiceAmount,
+                'id' => $invoiceObject->id,
+                'date' => date_format($invoiceObject->end, 'Y-m-d'),
+                'amount' => $invoiceObject->amount,
+                'currency' => $invoiceObject->currency,
+                'theme' => $invoiceObject->theme,
+                'start' => $invoiceObject->start,
+                'end' => $invoiceObject->end,
+                'rate' => $invoiceObject->rate,
+                'supplier' => $invoiceObject->supplier,
             ],
             'fromEmail' => 'invoices@gotarot.com.hk',
             'fromName' => 'Gotarot Invoicing',

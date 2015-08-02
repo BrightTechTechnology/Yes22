@@ -21,7 +21,9 @@ class AcmeInvoicing
      */
     public function create($data)
     {
+        $this->invoice->supplier = $data['supplier'];
         $this->invoice->amount = $this->getAmount($data);
+        $this->invoice->rate = $data['rate'];
         $this->invoice->currency = $data['currency'];
         $this->invoice->user_id = \Auth::user()->id;
         $this->invoice->theme = $this->config->getTheme();
@@ -41,6 +43,11 @@ class AcmeInvoicing
 
         $amountInCents = (integer) ($secondsDifference * $rateCentsPerSecond);
         return $amountInCents;
+    }
+
+    public function getInvoiceObject($id)
+    {
+        return Invoice::where('id', $id);
     }
 
 }

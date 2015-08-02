@@ -38,9 +38,9 @@
                         <strong>Amount Due:</strong>
                     </td>
                     <td style="text-align: left">
-                        {{$invoiceId}}<BR>
-                        {{$invoiceDate}}<BR>
-                        {{$invoiceAmount}}<BR>
+                        {{$id}}<BR>
+                        {{$date}}<BR>
+                        {{$currency}} {{$amount}}<BR>
                         <BR>
                         <a href="{{url('/billing')}}">Click: Pay now!</a>
                     </td>
@@ -69,9 +69,6 @@
                 Rate / min
             </td>
             <td style="text-align: center">
-                # of min
-            </td>
-            <td style="text-align: center">
                 Line total
             </td>
         </tr>
@@ -79,25 +76,42 @@
     <tbody>
         <tr style="background-color: lightgrey">
             <td style="text-align: center">
-                aaa
+                {{$supplier}}
             </td>
             <td style="text-align: center">
-                aaa
+                {{$theme}} Service
             </td>
             <td style="text-align: center">
-                aaa
+                {{$start}}
             </td>
             <td style="text-align: center">
-                aaa
+                {{$end}}
             </td>
             <td style="text-align: center">
-                aaa
+                {{$rate}}
             </td>
             <td style="text-align: center">
-                aaa
+                <strong>{{$amount}}</strong>
             </td>
+        </tr>
+        <tr>
+            <td style="text-align: right">
+                <strong>Amount due {{$currency}} {{$amount}}</strong>
+            </td>
+        </tr>
+        <tr>
             <td style="text-align: center">
-                aaa
+                <a href="{{url('/billing')}}">Click: Pay now!</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Terms</h4>
+                We reserve the right to charge 10% administration fee for late payments. Please refer to terms and conditions for further details on late payments.<BR>
+                <BR>
+                <h4>Pay via bank transer (HSBC)</h4>
+                Account: HSBC Hong Kong, Account: 848-431979-838, Holder: Bright Tech Technology Ltd<BR>
+                Please send the transfer slip (or a photo thereof) to support@{{$theme}}.com.hk<BR>
             </td>
         </tr>
     </tbody>
