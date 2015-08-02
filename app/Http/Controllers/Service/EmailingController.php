@@ -25,7 +25,7 @@ class EmailingController extends Controller
             'fromEmail' =>  'support@gotarot.com.hk',
             'fromName'  =>  'Support',
             'subject'   =>  'Signup successful',
-            'theme'     =>  'signup',
+            'template'     =>  'signup',
         ];
 
         $this->emailingService->send($data);

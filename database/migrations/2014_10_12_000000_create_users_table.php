@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration {
 			$table->string('email')->unique()->index();
 			$table->string('password', 60);
 			$table->string('billing_id');
+			$table->string('phone');
+			$table->string('address');
 			$table->enum('theme',['whitelabel', 'gotarot', 'first1']);
 			$table->rememberToken();
 			$table->timestamps();

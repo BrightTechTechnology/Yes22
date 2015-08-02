@@ -1,19 +1,33 @@
 <?php namespace App\Acme\Emailing;
 
 use Mail;
+use App\Http\Controllers\ConfigController;
 
 class MandrillEmailing implements EmailingInterface {
+
+    protected $config;
+
+    public function __construct()
+    {
+        $this->config = new ConfigController;
+    }
+
+    /**
+     * @param $data [template, content, fromEmail, fromName, toEmail, toName, subject]
+     * @throws \Exception
+     */
+
     public function send ($data)
     {
-        $theme = 'theme.emails'.$this->config->getTheme().$data['theme'];
+        $theme = 'theme.'.$this->config->getTheme().'.emails.'.$data['template'];
         try {
-            Mail::send($theme, [], function ($message) use ($data) {
+            Mail::send($theme, $data['content'], function ($message) use ($data) {
                 $message->from($data['fromEmail'], $data['fromName']);
                 $message->to($data['toEmail'], $data['toName']);
                 $message->subject($data['subject']);
             });
         } catch (\Exception $e) {
-            throw new \Exception('Error occured');
+            throw new \Exception('an error occured');
         }
     }
 }

@@ -26,6 +26,7 @@ class AcmeInvoicing
         $this->invoice->user_id = \Auth::user()->id;
         $this->invoice->theme = $this->config->getTheme();
         $this->invoice->save();
+        return $this->invoice->id;
     }
 
     /**

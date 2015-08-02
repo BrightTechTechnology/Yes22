@@ -22,7 +22,7 @@
             </form>
         </div>
     @else
-        @include ('themes/whitelabel/partials/creditCardForm')
+        @include ('theme/gotarot/partials/creditCardForm')
         @yield ('creditCardForm')
     @endif
 </div>
