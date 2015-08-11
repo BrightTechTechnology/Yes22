@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Theme\Gotarot;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DataController;
+use App\Invoice;
 use App\Rating;
 use App\Http\Controllers\PageControllerInterface;
 use App\Http\Controllers\BillingController;
@@ -135,7 +136,7 @@ class PageController extends Controller implements PageControllerInterface
     }
 
     /**
-     * suppliers page
+     * billing page
      *
      * @return \Illuminate\View\View
      */
@@ -150,11 +151,16 @@ class PageController extends Controller implements PageControllerInterface
             return $billing->postBilling();
         }
 
+        $invoices = Invoice::where('user_id', \Auth::user()->id)->get();
+
         $data = [
             'title' => 'Billing | Gotarot',
             'blade' => debug_backtrace()[0]['function'],
+            'invoices' => $invoices,
             'pages' => [
-                'Billing' => 'billing',
+                'Menu' => 'menu',
+                'Credit Cards' => 'creditcard',
+                'Invoices' => 'invoices',
             ],
         ];
 

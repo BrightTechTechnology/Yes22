@@ -31,15 +31,17 @@ class InvoicingController extends Controller
         ];
         $invoiceId = $this->invoicingService->create($createData);
         $invoiceObject = $this->invoicingService->getInvoiceObject($invoiceId);
+        $date = new \DateTime($invoiceObject->end);
+        $date = $date->format('Y/m/d');
 
         $emailData = [
             'template' => 'invoice',
             'content' => [
                 'id' => $invoiceObject->id,
-                'date' => date_format($invoiceObject->end, 'Y-m-d'),
-                'amount' => $invoiceObject->amount,
+                'date' => $date,
+                'amount' => number_format($invoiceObject->amount/100, 2),
                 'currency' => $invoiceObject->currency,
-                'theme' => $invoiceObject->theme,
+                'theme' => ucfirst($invoiceObject->theme),
                 'start' => $invoiceObject->start,
                 'end' => $invoiceObject->end,
                 'rate' => $invoiceObject->rate,
@@ -52,5 +54,10 @@ class InvoicingController extends Controller
             'subject' => 'Your Invoice',
         ];
         $this->emailingService->send($emailData);
+    }
+
+    public function getShow($id)
+    {
+        return 'this is invoice with id '.$id;
     }
 }

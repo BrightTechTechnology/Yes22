@@ -23,6 +23,8 @@ class AcmeInvoicing
     {
         $this->invoice->supplier = $data['supplier'];
         $this->invoice->amount = $this->getAmount($data);
+        $this->invoice->start = $data['start'];
+        $this->invoice->end = $data['end'];
         $this->invoice->rate = $data['rate'];
         $this->invoice->currency = $data['currency'];
         $this->invoice->user_id = \Auth::user()->id;
@@ -47,7 +49,7 @@ class AcmeInvoicing
 
     public function getInvoiceObject($id)
     {
-        return Invoice::where('id', $id);
+        return Invoice::where('id', $id)->first();
     }
 
 }
